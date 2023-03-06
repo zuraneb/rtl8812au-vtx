@@ -30,7 +30,7 @@ jobs:
         mv * ../temp
         mkdir -p packagedir/usr/src/rtl8812au-5.2.20.2/
         mv ../temp/* packagedir/usr/src/rtl8812au-5.2.20.2/
-        mv ../temp2/usr/* packagedir/usr/
+        cp -rf ../temp2/* packagedir/
         fpm -a arm64 -s dir -t deb -n rtl8812au-autocompiler -v 2.3-evo-$(date '+%m%d%H%M') -C ./packagedir/ -p rtl8812au-autocompiler.deb --after-install packagedir/opt/rtl8812au/after-install.sh
         ls -a
 
