@@ -11,4 +11,6 @@ sudo rm -Rf /etc/systemd/system/rtl8812auEasyCompile.service
 sudo rm -Rf /usr/local/bin/rtl8812auEasyCompile.sh
 mv /usr/sbin/nologin /usr/sbin/login
 echo "cleanup done" >> /opt/installrtl.log
+rm /etc/motd
+mv /etc/motd2 /etc/motd
 reboot
