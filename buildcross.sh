@@ -21,8 +21,11 @@ wget -q --show-progress --progress=bar:force:noscroll http://releases.linaro.org
 tar xf gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz
 export ARCH=arm64
 PACKAGE_ARCH=arm64
-export CROSS_COMPILE=arm-linux-aarch64-
 cd ..
+export CROSS_COMPILE=crosscompiler/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-
+
+
+
 
 #prepping kernel
 git clone https://github.com/OpenHD/RK_Kernel kernel --depth=1
@@ -37,7 +40,6 @@ cp -r * /home/runner/work/rtl8812au/rtl8812au/drivers/net/wireless/rtl8812au/
 #build driver
 mkdir package
 export KERNEL_VERSION="5.10.110-99-rockchip"
-export CROSS_COMPILE=crosscompiler/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-
 make KSRC=kernel -j $J_CORES M=$(pwd) modules || exit 1
 mkdir -p package/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/realtek/rtl8812au
 install -p -m 644 88XXau_wfb.ko "package/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/88XXau_wfb.ko"
