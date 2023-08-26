@@ -299,22 +299,6 @@ _BTC_FILES += hal/btc/halbtc8192e1ant.o \
 				hal/btc/halbtc8821c2ant.o
 endif
 
-ifeq ($(CONFIG_RTL8812AU),y)
-    # List of object files
-    obj-y += \
-        hal/btc/halbtc8723d2ant.o \
-        hal/btc/halbtc8822b1ant.o \
-        hal/btc/halbtc8822b2ant.o \
-        hal/btc/halbtc8821c1ant.o \
-        hal/btc/halbtc8821c2ant.o
-
-    # Display the TopDIR and file contents
-    @echo "TopDIR: $(TopDIR)"
-    @echo "Files:"
-    @echo $(obj-y)
-endif
-
-
 include $(TopDIR)/drivers/net/wireless/rtl8812au/hal/phydm/phydm.mk
 
 ########### HAL_RTL8812A_RTL8821A #################################

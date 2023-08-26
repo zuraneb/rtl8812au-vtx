@@ -24,24 +24,16 @@ PACKAGE_ARCH=arm64
 export CROSS_COMPILE=arm-linux-aarch64-
 cd ..
 
+#prepping kernel
+git clone https://github.com/OpenHD/RK_Kernel kernel --depth=1
+
+
 #build driver
 mkdir package
-export KERNEL_VERSION="5.10.66-27-rockchip-gea60d388902d"
+export KERNEL_VERSION="5.10.110-99-rockchip"
 export CROSS_COMPILE=crosscompiler/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-
-make KSRC=${LINUX_DIR} -j $J_CORES M=$(pwd) modules || exit 1
+make KSRC= kernel -j $J_CORES M=$(pwd) modules || exit 1
 mkdir -p package/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/realtek/rtl8812au
 install -p -m 644 88XXau_wfb.ko "package/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/88XXau_wfb.ko"
 
 fpm -a arm64 -s dir -t deb -n rtl8812au -v 2.5-$(date '+%m%d%H%M') -C ./packagedir/ -p rtl8812au.deb
-mkdir -p /opt/out/
-cp -v *.dep /opt/out/
-echo "copied deb file"
-echo "push to cloudsmith"
-git describe --exact-match HEAD >/dev/null 2>&1
-echo "Pushing the package to OpenHD 2.3 repository"
-ls -a
-API_KEY=$(cat cloudsmith_api_key.txt)
-DISTRO=$(cat distro.txt)
-FLAVOR=$(cat flavor.txt)
-cloudsmith push deb --api-key "$API_KEY" openhd/openhd-2-3-evo/${DISTRO}/${FLAVOR} *.deb || exit 1
-

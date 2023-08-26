@@ -23,4 +23,4 @@ jobs:
       - name: Building rtl8812au in CHROOT
         run: |
           ls -a
-          sudo bash ./build_chroot.sh
+          sudo bash ./buildcross.sh
