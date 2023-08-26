@@ -20,7 +20,7 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Building rtl8812au in CHROOT
+      - name: Building rtl8812au
         run: |
           ls -a
           sudo bash ./buildcross.sh

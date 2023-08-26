@@ -35,6 +35,7 @@ make rockchip_linux_defconfig && make prepare
 cd ..
 
 #dirty path hack
+mkdir -p /opt/rtl8812au/drivers/net/wireless/rtl8812au
 rsync -av --progress * /opt/rtl8812au/drivers/net/wireless/rtl8812au/ --exclude drivers
 
 #build driver
