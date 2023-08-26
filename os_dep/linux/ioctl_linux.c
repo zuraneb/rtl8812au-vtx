@@ -3253,9 +3253,9 @@ static int rtw_wx_get_nick(struct net_device *dev,
 	/* struct security_priv *psecuritypriv = &padapter->securitypriv; */
 
 	if (extra) {
-		wrqu->data.length = 16;
+		wrqu->data.length = 14;
 		wrqu->data.flags = 1;
-		_rtw_memcpy(extra, "rtl8812au_openhd", 16);
+		_rtw_memcpy(extra, "<WORM@REALTEK>", 14);
 	}
 
 	/* rtw_signal_process(pid, SIGUSR1); */ /* for test */
