@@ -20,12 +20,11 @@ cp -r * /opt/rtl8812au/
 
 #installing crosscompiler
 mkdir -p /opt/crosscompiler
-cd crosscompiler
+cd /opt/crosscompiler
 wget -q --show-progress --progress=bar:force:noscroll http://releases.linaro.org/components/toolchain/binaries/7.3-2018.05/aarch64-linux-gnu/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz
 tar xf gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz
 export ARCH=arm64
 PACKAGE_ARCH=arm64
-ls -a /opt/crosscompiler/
 export CROSS_COMPILE=/opt/crosscompiler/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-
 cd /opt/rtl8812au/
 
