@@ -26,6 +26,7 @@ cd ..
 
 #prepping kernel
 git clone https://github.com/OpenHD/RK_Kernel kernel --depth=1
+make rockchip_linux_defconfig && make prepare
 
 #dirty-hack
 mkdir -p /home/runner/work/rtl8812au/rtl8812au/drivers/net/wireless/rtl8812au/
