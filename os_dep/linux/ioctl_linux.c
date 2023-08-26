@@ -3255,7 +3255,7 @@ static int rtw_wx_get_nick(struct net_device *dev,
 	if (extra) {
 		wrqu->data.length = 14;
 		wrqu->data.flags = 1;
-		_rtw_memcpy(extra, "rtl8812au_openhd", 14);
+		_rtw_memcpy(extra, "<rtl8812au_openhd>", 14);
 	}
 
 	/* rtw_signal_process(pid, SIGUSR1); */ /* for test */
