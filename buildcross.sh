@@ -29,7 +29,7 @@ export CROSS_COMPILE=crosscompiler/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux
 
 #prepping kernel
 git clone https://github.com/OpenHD/RK_Kernel kernel --depth=1
-cd RK_Kernel
+cd kernel
 make rockchip_linux_defconfig && make prepare
 cd ..
 
