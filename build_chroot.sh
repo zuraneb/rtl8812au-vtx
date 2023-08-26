@@ -1,0 +1,47 @@
+#!/bin/bash
+#This file is the install instruction for the CHROOT build
+#We're using cloudsmith-cli to upload the file in CHROOT
+
+
+#install dependencies
+sudo apt update --allow-releaseinfo-change
+sudo apt install tree bc u-boot-tools gcc-python3-plugin bison ccache fakeroot flex git kmod libelf-dev libssl-dev make python3-pip gcc-10-aarch64-linux-gnu ruby
+sudo gem install --no-document fpm
+sudo pip3 install --upgrade cloudsmith-cli
+
+#choosing architecture
+sed -i 's/CONFIG_PLATFORM_I386_PC = y/CONFIG_PLATFORM_I386_PC = n/g' Makefile
+sed -i 's/CONFIG_PLATFORM_ARM64_RPI = n/CONFIG_PLATFORM_ARM64_RPI = y/g' Makefile
+sed -i 's/u8 fixed_rate = MGN_1M, sgi = 0, bwidth = 0, ldpc = 0, stbc = 0;/u8 fixed_rate = MGN_1M, sgi = 0, bwidth = 0, ldpc = 0, stbc = 1;/' core/rtw_xmit.c
+
+#installing crosscompiler
+mkdir crosscompiler
+cd crosscompiler
+wget -q --show-progress --progress=bar:force:noscroll http://releases.linaro.org/components/toolchain/binaries/7.3-2018.05/aarch64-linux-gnu/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz
+tar xf gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz
+export ARCH=arm64
+PACKAGE_ARCH=arm64
+export CROSS_COMPILE=arm-linux-aarch64-
+cd ..
+
+#build driver
+mkdir package
+export KERNEL_VERSION="5.10.66-27-rockchip-gea60d388902d"
+export CROSS_COMPILE=crosscompiler/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-
+make KSRC=${LINUX_DIR} -j $J_CORES M=$(pwd) modules || exit 1
+mkdir -p package/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/realtek/rtl8812au
+install -p -m 644 88XXau_wfb.ko "package/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/88XXau_wfb.ko"
+
+fpm -a arm64 -s dir -t deb -n rtl8812au -v 2.5-$(date '+%m%d%H%M') -C ./packagedir/ -p rtl8812au.deb
+mkdir -p /opt/out/
+cp -v *.dep /opt/out/
+echo "copied deb file"
+echo "push to cloudsmith"
+git describe --exact-match HEAD >/dev/null 2>&1
+echo "Pushing the package to OpenHD 2.3 repository"
+ls -a
+API_KEY=$(cat cloudsmith_api_key.txt)
+DISTRO=$(cat distro.txt)
+FLAVOR=$(cat flavor.txt)
+cloudsmith push deb --api-key "$API_KEY" openhd/openhd-2-3-evo/${DISTRO}/${FLAVOR} *.deb || exit 1
+
