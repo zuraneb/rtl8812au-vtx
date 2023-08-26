@@ -299,6 +299,11 @@ _BTC_FILES += hal/btc/halbtc8192e1ant.o \
 				hal/btc/halbtc8821c2ant.o
 endif
 
+@echo "TopDIR: $(TopDIR)"
+@echo "Files:"
+@echo $(obj-y)
+
+
 include $(TopDIR)/drivers/net/wireless/rtl8812au/hal/phydm/phydm.mk
 
 ########### HAL_RTL8812A_RTL8821A #################################
