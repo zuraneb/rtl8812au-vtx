@@ -5,7 +5,7 @@
 
 #install dependencies
 sudo apt update --allow-releaseinfo-change
-sudo apt install tree bc u-boot-tools gcc-python3-plugin bison ccache fakeroot flex git kmod libelf-dev libssl-dev make python3-pip gcc-10-aarch64-linux-gnu ruby
+sudo apt install build-essential tree bc u-boot-tools gcc-python3-plugin bison ccache fakeroot flex git kmod libelf-dev libssl-dev make python3-pip gcc-10-aarch64-linux-gnu ruby
 sudo gem install --no-document fpm
 sudo pip3 install --upgrade cloudsmith-cli
 
@@ -43,7 +43,7 @@ rsync -av --progress * /opt/rtl8812au/drivers/net/wireless/rtl8812au/ --exclude 
 mkdir -p /opt/package
 export KERNEL_VERSION="5.10.110-99-rockchip"
 make KSRC=/opt/kernel -j $J_CORES M=$(pwd) modules || exit 1
-mkdir -p package/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/realtek/rtl8812au
+mkdir -p /opt/package/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/realtek/rtl8812au
 install -p -m 644 88XXau_wfb.ko "/opt/package/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/88XXau_wfb.ko"
 
 fpm -a arm64 -s dir -t deb -n rtl8812au -v 2.5-$(date '+%m%d%H%M') -C /opt/packagedir/ -p rtl8812au.deb
