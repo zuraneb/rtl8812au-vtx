@@ -42,7 +42,7 @@ rsync -av --progress * /opt/rtl8812au/drivers/net/wireless/rtl8812au/ --exclude 
 #build driver
 mkdir -p /opt/package
 export KERNEL_VERSION="5.10.110-99-rockchip"
-make KSRC=/opt/kernel -j $J_CORES M=$(pwd) modules || exit 1
+make KSRC=/opt/kernel -j $J_CORES M=$(pwd) modules
 mkdir -p /opt/package/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/realtek/rtl8812au
 install -p -m 644 88XXau_wfb.ko "/opt/package/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/88XXau_wfb.ko"
 
