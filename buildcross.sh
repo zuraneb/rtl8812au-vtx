@@ -34,6 +34,9 @@ cd kernel
 make rockchip_linux_defconfig && make prepare
 cd ..
 
+#dirty path hack
+rsync -av --progress * /opt/rtl8812au/drivers/net/wireless/rtl8812au/ --exclude drivers
+
 #build driver
 mkdir -p /opt/package
 export KERNEL_VERSION="5.10.110-99-rockchip"
