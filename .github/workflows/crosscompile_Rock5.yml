@@ -1,0 +1,25 @@
+name: build_package_rock5_debian
+
+on: 
+  push:
+
+jobs:
+  build:
+    #runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
+    env:
+      CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
+    steps:
+      - name: environment variables
+        run: |
+          echo "DT=$(date +'%Y-%m-%d_%H%M')" >> $GITHUB_ENV
+          echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV    
+             
+      - name: Checkout repository and submodules
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Building rtl8812au in CHROOT
+        run: |
+          sudo ./build_chroot.sh
