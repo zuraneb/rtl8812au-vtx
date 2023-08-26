@@ -28,6 +28,7 @@ cd ..
 git clone https://github.com/OpenHD/RK_Kernel kernel --depth=1
 
 #dirty-hack
+mkdir -p /home/runner/work/rtl8812au/rtl8812au/drivers/net/wireless/rtl8812au/
 cp -r * /home/runner/work/rtl8812au/rtl8812au/drivers/net/wireless/rtl8812au/
 
 #build driver
