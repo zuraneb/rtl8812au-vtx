@@ -408,7 +408,9 @@ u8 rtw_cfg80211_ch_switch_notify(_adapter *adapter, u8 ch, u8 bw, u8 offset, u8 
 	if (ret != _SUCCESS)
 		goto exit;
 
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 19, 2))
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 3, 0))
+	cfg80211_ch_switch_notify(adapter->pnetdev, &chdef, 0, 0);
+#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 19, 2))
 	cfg80211_ch_switch_notify(adapter->pnetdev, &chdef, 0);
 #else
 	cfg80211_ch_switch_notify(adapter->pnetdev, &chdef);
@@ -5165,6 +5167,10 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 		, FUNC_ADPT_ARG(padapter), target_channal, target_width, target_offset);
 
     // OpenHD channel via module param
+    // update if module param has been updated
+    padapter->registrypriv.openhd_override_channel=get_openhd_override_channel();
+    padapter->registrypriv.openhd_override_channel_width=get_openhd_override_channel_width();
+    RTW_WARN("OpenHD: override %d %d",padapter->registrypriv.openhd_override_channel,padapter->registrypriv.openhd_override_channel_width);
     {
         if(padapter->registrypriv.openhd_override_channel){
             target_channal=padapter->registrypriv.openhd_override_channel;
