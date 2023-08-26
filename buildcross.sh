@@ -36,7 +36,7 @@ cd ..
 
 #dirty path hack
 mkdir -p /opt/rtl8812au/drivers/net/wireless/rtl8812au
-rsync -av --progress * /opt/rtl8812au/drivers/net/wireless/rtl8812au/ --exclude drivers
+rsync -av --progress * /opt/rtl8812au/drivers/net/wireless/rtl8812au/ --exclude drivers kernel
 
 #build driver
 mkdir -p /opt/package
