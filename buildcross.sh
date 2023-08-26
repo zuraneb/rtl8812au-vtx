@@ -29,19 +29,20 @@ export CROSS_COMPILE=/opt/crosscompiler/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-
 cd /opt/rtl8812au/
 
 #prepping kernel
+cd /opt/
 git clone https://github.com/OpenHD/RK_Kernel kernel --depth=1
 cd kernel
 make rockchip_linux_defconfig && make prepare
-cd ..
+cd /opt/rtl8812au/
 
 #dirty path hack
 mkdir -p /opt/rtl8812au/drivers/net/wireless/rtl8812au
-rsync -av --progress * /opt/rtl8812au/drivers/net/wireless/rtl8812au/ --exclude drivers kernel
+rsync -av --progress * /opt/rtl8812au/drivers/net/wireless/rtl8812au/ --exclude drivers
 
 #build driver
 mkdir -p /opt/package
 export KERNEL_VERSION="5.10.110-99-rockchip"
-make KSRC=kernel -j $J_CORES M=$(pwd) modules || exit 1
+make KSRC=/opt/kernel -j $J_CORES M=$(pwd) modules || exit 1
 mkdir -p package/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/realtek/rtl8812au
 install -p -m 644 88XXau_wfb.ko "/opt/package/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/88XXau_wfb.ko"
 
