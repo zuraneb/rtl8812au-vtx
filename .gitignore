@@ -8,3 +8,6 @@ modules.order
 .tmp_versions
 .cache.mk
 .idea
+
+build
+CMakeUserPresets.json
