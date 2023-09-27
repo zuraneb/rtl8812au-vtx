@@ -15,82 +15,8 @@
 #ifndef __OSDEP_LINUX_SERVICE_H_
 #define __OSDEP_LINUX_SERVICE_H_
 
-#include <linux/version.h>
-#include <linux/spinlock.h>
-#include <linux/compiler.h>
-#include <linux/kernel.h>
-#include <linux/errno.h>
-#include <linux/init.h>
-#include <linux/slab.h>
-#include <linux/module.h>
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 5))
-	#include <linux/kref.h>
-#endif
-/* #include <linux/smp_lock.h> */
-#include <linux/netdevice.h>
-#include <linux/inetdevice.h>
-#include <linux/skbuff.h>
-#include <linux/circ_buf.h>
-#include <asm/uaccess.h>
-#include <asm/byteorder.h>
-#include <asm/atomic.h>
-#include <asm/io.h>
-#if (LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 26))
-	#include <asm/semaphore.h>
-#else
-	#include <linux/semaphore.h>
-#endif
-#include <linux/sem.h>
-#include <linux/sched.h>
-#include <linux/etherdevice.h>
-#include <linux/wireless.h>
-#include <net/iw_handler.h>
-#include <net/addrconf.h>
-#include <linux/if_arp.h>
-#include <linux/rtnetlink.h>
-#include <linux/delay.h>
-#include <linux/interrupt.h>	/* for struct tasklet_struct */
-#include <linux/ip.h>
-#include <linux/kthread.h>
-#include <linux/list.h>
-#include <linux/vmalloc.h>
-
-#if (LINUX_VERSION_CODE <= KERNEL_VERSION(2, 5, 41))
-	#include <linux/tqueue.h>
-#endif
-
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 7, 0))
-	#include <uapi/linux/limits.h>
-#else
-	#include <linux/limits.h>
-#endif
-
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 11, 0))
-	#include <linux/sched/signal.h>
-#endif
-
-#ifdef RTK_DMP_PLATFORM
-	#if (LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 12))
-		#include <linux/pageremap.h>
-	#endif
-	#include <asm/io.h>
-#endif
-
-#ifdef CONFIG_NET_RADIO
-	#define CONFIG_WIRELESS_EXT
-#endif
 
 /* Monitor mode */
-#include <net/ieee80211_radiotap.h>
-
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 24))
-	#include <linux/ieee80211.h>
-#endif
-
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 25) && \
-	 LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 29))
-	#define CONFIG_IEEE80211_HT_ADDT_INFO
-#endif
 
 #ifdef CONFIG_IOCTL_CFG80211
 	/*	#include <linux/ieee80211.h> */
@@ -110,15 +36,6 @@
 	#include <linux/fs.h>
 #endif
 
-#ifdef CONFIG_USB_HCI
-	#include <linux/usb.h>
-	#if (LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 21))
-		#include <linux/usb_ch9.h>
-	#else
-		#include <linux/usb/ch9.h>
-	#endif
-#endif
-
 #ifdef CONFIG_BT_COEXIST_SOCKET_TRX
 	#include <net/sock.h>
 	#include <net/tcp.h>
@@ -127,15 +44,6 @@
 	#include <linux/netlink.h>
 #endif /* CONFIG_BT_COEXIST_SOCKET_TRX */
 
-#ifdef CONFIG_USB_HCI
-	typedef struct urb   *PURB;
-	#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 22))
-		#ifdef CONFIG_USB_SUSPEND
-			#define CONFIG_AUTOSUSPEND	1
-		#endif
-	#endif
-#endif
-
 #if defined(CONFIG_RTW_GRO) && (!defined(CONFIG_RTW_NAPI))
 
 	#error "Enable NAPI before enable GRO\n"
@@ -143,42 +51,24 @@
 #endif
 
 
-#if (KERNEL_VERSION(2, 6, 29) > LINUX_VERSION_CODE && defined(CONFIG_RTW_NAPI))
-
-	#undef CONFIG_RTW_NAPI
-	/*#warning "Linux Kernel version too old to support NAPI (should newer than 2.6.29)\n"*/
-
-#endif
-
-#if (KERNEL_VERSION(2, 6, 33) > LINUX_VERSION_CODE && defined(CONFIG_RTW_GRO))
-
-	#undef CONFIG_RTW_GRO
-	/*#warning "Linux Kernel version too old to support GRO(should newer than 2.6.33)\n"*/
-
-#endif
 
 typedef struct	semaphore _sema;
-typedef	spinlock_t	_lock;
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 37))
-	typedef struct mutex		_mutex;
-#else
-	typedef struct semaphore	_mutex;
-#endif
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 15, 0))
-typedef struct legacy_timer_emu {
-  struct timer_list t;
-  void (*function)(unsigned long);
-  unsigned long data;
-} _timer;
-#else
-typedef struct timer_list _timer;
-#endif //(LINUX_VERSION_CODE >= KERNEL_VERSION(4, 15, 0))
+//typedef	spinlock_t	_lock;
+typedef struct mutex		_mutex;
+
+
+// typedef struct legacy_timer_emu {
+//   struct timer_list t;
+//   void (*function)(unsigned long);
+//   unsigned long data;
+// } _timer;
+
 typedef struct completion _completion;
 
-struct	__queue	{
-	struct	list_head	queue;
-	_lock	lock;
-};
+// struct	__queue	{
+// 	struct	list_head	queue;
+// 	_lock	lock;
+// };
 
 typedef	struct sk_buff	_pkt;
 typedef unsigned char	_buffer;
@@ -197,40 +87,10 @@ typedef void	*thread_context;
 typedef void timer_hdl_return;
 typedef void *timer_hdl_context;
 
-#if (LINUX_VERSION_CODE > KERNEL_VERSION(2, 5, 41))
-	typedef struct work_struct _workitem;
-#else
-	typedef struct tq_struct _workitem;
-#endif
+typedef struct work_struct _workitem;
 
-#if (LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 24))
-	#define DMA_BIT_MASK(n) (((n) == 64) ? ~0ULL : ((1ULL<<(n))-1))
-#endif
 
 typedef unsigned long systime;
-
-#if (LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 22))
-/* Porting from linux kernel, for compatible with old kernel. */
-static inline unsigned char *skb_tail_pointer(const struct sk_buff *skb)
-{
-	return skb->tail;
-}
-
-static inline void skb_reset_tail_pointer(struct sk_buff *skb)
-{
-	skb->tail = skb->data;
-}
-
-static inline void skb_set_tail_pointer(struct sk_buff *skb, const int offset)
-{
-	skb->tail = skb->data + offset;
-}
-
-static inline unsigned char *skb_end_pointer(const struct sk_buff *skb)
-{
-	return skb->end;
-}
-#endif
 
 __inline static _list *get_next(_list	*list)
 {
