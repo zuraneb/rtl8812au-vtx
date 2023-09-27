@@ -15,6 +15,7 @@ find_package(libusb REQUIRED)
 
 # Add source to this project's executable.
 add_executable (libusb_demo "libusb_demo.cpp" "libusb_demo.h")
+target_link_libraries(libusb_demo libusb::libusb)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET libusb_demo PROPERTY CXX_STANDARD 20)
