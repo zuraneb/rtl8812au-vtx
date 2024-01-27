@@ -38,7 +38,7 @@ if [[ -e /etc/os-release && $(grep -c "Raspbian" /etc/os-release) -gt 0 ]]; then
     git describe --exact-match HEAD >/dev/null 2>&1
     echo "Pushing the package to OpenHD 2.5 repository"
     ls -a
-    cloudsmith push deb --api-key "$API_KEY" openhd/release/raspbian/bullseye rtl8812au-x86.deb || exit 1
+    cloudsmith push deb --api-key "$API_KEY" openhd/release/raspbian/bullseye rtl8812au-rpi.deb || exit 1
 
 else
 
