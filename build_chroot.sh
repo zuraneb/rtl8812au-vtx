@@ -32,6 +32,13 @@ if [[ -e /etc/os-release && $(grep -c "Raspbian" /etc/os-release) -gt 0 ]]; then
     mkdir -p package/lib/modules/6.1.21-v7+/kernel/drivers/net/wireless/
     cp *.ko package/lib/modules/6.1.21-v7+/kernel/drivers/net/wireless/
     fpm -a amd64 -s dir -t deb -n rtl8812au-rpi -v 2.5-evo-$(date '+%m%d%H%M') -C package -p rtl8812au-rpi.deb --before-install before-install-pi.sh --after-install after-install.sh
+    echo "copied deb file"
+    echo "push to cloudsmith"
+    git describe --exact-match HEAD >/dev/null 2>&1
+    echo "Pushing the package to OpenHD 2.5 repository"
+    ls -a
+    cloudsmith push deb --api-key "$API_KEY" openhd/release/raspbian/bullseye rtl8812au-x86.deb || exit 1
+
 else
 
 sudo apt update 
