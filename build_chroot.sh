@@ -19,6 +19,7 @@ echo ${CUSTOM}
 echo ${ARCH}
 
 if [[ -e /etc/os-release && $(grep -c "Raspbian" /etc/os-release) -gt 0 ]]; then
+    sudo pip3 install --upgrade cloudsmith-cli
     echo "building for the raspberry pi"
     sudo apt update 
     sudo apt install -y build-essential flex bc bison dkms raspberrypi-kernel-headers
