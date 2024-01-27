@@ -22,9 +22,16 @@ if [[ -e /etc/os-release && $(grep -c "Raspbian" /etc/os-release) -gt 0 ]]; then
     echo "building for the raspberry pi"
     sudo apt update 
     sudo apt install -y build-essential flex bc bison dkms raspberrypi-kernel-headers
-    echo "---------------"
-    echo "_____________________________________________"
-    ls -a /usr/src/
+    echo "___________________BUILDING-DRIVER______PI4_____________"
+    make KSRC=/usr/src/linux-headers-6.1.21-v7l+ O="" modules
+    mkdir -p package/lib/modules/6.1.21-v7l+/kernel/drivers/net/wireless/
+    cp *.ko package/lib/modules/6.1.21-v7l+/kernel/drivers/net/wireless/
+    ls -a
+    make clean
+    make KSRC=/usr/src/linux-headers-6.1.21-v7+ O="" modules
+    mkdir -p package/lib/modules/6.1.21-v7+/kernel/drivers/net/wireless/
+    cp *.ko package/lib/modules/6.1.21-v7+/kernel/drivers/net/wireless/
+    fpm -a amd64 -s dir -t deb -n rtl8812au-rpi -v 2.5-evo-$(date '+%m%d%H%M') -C package -p rtl8812au-rpi.deb --before-install before-install.sh --after-install after-install-pi.sh
 else
 
 sudo apt update 
