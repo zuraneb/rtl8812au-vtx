@@ -32,7 +32,7 @@ if [[ -e /etc/os-release && $(grep -c "Raspbian" /etc/os-release) -gt 0 ]]; then
     make KSRC=/usr/src/linux-headers-6.1.21-v7+ O="" modules
     mkdir -p package/lib/modules/6.1.21-v7+/kernel/drivers/net/wireless/
     cp *.ko package/lib/modules/6.1.21-v7+/kernel/drivers/net/wireless/
-    fpm -a amd64 -s dir -t deb -n rtl8812au-rpi -v 2.5-evo-$(date '+%m%d%H%M') -C package -p rtl8812au-rpi.deb --before-install before-install-pi.sh --after-install after-install.sh
+    fpm -a armhf -s dir -t deb -n rtl8812au-rpi -v 2.5-evo-$(date '+%m%d%H%M') -C package -p rtl8812au-rpi.deb --before-install before-install-pi.sh --after-install after-install.sh
     echo "copied deb file"
     echo "push to cloudsmith"
     git describe --exact-match HEAD >/dev/null 2>&1
