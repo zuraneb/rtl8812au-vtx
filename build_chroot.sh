@@ -36,7 +36,7 @@ elif [[ -e /etc/os-release && $(grep -c "Armbian" /etc/os-release) -gt 0 ]]; the
     echo "---------------"
     echo $PWD
     echo "_____________________________________________"
-    make ARCH=arm KSRC=OpenHD-X20-kernel CROSS_COMPILE=arm-linux-gnueabi-
+    make ARCH=arm KSRC=OpenHD-X20-kernel/OpenHD-X20-kernel CROSS_COMPILE=arm-linux-gnueabi-
     mkdir -p package/lib/modules/5.8.0/kernel/drivers/net/
     cp *.ko package/lib/modules/5.8.0/kernel/drivers/net/
     ls -a
