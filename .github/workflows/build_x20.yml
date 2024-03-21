@@ -33,8 +33,7 @@ jobs:
         sed -i 's/CONFIG_PLATFORM_I386_PC = y/CONFIG_PLATFORM_I386_PC = n/g' Makefile
         sed -i 's/CONFIG_PLATFORM_ARM_RPI = n/CONFIG_PLATFORM_ARM_RPI = y/g' Makefile
         cd ../../../../
-        make x20_defconfig
-        make prepare
+        make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- x20_defconfig
         cd ../../
         rm -Rf *.zip
         echo "---------------"
