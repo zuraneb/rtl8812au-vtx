@@ -51,7 +51,7 @@ else
 
 sudo apt update 
 sudo apt install -y build-essential flex bc bison dkms
-make KSRC=/usr/src/linux-headers-6.3.13-060313-generic O="" modules
+make KSRC=/usr/src/linux-headers-6.3.13-060313-generic CROSS_COMPILE=arm-linux-gnueabi- O="" modules
 mkdir -p package/lib/modules/6.3.13-060313-generic/kernel/drivers/net/wireless/
 cp *.ko package/lib/modules/6.3.13-060313-generic/kernel/drivers/net/wireless/
 ls -a
