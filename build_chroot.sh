@@ -30,14 +30,12 @@ elif [[ -e /etc/os-release && $(grep -c "Armbian" /etc/os-release) -gt 0 ]]; the
     echo "building for the x20"
     sudo apt update 
     sudo apt install -y build-essential flex bc bison dkms git
-    wget https://sby.mirror.bignet.id/ubuntu-ports/pool/main/l/linux-hwe-5.8/linux-hwe-5.8-headers-5.8.0-29_5.8.0-29.31~20.04.1_all.deb
-    dpkg -i *.deb
-    rm -Rf *.deb
-    wget https://sby.mirror.bignet.id/ubuntu-ports/pool/main/l/linux-hwe-5.8/linux-headers-5.8.0-29-generic_5.8.0-29.31~20.04.1_armhf.deb
-    dpkg -i *.deb
+    wget https://fra1.digitaloceanspaces.com/openhd-images/BaseImages/OpenHD-X20-kernel.zip
+    unzip
     echo "---------------"
+    echo $PWD
     echo "_____________________________________________"
-    make KSRC=/usr/src/linux-headers-5.8.0-29-generic O="" modules
+    make ARCH=arm KSRC=OpenHD-X20-kernel CROSS_COMPILE=arm-linux-gnueabi-
     mkdir -p package/lib/modules/5.8.0/kernel/drivers/net/
     cp *.ko package/lib/modules/5.8.0/kernel/drivers/net/
     ls -a
