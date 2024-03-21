@@ -24,7 +24,7 @@ jobs:
         sudo apt install -y build-essential flex bc bison dkms git gcc-arm-linux-gnueabi libelf-dev
         wget https://fra1.digitaloceanspaces.com/openhd-images/BaseImages/OpenHD-X20-kernel.zip
         mkdir -p OpenHD-X20-kernel
-        unzip OpenHD-X20-kernel.zip -d OpenHD-X20-kernel/
+        unzip -q OpenHD-X20-kernel.zip -d OpenHD-X20-kernel/
         cd OpenHD-X20-kernel/OpenHD-X20-kernel/
         cd drivers/net/wireless/
         git clone https://github.com/openhd/rtl8812au
