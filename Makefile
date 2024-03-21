@@ -120,6 +120,7 @@ CONFIG_MP_VHT_HW_TX_MODE = n
 CONFIG_PLATFORM_I386_PC = y
 CONFIG_PLATFORM_ARM_RPI = n
 CONFIG_PLATFORM_ARM64_RPI = n
+CONFIG_PLATFORM_X20 = n
 CONFIG_PLATFORM_ANDROID_X86 = n
 CONFIG_PLATFORM_ANDROID_INTEL_X86 = n
 CONFIG_PLATFORM_ARM_NETHUNTER = n
@@ -305,6 +306,8 @@ _BTC_FILES += hal/btc/halbtc8192e1ant.o \
 endif
 
 ifeq ($(CONFIG_PLATFORM_ARM64_RPI), y)
+include $(TopDIR)/drivers/net/wireless/rtl8812au/hal/phydm/phydm.mk
+else ifeq ($(CONFIG_PLATFORM_X20), y)
 include $(TopDIR)/drivers/net/wireless/rtl8812au/hal/phydm/phydm.mk
 else
 include $(TopDIR)/hal/phydm/phydm.mk
