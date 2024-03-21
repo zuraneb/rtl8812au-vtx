@@ -1,4 +1,4 @@
-name: Build test
+name: crosscompile x20
 
 on: [push]
 
@@ -16,7 +16,7 @@ jobs:
       with:
         submodules: recursive
 
-    - name: build on x86
+    - name: build on x20
       run: |
         sudo pip3 install --upgrade cloudsmith-cli
         echo "building for the x20"
@@ -32,6 +32,7 @@ jobs:
         sed -i '306d;305d;304d;302d' Makefile
         sed -i 's/CONFIG_PLATFORM_I386_PC = y/CONFIG_PLATFORM_I386_PC = n/g' Makefile
         sed -i 's/CONFIG_PLATFORM_ARM_RPI = n/CONFIG_PLATFORM_ARM_RPI = y/g' Makefile
+        cd ../../../../
         make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- x20_defconfig
         make prepare
         cd ../../
