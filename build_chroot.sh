@@ -29,7 +29,7 @@ elif [[ -e /etc/os-release && $(grep -c "Armbian" /etc/os-release) -gt 0 ]]; the
     sudo pip3 install --upgrade cloudsmith-cli
     echo "building for the x20"
     sudo apt update 
-    sudo apt install -y build-essential flex bc bison dkms git
+    sudo apt install -y build-essential flex bc bison dkms git arm-linux-gnueabi-gcc
     wget https://fra1.digitaloceanspaces.com/openhd-images/BaseImages/OpenHD-X20-kernel.zip
     mkdir -p OpenHD-X20-kernel
     unzip OpenHD-X20-kernel.zip -d OpenHD-X20-kernel/
