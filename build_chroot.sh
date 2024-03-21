@@ -29,7 +29,7 @@ elif [[ -e /etc/os-release && $(grep -c "Armbian" /etc/os-release) -gt 0 ]]; the
     sudo pip3 install --upgrade cloudsmith-cli
     echo "building for the x20"
     sudo apt update 
-    sudo apt install -y build-essential flex bc bison dkms git arm-linux-gnueabi-gcc
+    sudo apt install -y build-essential flex bc bison dkms git
     wget https://fra1.digitaloceanspaces.com/openhd-images/BaseImages/OpenHD-X20-kernel.zip
     mkdir -p OpenHD-X20-kernel
     unzip OpenHD-X20-kernel.zip -d OpenHD-X20-kernel/
@@ -37,7 +37,7 @@ elif [[ -e /etc/os-release && $(grep -c "Armbian" /etc/os-release) -gt 0 ]]; the
     echo "---------------"
     echo $PWD
     echo "_____________________________________________"
-    make ARCH=arm KSRC=OpenHD-X20-kernel/OpenHD-X20-kernel CROSS_COMPILE=arm-linux-gnueabi-
+    make ARCH=arm KSRC=OpenHD-X20-kernel/OpenHD-X20-kernel
     mkdir -p package/lib/modules/5.8.0/kernel/drivers/net/
     cp *.ko package/lib/modules/5.8.0/kernel/drivers/net/
     ls -a
