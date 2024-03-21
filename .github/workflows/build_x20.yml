@@ -1,0 +1,41 @@
+name: Build test
+
+on: [push]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: build on x86
+      run: |
+        sudo pip3 install --upgrade cloudsmith-cli
+        echo "building for the x20"
+        sudo apt update 
+        sudo apt install -y build-essential flex bc bison dkms git arm-linux-gnueabi-gcc
+        wget https://fra1.digitaloceanspaces.com/openhd-images/BaseImages/OpenHD-X20-kernel.zip
+        mkdir -p OpenHD-X20-kernel
+        unzip OpenHD-X20-kernel.zip -d OpenHD-X20-kernel/
+        rm -Rf *.zip
+        echo "---------------"
+        echo $PWD
+        echo "_____________________________________________"
+        make ARCH=arm KSRC=OpenHD-X20-kernel/OpenHD-X20-kernel CROSS_COMPILE=arm-linux-gnueabi-
+        mkdir -p package/lib/modules/5.8.0/kernel/drivers/net/
+        cp *.ko package/lib/modules/5.8.0/kernel/drivers/net/
+        ls -a
+        fpm -a armhf -s dir -t deb -n rtl8812au-x20 -v 2.5-evo-$(date '+%m%d%H%M') -C package -p rtl8812au-x20.deb --before-install before-install.sh --after-install after-install.sh
+        echo "push to cloudsmith"
+        git describe --exact-match HEAD >/dev/null 2>&1
+        echo "Pushing the package to OpenHD 2.5 repository"
+        ls -a
+        cloudsmith push deb --api-key "$CLOUDSMITH_API_KEY" openhd/release/debian/bullseye rtl8812au-x20.deb || exit 1
