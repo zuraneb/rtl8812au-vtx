@@ -31,7 +31,8 @@ elif [[ -e /etc/os-release && $(grep -c "Armbian" /etc/os-release) -gt 0 ]]; the
     sudo apt update 
     sudo apt install -y build-essential flex bc bison dkms git
     wget https://fra1.digitaloceanspaces.com/openhd-images/BaseImages/OpenHD-X20-kernel.zip
-    unzip
+    mkdir -p OpenHD-X20-kernel
+    unzip OpenHD-X20-kernel.zip -d OpenHD-X20-kernel/
     echo "---------------"
     echo $PWD
     echo "_____________________________________________"
