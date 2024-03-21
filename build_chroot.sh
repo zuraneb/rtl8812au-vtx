@@ -33,6 +33,7 @@ elif [[ -e /etc/os-release && $(grep -c "Armbian" /etc/os-release) -gt 0 ]]; the
     wget https://fra1.digitaloceanspaces.com/openhd-images/BaseImages/OpenHD-X20-kernel.zip
     mkdir -p OpenHD-X20-kernel
     unzip OpenHD-X20-kernel.zip -d OpenHD-X20-kernel/
+    rm -Rf *.zip
     echo "---------------"
     echo $PWD
     echo "_____________________________________________"
