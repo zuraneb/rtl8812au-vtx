@@ -26,6 +26,12 @@ jobs:
         mkdir -p OpenHD-X20-kernel
         unzip OpenHD-X20-kernel.zip -d OpenHD-X20-kernel/
         cd OpenHD-X20-kernel/OpenHD-X20-kernel/
+        cd drivers/net/wireless/
+        git clone https://github.com/openhd/rtl8812au
+        cd rtl8812au
+        sed -i '306d;305d;304d;302d' Makefile
+        sed -i 's/CONFIG_PLATFORM_I386_PC = y/CONFIG_PLATFORM_I386_PC = n/g' Makefile
+        sed -i 's/CONFIG_PLATFORM_ARM_RPI = n/CONFIG_PLATFORM_ARM_RPI = y/g' Makefile
         make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- x20_defconfig
         make prepare
         cd ../../
