@@ -25,6 +25,10 @@ jobs:
         wget https://fra1.digitaloceanspaces.com/openhd-images/BaseImages/OpenHD-X20-kernel.zip
         mkdir -p OpenHD-X20-kernel
         unzip OpenHD-X20-kernel.zip -d OpenHD-X20-kernel/
+        cd OpenHD-X20-kernel/OpenHD-X20-kernel/
+        make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- x20_defconfig
+        make prepare
+        cd ../../
         rm -Rf *.zip
         echo "---------------"
         echo $PWD
