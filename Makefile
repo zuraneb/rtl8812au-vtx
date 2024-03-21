@@ -307,10 +307,8 @@ endif
 
 ifeq ($(CONFIG_PLATFORM_ARM64_RPI), y)
 include $(TopDIR)/drivers/net/wireless/rtl8812au/hal/phydm/phydm.mk
-else ifeq ($(CONFIG_PLATFORM_X20), y)
-include $(TopDIR)/drivers/net/wireless/rtl8812au/hal/phydm/phydm.mk
 else
-include $(TopDIR)/hal/phydm/phydm.mk
+include $(TopDIR)/drivers/net/wireless/rtl8812au/hal/phydm/phydm.mk
 endif
 
 ########### HAL_RTL8812A_RTL8821A #################################
