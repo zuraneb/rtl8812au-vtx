@@ -1610,7 +1610,7 @@ export CONFIG_RTL8812AU = m
 all: modules
 
 modules:
-	    @echo '#define DRIVERVERSION "v5.2.20.2_ohd_$(shell git rev-parse --short HEAD)"' > $(VERSION_HEADER)
+	    @echo '#define DRIVERVERSION "v5.2.20.2_28373.20190919"' > $(VERSION_HEADER)
 	 
 	$(MAKE) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KSRC) M=$(shell pwd) O="$(KBUILD_OUTPUT)" modules
 
