@@ -1667,7 +1667,7 @@ config_r:
 .PHONY: modules clean
 
 clean:
-	@echo '#define DRIVERVERSION "v5.2.20.2_ohd_THIS_IS_DIRTY"' > $(VERSION_HEADER)
+	@echo '#define DRIVERVERSION "v5.2.20.2_28373.20190919"' > $(VERSION_HEADER)
 	#$(MAKE) -C $(KSRC) M=$(shell pwd) clean
 	cd hal ; rm -fr */*/*/*.mod.c */*/*/*.mod */*/*/*.o */*/*/*.o.* */*/*/.*.cmd */*/*/*.ko
 	cd hal ; rm -fr */*/*.mod.c */*/*.mod */*/*.o */*/*.o.* */*/.*.cmd */*/*.ko
