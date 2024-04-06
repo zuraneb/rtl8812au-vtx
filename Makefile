@@ -15,6 +15,7 @@ EXTRA_CFLAGS += -Wno-stringop-overread
 #EXTRA_CFLAGS += -Wno-incompatible-pointer-types
 #EXTRA_CFLAGS += -Wno-switch
 #EXTRA_CFLAGS += -Wno-cast-function-type
+EXTRA_CFLAGS += -Wno-redundant-decls
 EXTRA_CFLAGS += -Wno-unused-variable
 EXTRA_CFLAGS += -Wno-unused-value
 EXTRA_CFLAGS += -Wno-unused-label
