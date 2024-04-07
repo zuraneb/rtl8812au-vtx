@@ -1609,6 +1609,8 @@ else
 export CONFIG_RTL8812AU = m
 
 all: modules
+    @echo $(TopDIR)
+
 
 modules:
 	    @echo '#define DRIVERVERSION "v5.2.20.2_ohd_$(shell git rev-parse --short HEAD)"' > $(VERSION_HEADER)
