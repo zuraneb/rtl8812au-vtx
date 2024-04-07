@@ -1609,7 +1609,7 @@ else
 export CONFIG_RTL8812AU = m
 
 all: modules
-    @echo $(TopDIR)
+    @echo "This is the TopDIR: $(TopDIR)"
 
 
 modules:
