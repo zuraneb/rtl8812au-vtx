@@ -3692,12 +3692,16 @@ if(type == NL80211_TX_POWER_FIXED) {
 	// every country. Note, however, that the card is now not doing what linux tells it - but honestly, someone decided
 	// to just map dBm values to some power index at some point anyways.
     // 22.April: Simplify -> use tpi override value (and dummy tx power commits)
-    int openhd_override_tx_power_index=get_openhd_override_tx_power_index();
+    /*int openhd_override_tx_power_index=get_openhd_override_tx_power_index();
     if(openhd_override_tx_power_index>=0 && openhd_override_tx_power_index<=63){
         padapter->registrypriv.RegTxPowerIndexOverride = openhd_override_tx_power_index;
     }else{
         padapter->registrypriv.RegTxPowerIndexOverride = 0;
-    }
+    }*/
+    if(mbm>=0 && mbm<=63){
+	  padapter->registrypriv.RegTxPowerIndexOverride = mbm;
+	  RTW_WARN("OpenHD:interpreting %d mBm as tx power index override",(int)mbm);
+	}
 	RTW_INFO("OpenHD:Tx power index override is %d",padapter->registrypriv.RegTxPowerIndexOverride);
 
 	pHalData->CurrentTxPwrIdx = value;
