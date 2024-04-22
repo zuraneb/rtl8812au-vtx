@@ -595,6 +595,9 @@ MODULE_PARM_DESC(openhd_override_channel, "OpenHD easy (CRDA workaround)");
 int openhd_override_channel_width = 0;
 module_param(openhd_override_channel_width, int, 0644);
 MODULE_PARM_DESC(openhd_override_channel_width, "OpenHD easy (CRDA workaround)");
+int openhd_override_tx_power_index = 0;
+module_param(openhd_override_tx_power_index, int, 0644);
+MODULE_PARM_DESC(openhd_override_tx_power_index, "OpenHD easy (CRDA workaround)");
 //
 
 
@@ -4870,4 +4873,7 @@ int get_openhd_override_channel(void){
 }
 int get_openhd_override_channel_width(void){
     return openhd_override_channel_width;
+}
+int get_openhd_override_tx_power_index(void){
+    return openhd_override_tx_power_index;
 }

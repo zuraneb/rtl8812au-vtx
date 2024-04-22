@@ -3691,10 +3691,13 @@ if(type == NL80211_TX_POWER_FIXED) {
 	// need any kernel patches to set the card to an arbitratry high power value, since they are well below the legal limit of
 	// every country. Note, however, that the card is now not doing what linux tells it - but honestly, someone decided
 	// to just map dBm values to some power index at some point anyways.
-	if(mbm>=0 && mbm<=63){
-	  padapter->registrypriv.RegTxPowerIndexOverride = mbm;
-	  RTW_WARN("OpenHD:interpreting %d mBm as tx power index override",(int)mbm);
-	}
+    // 22.April: Simplify -> use tpi override value (and dummy tx power commits)
+    int openhd_override_tx_power_index=get_openhd_override_tx_power_index();
+    if(openhd_override_tx_power_index>=0 && openhd_override_tx_power_index<=63){
+        padapter->registrypriv.RegTxPowerIndexOverride = openhd_override_tx_power_index;
+    }else{
+        padapter->registrypriv.RegTxPowerIndexOverride = 0;
+    }
 	RTW_INFO("OpenHD:Tx power index override is %d",padapter->registrypriv.RegTxPowerIndexOverride);
 
 	pHalData->CurrentTxPwrIdx = value;
@@ -5170,6 +5173,7 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
     // update if module param has been updated
     padapter->registrypriv.openhd_override_channel=get_openhd_override_channel();
     padapter->registrypriv.openhd_override_channel_width=get_openhd_override_channel_width();
+
     RTW_WARN("OpenHD: override %d %d",padapter->registrypriv.openhd_override_channel,padapter->registrypriv.openhd_override_channel_width);
     {
         if(padapter->registrypriv.openhd_override_channel){
