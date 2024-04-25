@@ -444,6 +444,10 @@ struct registry_priv {
 #ifdef CONFIG_LED_CONTROL
   u8 led_enable;
 #endif
+
+#ifdef CONFIG_GPIO_CONTROL
+  	u8 gpio_enable;
+#endif
 };
 
 /* For registry parameters */

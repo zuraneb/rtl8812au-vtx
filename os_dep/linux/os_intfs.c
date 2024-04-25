@@ -755,6 +755,16 @@ module_param(rtw_led_enable, int, 0644);
 MODULE_PARM_DESC(rtw_led_enable,"Enable status LED");
 #endif //CONFIG_LED_CONTROL
 
+#ifdef CONFIG_GPIO_CONTROL
+#ifdef CONFIG_GPIO_API
+int gpio_enable = 1;
+#else
+int gpio_enable = 0;
+#endif // CONFIG_GPIO_API -> enable GPIO API
+module_param(gpio_enable, int, 644);
+MODULE_PARM_DESC(gpio_enable,"Enable GPIO control");
+#endif // CONFIG_GPIO_CONTROL -> Enable GPIO control via sys param
+
 void rtw_regsty_load_target_tx_power(struct registry_priv *regsty)
 {
 	int path, rs;

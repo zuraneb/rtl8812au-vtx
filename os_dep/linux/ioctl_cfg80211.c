@@ -5173,6 +5173,32 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 	RTW_INFO(FUNC_ADPT_FMT" ch:%d bw:%d, offset:%d\n"
 		, FUNC_ADPT_ARG(padapter), target_channal, target_width, target_offset);
 
+#ifdef CONFIG_GPIO_CONTROL
+#ifdef CONFIG_GPIO_API
+	if(padapter->registrypriv.gpio_enable == 1){
+		rtw_led_control(padapter, LED_CTL_POWER_ON);
+		padapter->registrypriv.gpio_enable = 0;
+		RTW_WARN("MODALAI: gpio_enable 1->%d", registry_par->gpio_enable);
+		int value;
+		u8 gpio_num = 1;
+		RTW_INFO("Set GPIO Value -> 1!\n");
+		// 												GPIO 1    HIGH
+		value = rtw_hal_set_gpio_output_value(padapter, gpio_num, true);
+		RTW_INFO("Set GPIO Value %s\n", (value == -1) ? "Fail!!!" : "Success");
+	} else {
+		rtw_led_control(padapter, LED_CTL_POWER_OFF);
+		padapter->registrypriv.gpio_enable = 1;
+		RTW_WARN("MODALAI: gpio_enable 0->%d", registry_par->gpio_enable);
+		int value;
+		u8 gpio_num = 1;
+		RTW_INFO("Set GPIO Value -> 0!\n");
+		//												 GPIO 1    LOW 
+		value = rtw_hal_set_gpio_output_value(padapter, gpio_num, false);
+		RTW_INFO("Set GPIO Value %s\n", (value == -1) ? "Fail!!!" : "Success");
+	}
+#endif // CONFIG_GPIO_API
+#endif // CONFIG_GPIO_CONTROL 
+
     // OpenHD channel via module param
     // update if module param has been updated
     padapter->registrypriv.openhd_override_channel=get_openhd_override_channel();

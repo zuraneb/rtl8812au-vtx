@@ -50,8 +50,8 @@ EXTRA_LDFLAGS += --strip-debug
 
 ########################## WIFI IC ############################
 CONFIG_RTL8812A = y
-CONFIG_RTL8821A = y
-CONFIG_RTL8814A = y
+CONFIG_RTL8821A = n
+CONFIG_RTL8814A = n
 ######################### Interface ###########################
 CONFIG_USB_HCI = y
 ########################## Features ###########################
@@ -96,6 +96,8 @@ CONFIG_VHT_EXTRAS = y
 CONFIG_LED_CONTROL = y
 CONFIG_LED_ENABLE = y
 CONFIG_USB2_EXTERNAL_POWER = y
+CONFIG_GPIO_CONTROL = y
+CONFIG_GPIO_API = y
 ########################## Debug ###########################
 # Consti10: We always compile with debug enabled, but default to a low level to not
 # spam the console - the debug level can be set via the kernel params
