@@ -5179,6 +5179,7 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 		rtw_led_control(padapter, LED_CTL_POWER_ON);
 		padapter->registrypriv.gpio_enable = 0;
 		RTW_WARN("MODALAI: gpio_enable 1->%d", padapter->registrypriv.gpio_enable);
+		RTW_WARN("Current GPIO Value %s\n", (rtw_hal_get_gpio(padapter, 1) == -1) ? "Fail!!!" : "Success");
 		RTW_WARN("Set GPIO Value -> 1!\n");
 		// 																	GPIO 1    HIGH
 		RTW_WARN("Set GPIO Value %s\n", (rtw_hal_set_gpio_output_value(padapter, 1, true) == -1) ? "Fail!!!" : "Success");
@@ -5186,6 +5187,7 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 		rtw_led_control(padapter, LED_CTL_POWER_OFF);
 		padapter->registrypriv.gpio_enable = 1;
 		RTW_WARN("MODALAI: gpio_enable 0->%d", padapter->registrypriv.gpio_enable);
+		RTW_WARN("Current GPIO Value %s\n", (rtw_hal_get_gpio(padapter, 1) == -1) ? "Fail!!!" : "Success");
 		RTW_WARN("Set GPIO Value -> 0!\n");
 		//															 		GPIO 1    LOW 
 		RTW_WARN("Set GPIO Value %s\n", (rtw_hal_set_gpio_output_value(padapter, 1, false) == -1) ? "Fail!!!" : "Success");

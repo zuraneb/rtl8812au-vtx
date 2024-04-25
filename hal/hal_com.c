@@ -11448,6 +11448,7 @@ u8 rtw_hal_get_gpio(_adapter *adapter, u8 gpio_num)
 
 	rtw_ps_deny_cancel(adapter, PS_DENY_IOCTL);
 	RTW_INFO("%s direction=%d value=%d\n", __FUNCTION__, direction, value);
+	RTW_WARN("%s direction=%d value=%d\n", __FUNCTION__, direction, value);
 
 	return value;
 }
@@ -11484,8 +11485,10 @@ int  rtw_hal_set_gpio_output_value(_adapter *adapter, u8 gpio_num, bool isHigh)
 			rtw_write8(adapter, gpio_pin_output_val, rtw_read8(adapter, gpio_pin_output_val) & ~BIT(gpio_num_to_set));
 
 		RTW_INFO("%s Set gpio %x[%d]=%d\n", __FUNCTION__, REG_GPIO_PIN_CTRL + 1, gpio_num, isHigh);
+		RTW_WARN("%s Set gpio %x[%d]=%d\n", __FUNCTION__, REG_GPIO_PIN_CTRL + 1, gpio_num, isHigh);
 		res = 0;
 	} else {
+		RTW_WARN("%s The gpio is input,not be set!\n", __FUNCTION__);
 		RTW_INFO("%s The gpio is input,not be set!\n", __FUNCTION__);
 		res = -1;
 	}
@@ -11503,6 +11506,7 @@ int rtw_hal_config_gpio(_adapter *adapter, u8 gpio_num, bool isOutput)
 		return -1;
 
 	RTW_INFO("%s gpio_num =%d direction=%d\n", __FUNCTION__, gpio_num, isOutput);
+	RTW_WARN("%s gpio_num =%d direction=%d\n", __FUNCTION__, gpio_num, isOutput);
 
 	rtw_ps_deny(adapter, PS_DENY_IOCTL);
 

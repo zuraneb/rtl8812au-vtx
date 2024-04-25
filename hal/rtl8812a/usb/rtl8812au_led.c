@@ -368,6 +368,14 @@ rtl8812au_InitSwLeds(
 	InitLed(padapter, &(pledpriv->SwLed1), LED_PIN_LED1);
 
 	InitLed(padapter, &(pledpriv->SwLed2), LED_PIN_LED2);
+
+	// int rtw_hal_config_gpio(_adapter *adapter, u8 gpio_num, bool isOutput)
+	// Set GPIO 1 as output
+	if(rtw_hal_config_gpio(padapter, (u8)1, true) == 0){
+		RTW_WARN("Set GPIO 1 config as output successfully\n");
+	} else {
+		RTW_WARN("FAILED to set GPIO 1 config as output!!\n");
+	}
 }
 
 
