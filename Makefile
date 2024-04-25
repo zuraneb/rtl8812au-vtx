@@ -50,8 +50,8 @@ EXTRA_LDFLAGS += --strip-debug
 
 ########################## WIFI IC ############################
 CONFIG_RTL8812A = y
-CONFIG_RTL8821A = n
-CONFIG_RTL8814A = n
+CONFIG_RTL8821A = y
+CONFIG_RTL8814A = y
 ######################### Interface ###########################
 CONFIG_USB_HCI = y
 ########################## Features ###########################
@@ -678,6 +678,16 @@ endif
 ifeq ($(CONFIG_LED_ENABLE), y)
 EXTRA_CFLAGS += -DCONFIG_LED_ENABLE
 endif
+endif
+
+# ModalAI - Enable GPIO control
+ifeq ($(CONFIG_GPIO_CONTROL), y)
+EXTRA_CFLAGS += -DCONFIG_GPIO_CONTROL
+endif
+
+# ModalAI - Enable GPIO API
+ifeq ($(CONFIG_GPIO_API), y)
+EXTRA_CFLAGS += -DCONFIG_GPIO_API
 endif
 
 ifeq ($(CONFIG_MP_VHT_HW_TX_MODE), y)
