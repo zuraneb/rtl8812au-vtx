@@ -332,6 +332,15 @@ SwLedOff_8821AU(
 	pLed->bLedOn = _FALSE;
 }
 
+/*
+ *	Description:
+ *		Callback for GPIO input.
+ * 
+*/
+static void 
+gpio_cb(u8 level){
+	RTW_WARN("GPIO INPUT CB! Level: %d\n", level);
+}
 
 /* ********************************************************************************
  * Interface to manipulate LED objects.
@@ -369,12 +378,25 @@ rtl8812au_InitSwLeds(
 
 	InitLed(padapter, &(pledpriv->SwLed2), LED_PIN_LED2);
 
-	// int rtw_hal_config_gpio(_adapter *adapter, u8 gpio_num, bool isOutput)
-	// Set GPIO 1 as output
-	if(rtw_hal_config_gpio(padapter, (u8)7, true) == 0){
-		RTW_WARN("Set GPIO 1 config as output successfully\n");
+	// Set GPIO 7 as output
+	// if(rtw_hal_config_gpio(padapter, (u8)7, true) == 0){
+	// 	RTW_WARN("Set GPIO 1 config as output successfully\n");
+	// } else {
+	// 	RTW_WARN("FAILED to set GPIO 1 config as output!!\n");
+	// }
+
+	// Set GPIO 7 as input
+	if(rtw_hal_config_gpio(padapter, (u8)7, false) == 0){
+		RTW_WARN("Set GPIO 7 config as input successfully\n");
 	} else {
-		RTW_WARN("FAILED to set GPIO 1 config as output!!\n");
+		RTW_WARN("FAILED to set GPIO 7 config as input!!\n");
+	}
+
+	// Register callback
+	if(rtw_hal_register_gpio_interrupt(padapter, 7, gpio_cb) < 0){
+		RTW_WARN("Failed to set GPIO 7 interrupt!");
+	} else {
+		RTW_WARN("Successfully set GPIO 7 interrupt!");
 	}
 }
 
@@ -393,5 +415,6 @@ rtl8812au_DeInitSwLeds(
 	DeInitLed(&(ledpriv->SwLed0));
 	DeInitLed(&(ledpriv->SwLed1));
 	DeInitLed(&(ledpriv->SwLed2));
+	rtw_hal_disable_gpio_interrupt(padapter, 7);
 }
 #endif

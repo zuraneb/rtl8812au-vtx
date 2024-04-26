@@ -5096,6 +5096,7 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 	int target_channal = chan->hw_value;
 	int target_offset = HAL_PRIME_CHNL_OFFSET_DONT_CARE;
 	int target_width = CHANNEL_WIDTH_20;
+	int direction = 0;
 
 #if (CFG80211_API_LEVEL >= KERNEL_VERSION(3, 8, 0))
 #ifdef CONFIG_DEBUG_CFG80211
@@ -5176,27 +5177,34 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 #ifdef CONFIG_GPIO_CONTROL
 #ifdef CONFIG_GPIO_API
 	if(rtw_hal_config_gpio(padapter, (u8)7, true) == 0){
-		RTW_WARN("Set GPIO 1 config as output successfully\n");
+		RTW_WARN("Set GPIO 7 config as output successfully\n");
 	} else {
-		RTW_WARN("FAILED to set GPIO 1 config as output!!\n");
+		RTW_WARN("FAILED to set GPIO 7 config as output!!\n");
 	}
-	
+
 	if(padapter->registrypriv.gpio_enable == 1){
 		rtw_led_control(padapter, LED_CTL_POWER_ON);
 		padapter->registrypriv.gpio_enable = 0;
 		RTW_WARN("MODALAI: gpio_enable 1->%d", padapter->registrypriv.gpio_enable);
 		RTW_WARN("Current GPIO Value: %s\n", (rtw_hal_get_gpio(padapter, 7) > 0) ? "1" : "0");
-		RTW_WARN("Set GPIO Value -> 1!\n");
-		// 																	GPIO 1    HIGH
-		RTW_WARN("Set GPIO Value %s\n", (rtw_hal_set_gpio_output_value(padapter, 7, true) == -1) ? "Fail!!!" : "Success");
+		direction = (rtw_read8(padapter, REG_GPIO_PIN_CTRL + 2) & BIT(7)) >> 7;
+		// direction == 1 -> output
+		if(direction){
+			RTW_WARN("Set GPIO Value 0 -> 1!\n");
+			// 																	GPIO 1    HIGH
+			RTW_WARN("Set GPIO Value %s\n", (rtw_hal_set_gpio_output_value(padapter, 7, true) == -1) ? "Fail!!!" : "Success");
+		}
 	} else {
 		rtw_led_control(padapter, LED_CTL_POWER_OFF);
 		padapter->registrypriv.gpio_enable = 1;
 		RTW_WARN("MODALAI: gpio_enable 0->%d", padapter->registrypriv.gpio_enable);
 		RTW_WARN("Current GPIO Value %s\n", (rtw_hal_get_gpio(padapter, 7) > 0) ? "1" : "0");
-		RTW_WARN("Set GPIO Value -> 0!\n");
-		//															 		GPIO 1    LOW 
-		RTW_WARN("Set GPIO Value %s\n", (rtw_hal_set_gpio_output_value(padapter, 7, false) == -1) ? "Fail!!!" : "Success");
+		direction = (rtw_read8(padapter, REG_GPIO_PIN_CTRL + 2) & BIT(7)) >> 7;
+		if(direction){
+			RTW_WARN("Set GPIO Value 1 -> 0!\n");
+			//															 		GPIO 1    LOW 
+			RTW_WARN("Set GPIO Value %s\n", (rtw_hal_set_gpio_output_value(padapter, 7, false) == -1) ? "Fail!!!" : "Success");
+		}
 	}
 #endif // CONFIG_GPIO_API
 #endif // CONFIG_GPIO_CONTROL 

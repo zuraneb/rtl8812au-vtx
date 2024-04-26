@@ -4282,8 +4282,8 @@ InitLed(
 	pLed->LedPin = LedPin;
 
 	ResetLedStatus(pLed);
-	rtw_init_timer(&(pLed->BlinkTimer), padapter, BlinkTimerCallback, pLed);
-	_init_workitem(&(pLed->BlinkWorkItem), BlinkWorkItemCallback, pLed);
+	// rtw_init_timer(&(pLed->BlinkTimer), padapter, BlinkTimerCallback, pLed);
+	// _init_workitem(&(pLed->BlinkWorkItem), BlinkWorkItemCallback, pLed);
 }
 
 

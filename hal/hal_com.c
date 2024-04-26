@@ -11562,6 +11562,13 @@ int rtw_hal_register_gpio_interrupt(_adapter *adapter, int gpio_num, void(*callb
 	value = rtw_read8(adapter, REG_GPIO_PIN_CTRL) & BIT(gpio_num);
 	adapter->gpiointpriv.interrupt_mode = rtw_read8(adapter, REG_HSIMR + 2) ^ value;
 	rtw_write8(adapter, REG_GPIO_INTM, adapter->gpiointpriv.interrupt_mode);
+	if(adapter->gpiointpriv.interrupt_mode){
+		RTW_WARN("GPIO interrupt mode: 1 -> negative edge\n");
+	} else if (adapter->gpiointpriv.interrupt_mode == 0) {
+		RTW_WARN("GPIO interrupt mode: 0 -> positive edge\n");
+	} else {
+		RTW_WARN("Unknown GPIO interrupt mode: %d\n", adapter->gpiointpriv.interrupt_mode);
+	}
 
 	/* Enable GPIO interrupt */
 	adapter->gpiointpriv.interrupt_enable_mask = rtw_read8(adapter, REG_HSIMR + 2) | BIT(gpio_num);
