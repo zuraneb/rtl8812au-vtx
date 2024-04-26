@@ -385,18 +385,18 @@ rtl8812au_InitSwLeds(
 	// 	RTW_WARN("FAILED to set GPIO 1 config as output!!\n");
 	// }
 
-	// Set GPIO 7 as input
-	if(rtw_hal_config_gpio(padapter, (u8)7, false) == 0){
-		RTW_WARN("Set GPIO 7 config as input successfully\n");
+	// Set GPIO 1 as input
+	if(rtw_hal_config_gpio(padapter, (u8)1, false) == 0){
+		RTW_WARN("Set GPIO 1 config as input successfully\n");
 	} else {
-		RTW_WARN("FAILED to set GPIO 7 config as input!!\n");
+		RTW_WARN("FAILED to set GPIO 1 config as input!!\n");
 	}
 
 	// Register callback
-	if(rtw_hal_register_gpio_interrupt(padapter, 7, gpio_cb) < 0){
-		RTW_WARN("Failed to set GPIO 7 interrupt!");
+	if(rtw_hal_register_gpio_interrupt(padapter, 1, gpio_cb) < 0){
+		RTW_WARN("Failed to set GPIO 1 interrupt!");
 	} else {
-		RTW_WARN("Successfully set GPIO 7 interrupt!");
+		RTW_WARN("Successfully set GPIO 1 interrupt!");
 	}
 }
 
