@@ -939,7 +939,7 @@ SwLedBlink9(
 		SwLedOff(Adapter, pLed);
 	}
 	/* RTW_INFO("%s, pLed->CurrLedState=%d, pLed->BlinkingLedState=%d\n", __FUNCTION__, pLed->CurrLedState, pLed->BlinkingLedState); */
-
+	RTW_WARN("%s, pLed->CurrLedState=%d, pLed->BlinkingLedState=%d\n", __FUNCTION__, pLed->CurrLedState, pLed->BlinkingLedState); 
 
 	switch (pLed->CurrLedState) {
 	case RTW_LED_ON:
@@ -1764,6 +1764,7 @@ void BlinkHandler(PLED_USB pLed)
 		return;
 	}
 
+	RTW_INFO("%s: ledpriv->LedStrategy= %d\n",__FUNCTION__, ledpriv->LedStrategy); 
 	switch (ledpriv->LedStrategy) {
 	case SW_LED_MODE0:
 		SwLedBlink(pLed);
@@ -3132,7 +3133,6 @@ SwLedControlMode9(
 			_cancel_timer_ex(&(pLed->BlinkTimer));
 			pLed->bLedWPSBlinkInProgress = _FALSE;
 		}
-
 		if (LedAction == LED_CTL_POWER_ON)
 			_set_timer(&(pLed->BlinkTimer), 0);
 		else
@@ -3407,6 +3407,7 @@ SwLedControlMode9(
 		break;
 
 	case LED_CTL_CONNECTION_NO_TRANSFER:
+		RTW_WARN("KEEPING THE LIGHTS ON: LED_CTL_CONNECTION_NO_TRANSFER\n");
 		if (pLed->bLedBlinkInProgress == _FALSE) {
 			if (pLed->bLedNoLinkBlinkInProgress == _TRUE) {
 				_cancel_timer_ex(&(pLed->BlinkTimer));
@@ -3417,6 +3418,8 @@ SwLedControlMode9(
 			pLed->CurrLedState = LED_BLINK_ALWAYS_ON;
 			pLed->BlinkingLedState = RTW_LED_ON;
 			_set_timer(&(pLed->BlinkTimer), LED_BLINK_NO_LINK_INTERVAL_ALPHA);
+		} else {
+			RTW_WARN("Blink already in progess!\n");
 		}
 		break;
 

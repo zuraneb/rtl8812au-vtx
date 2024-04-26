@@ -5184,6 +5184,7 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 
 	if(padapter->registrypriv.gpio_enable == 1){
 		rtw_led_control(padapter, LED_CTL_POWER_ON);
+		rtw_led_control(padapter, LED_CTL_CONNECTION_NO_TRANSFER);
 		padapter->registrypriv.gpio_enable = 0;
 		RTW_WARN("MODALAI: gpio_enable 1->%d", padapter->registrypriv.gpio_enable);
 		RTW_WARN("Current GPIO Value: %s\n", (rtw_hal_get_gpio(padapter, 7) > 0) ? "1" : "0");
