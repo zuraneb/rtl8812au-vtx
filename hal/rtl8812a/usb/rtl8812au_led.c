@@ -371,7 +371,7 @@ rtl8812au_InitSwLeds(
 
 	// int rtw_hal_config_gpio(_adapter *adapter, u8 gpio_num, bool isOutput)
 	// Set GPIO 1 as output
-	if(rtw_hal_config_gpio(padapter, (u8)1, true) == 0){
+	if(rtw_hal_config_gpio(padapter, (u8)7, true) == 0){
 		RTW_WARN("Set GPIO 1 config as output successfully\n");
 	} else {
 		RTW_WARN("FAILED to set GPIO 1 config as output!!\n");
