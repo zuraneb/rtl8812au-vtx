@@ -3110,6 +3110,8 @@ SwLedControlMode9(
 	PLED_USB	pLed2 = &(ledpriv->SwLed2);
 	BOOLEAN  bWPSOverLap = _FALSE;
 	/* RTW_INFO("LedAction=%d\n", LedAction); */
+	RTW_WARN("LedAction=%d\n", LedAction); 
+	return;
 	switch (LedAction) {
 	case LED_CTL_START_TO_LINK:
 		if (pLed2->bLedBlinkInProgress == _FALSE) {
@@ -4175,70 +4177,87 @@ LedControlUSB(
 
 	switch (ledpriv->LedStrategy) {
 	case SW_LED_MODE0:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE0\n");
 		SwLedControlMode0(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE1:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE1\n");
 		SwLedControlMode1(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE2:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE2\n");
 		SwLedControlMode2(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE3:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE3\n");
 		SwLedControlMode3(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE4:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE4\n");
 		SwLedControlMode4(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE5:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE5\n");
 		SwLedControlMode5(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE6:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE6\n");
 		SwLedControlMode6(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE7:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE7\n");
 		SwLedControlMode7(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE8:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE8\n");
 		SwLedControlMode8(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE9:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE9\n");
 		SwLedControlMode9(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE10:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE10\n");
 		SwLedControlMode10(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE11:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE11\n");
 		SwLedControlMode11(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE12:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE12\n");
 		SwLedControlMode12(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE13:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE13\n");
 		SwLedControlMode13(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE14:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE14\n");
 		SwLedControlMode14(padapter, LedAction);
 		break;
 
 	case SW_LED_MODE15:
+		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE15\n");
 		SwLedControlMode15(padapter, LedAction);
 		break;
 
 	default:
+		RTW_WARN("ledpriv->LedStrategy: DEFAULT\n");
 		break;
 	}
 
@@ -4296,8 +4315,8 @@ DeInitLed(
 	PLED_USB		pLed
 )
 {
-	_cancel_workitem_sync(&(pLed->BlinkWorkItem));
-	_cancel_timer_ex(&(pLed->BlinkTimer));
+	// _cancel_workitem_sync(&(pLed->BlinkWorkItem));
+	// _cancel_timer_ex(&(pLed->BlinkTimer));
 	ResetLedStatus(pLed);
 }
 #endif
