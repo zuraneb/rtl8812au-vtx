@@ -3113,6 +3113,28 @@ SwLedControlMode9(
 	RTW_WARN("LedAction=%d\n", LedAction); 
 	return;
 	switch (LedAction) {
+	case LED_CTL_POWER_ON:
+		pLed->CurrLedState = RTW_LED_OFF;
+		pLed->BlinkingLedState = RTW_LED_OFF;
+		if (pLed->bLedBlinkInProgress) {
+			_cancel_timer_ex(&(pLed->BlinkTimer));
+			pLed->bLedBlinkInProgress = _FALSE;
+		}
+		if (pLed->bLedScanBlinkInProgress) {
+			_cancel_timer_ex(&(pLed->BlinkTimer));
+			pLed->bLedScanBlinkInProgress = _FALSE;
+		}
+		if (pLed->bLedWPSBlinkInProgress) {
+			_cancel_timer_ex(&(pLed->BlinkTimer));
+			pLed->bLedWPSBlinkInProgress = _FALSE;
+		}
+
+		if (LedAction == LED_CTL_POWER_ON)
+			_set_timer(&(pLed->BlinkTimer), 0);
+		else
+			SwLedOff(Adapter, pLed);
+		break;
+
 	case LED_CTL_START_TO_LINK:
 		if (pLed2->bLedBlinkInProgress == _FALSE) {
 			pLed2->bLedBlinkInProgress = _TRUE;
@@ -4301,8 +4323,8 @@ InitLed(
 	pLed->LedPin = LedPin;
 
 	ResetLedStatus(pLed);
-	// rtw_init_timer(&(pLed->BlinkTimer), padapter, BlinkTimerCallback, pLed);
-	// _init_workitem(&(pLed->BlinkWorkItem), BlinkWorkItemCallback, pLed);
+	rtw_init_timer(&(pLed->BlinkTimer), padapter, BlinkTimerCallback, pLed);
+	_init_workitem(&(pLed->BlinkWorkItem), BlinkWorkItemCallback, pLed);
 }
 
 
@@ -4315,8 +4337,8 @@ DeInitLed(
 	PLED_USB		pLed
 )
 {
-	// _cancel_workitem_sync(&(pLed->BlinkWorkItem));
-	// _cancel_timer_ex(&(pLed->BlinkTimer));
+	_cancel_workitem_sync(&(pLed->BlinkWorkItem));
+	_cancel_timer_ex(&(pLed->BlinkTimer));
 	ResetLedStatus(pLed);
 }
 #endif
