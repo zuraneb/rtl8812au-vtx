@@ -5188,7 +5188,7 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 		RTW_WARN("MODALAI: gpio_enable 1->%d", padapter->registrypriv.gpio_enable);
 		RTW_WARN("Current GPIO Value: %s\n", (rtw_hal_get_gpio(padapter, 7) > 0) ? "1" : "0");
 		if(rtw_hal_get_gpio(padapter, 7) > 0){
-			RTW_WARN("***** DETECTED GPIO INPUT *****\n", );
+			RTW_WARN("***** DETECTED GPIO INPUT *****\n");
 			rtw_led_control(padapter, LED_CTL_CONNECTION_NO_TRANSFER);
 		}
 		direction = (rtw_read8(padapter, REG_GPIO_PIN_CTRL + 2) & BIT(7)) >> 7;
@@ -5205,7 +5205,7 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 		RTW_WARN("Current GPIO Value %s\n", (rtw_hal_get_gpio(padapter, 7) > 0) ? "1" : "0");
 		if(rtw_hal_get_gpio(padapter, 7) > 0){
 			rtw_led_control(padapter, LED_CTL_POWER_ON);
-			RTW_WARN("\n***** DETECTED GPIO INPUT *****\n", );
+			RTW_WARN("\n***** DETECTED GPIO INPUT *****\n");
 			rtw_led_control(padapter, LED_CTL_CONNECTION_NO_TRANSFER);
 		}
 		direction = (rtw_read8(padapter, REG_GPIO_PIN_CTRL + 2) & BIT(7)) >> 7;
