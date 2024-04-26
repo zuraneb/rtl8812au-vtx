@@ -3114,6 +3114,7 @@ SwLedControlMode9(
 	return;
 	switch (LedAction) {
 	case LED_CTL_POWER_ON:
+		RTW_WARN("LED_CTL_POWER_ON\n"); 
 		pLed->CurrLedState = RTW_LED_OFF;
 		pLed->BlinkingLedState = RTW_LED_OFF;
 		if (pLed->bLedBlinkInProgress) {
@@ -3362,6 +3363,7 @@ SwLedControlMode9(
 		break;
 
 	case LED_CTL_POWER_OFF:
+		RTW_WARN("LED_CTL_POWER_OFF\n"); 
 		pLed->CurrLedState = RTW_LED_OFF;
 		pLed->BlinkingLedState = RTW_LED_OFF;
 
