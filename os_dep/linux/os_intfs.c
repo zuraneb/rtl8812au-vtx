@@ -1147,6 +1147,10 @@ uint loadparam(_adapter *padapter)
   registry_par->led_enable = (u8)rtw_led_enable;
 #endif //CONFIG_LED_CONTROL
 
+#ifdef CONFIG_GPIO_CONTROL
+	registry_par->gpio_enable = (u8)gpio_enable;
+#endif //CONFIG_GPIO_CONTROL
+
 	return status;
 }
 
