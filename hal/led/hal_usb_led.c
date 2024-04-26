@@ -939,7 +939,7 @@ SwLedBlink9(
 		SwLedOff(Adapter, pLed);
 	}
 	/* RTW_INFO("%s, pLed->CurrLedState=%d, pLed->BlinkingLedState=%d\n", __FUNCTION__, pLed->CurrLedState, pLed->BlinkingLedState); */
-	RTW_WARN("%s, pLed->CurrLedState=%d, pLed->BlinkingLedState=%d\n", __FUNCTION__, pLed->CurrLedState, pLed->BlinkingLedState); 
+	// RTW_WARN("%s, pLed->CurrLedState=%d, pLed->BlinkingLedState=%d\n", __FUNCTION__, pLed->CurrLedState, pLed->BlinkingLedState); 
 
 	switch (pLed->CurrLedState) {
 	case RTW_LED_ON:
