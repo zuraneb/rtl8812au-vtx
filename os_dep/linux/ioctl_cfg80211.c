@@ -3671,6 +3671,7 @@ HAL_DATA_TYPE   *pHalData = GET_HAL_DATA(padapter);
 int value;
 #if (CFG80211_API_LEVEL >= KERNEL_VERSION(2,6,36)) || defined(COMPAT_KERNEL_RELEASE)
 	value = mbm/100;
+	// dbm = mbm/100 -> mbm = dbm*100 
 #else
 	value = dbm;
 #endif
@@ -5222,6 +5223,8 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
     // update if module param has been updated
     padapter->registrypriv.openhd_override_channel=get_openhd_override_channel();
     padapter->registrypriv.openhd_override_channel_width=get_openhd_override_channel_width();
+
+	RTW_ERR("\n\n************MODALAI************\n\n")
 
     RTW_WARN("OpenHD: override %d %d",padapter->registrypriv.openhd_override_channel,padapter->registrypriv.openhd_override_channel_width);
     {
