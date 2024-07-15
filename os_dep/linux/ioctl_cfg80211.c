@@ -2076,7 +2076,6 @@ static int cfg80211_rtw_change_iface(struct wiphy *wiphy,
 #endif
 				     struct vif_params *params)
 {
-	RTW_INFO("\n\n************MODALAI************ %s\n\n", __FILE__);
 	enum nl80211_iftype old_type;
 	NDIS_802_11_NETWORK_INFRASTRUCTURE networkType;
 	_adapter *padapter = (_adapter *)rtw_netdev_priv(ndev);
