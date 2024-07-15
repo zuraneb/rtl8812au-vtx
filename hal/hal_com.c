@@ -10746,7 +10746,7 @@ int check_phy_efuse_tx_power_info_valid(PADAPTER padapter)
 	int index = 0;
 	u16 tx_index_offset = 0x0000;
 
-	RTW_PRINT("\n**MODALAI** CONFIG_EFUSE_CONFIG_FILE ENABLED: %s %s", __FUNCTION__);
+	RTW_PRINT("**MODALAI** CONFIG_EFUSE_CONFIG_FILE ENABLED: %s", __FUNCTION__);
 
 	switch (rtw_get_chip_type(padapter)) {
 	case RTL8723B:
@@ -10771,7 +10771,7 @@ int check_phy_efuse_tx_power_info_valid(PADAPTER padapter)
 		tx_index_offset = EEPROM_TX_PWR_INX_8821;
 		break;
 	case RTL8812:
-		RTW_PRINT("\n**MODALAI** CHIP TYPE: RTL8812 %s %s", __FUNCTION__);
+		RTW_PRINT("**MODALAI** CHIP TYPE: RTL8812 %s", __FUNCTION__);
 		tx_index_offset = EEPROM_TX_PWR_INX_8812;
 		break;
 	case RTL8814A:
@@ -10790,12 +10790,12 @@ int check_phy_efuse_tx_power_info_valid(PADAPTER padapter)
 
 	/* TODO: chacking length by ICs */
 	for (index = 0 ; index < 11 ; index++) {
-		RTW_PRINT("\n**MODALAI** EEPROM DATA[%i]: %u", pContent[tx_index_offset + index]);
+		RTW_PRINT("**MODALAI** EEPROM DATA[%i]: %u", pContent[tx_index_offset + index]);
 		if (pContent[tx_index_offset + index] == 0xFF)
-			RTW_PRINT("\n**MODALAI** RETURNING FALSE: INDEX=%i %s %s", index,  __FUNCTION__);
+			RTW_PRINT("**MODALAI** RETURNING FALSE: INDEX=%i %s", index,  __FUNCTION__);
 			return _FALSE;
 	}
-	RTW_PRINT("\n**MODALAI** RETURNING TRUE %s %s", __FUNCTION__);
+	RTW_PRINT("**MODALAI** RETURNING TRUE %s", __FUNCTION__);
 	return _TRUE;
 }
 
