@@ -10746,6 +10746,8 @@ int check_phy_efuse_tx_power_info_valid(PADAPTER padapter)
 	int index = 0;
 	u16 tx_index_offset = 0x0000;
 
+	RTW_PRINT("\n**MODALAI** CONFIG_EFUSE_CONFIG_FILE ENABLED: %s %s", __FUNCTION__,__FILE__);
+
 	switch (rtw_get_chip_type(padapter)) {
 	case RTL8723B:
 		tx_index_offset = EEPROM_TX_PWR_INX_8723B;
@@ -10769,6 +10771,7 @@ int check_phy_efuse_tx_power_info_valid(PADAPTER padapter)
 		tx_index_offset = EEPROM_TX_PWR_INX_8821;
 		break;
 	case RTL8812:
+		RTW_PRINT("\n**MODALAI** CHIP TYPE: RTL8812 %s %s", __FUNCTION__,__FILE__);
 		tx_index_offset = EEPROM_TX_PWR_INX_8812;
 		break;
 	case RTL8814A:
@@ -10788,8 +10791,10 @@ int check_phy_efuse_tx_power_info_valid(PADAPTER padapter)
 	/* TODO: chacking length by ICs */
 	for (index = 0 ; index < 11 ; index++) {
 		if (pContent[tx_index_offset + index] == 0xFF)
+			RTW_PRINT("\n**MODALAI** RETURNING FALSE %s %s", __FUNCTION__,__FILE__);
 			return _FALSE;
 	}
+	RTW_PRINT("\n**MODALAI** RETURNING TRUE %s %s", __FUNCTION__,__FILE__);
 	return _TRUE;
 }
 
@@ -10972,6 +10977,7 @@ u32 Hal_readPGDataFromConfigFile(PADAPTER padapter)
 	u32 ret = _FALSE;
 	u16 maplen = 0;
 
+	
 	EFUSE_GetEfuseDefinition(padapter, EFUSE_WIFI, TYPE_EFUSE_MAP_LEN , (void *)&maplen, _FALSE);
 
 	if (maplen < 256 || maplen > EEPROM_MAX_SIZE) {
@@ -10979,6 +10985,7 @@ u32 Hal_readPGDataFromConfigFile(PADAPTER padapter)
 		return _FALSE;
 	}	
 
+	RTW_PRINT("\n**MODALAI** EFUSE FILE PATH: %s ** %s: **%s", __FUNCTION__, __FILE__, EFUSE_MAP_PATH);
 	ret = rtw_read_efuse_from_file(EFUSE_MAP_PATH, hal_data->efuse_eeprom_data, maplen);
 
 	hal_data->efuse_file_status = ((ret == _FAIL) ? EFUSE_FILE_FAILED : EFUSE_FILE_LOADED);
