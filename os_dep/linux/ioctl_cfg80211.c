@@ -8063,11 +8063,12 @@ void rtw_wiphy_unregister(struct wiphy *wiphy)
 
 int rtw_wdev_alloc(_adapter *padapter, struct wiphy *wiphy)
 {
-	RTW_WARN("\n\n************MODALAI************ rtw_wdev_alloc\n\n");
 	int ret = 0;
 	struct net_device *pnetdev = padapter->pnetdev;
 	struct wireless_dev *wdev;
 	struct rtw_wdev_priv *pwdev_priv;
+	
+	RTW_WARN("\n\n************MODALAI************ rtw_wdev_alloc\n\n");
 
 	RTW_INFO("%s(padapter=%p)\n", __func__, padapter);
 
