@@ -1613,6 +1613,8 @@ static int __init rtw_drv_entry(void)
 	int ret = 0;
 
 	RTW_PRINT("module init start\n");
+	RTW_ERR("\n\n************MODALAI************ %s\n\n", __FILE__);
+
 	dump_drv_version(RTW_DBGDUMP);
 #ifdef BTCOEXVERSION
 	RTW_PRINT(DRV_NAME" BT-Coex version = %s\n", BTCOEXVERSION);
