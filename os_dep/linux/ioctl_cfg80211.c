@@ -3681,6 +3681,7 @@ int value;
 	RTW_WARN("\n\n************MODALAI************ cfg80211_rtw_set_txpower \n\n");
 
 	RTW_INFO("OpenHD:cfg80211_rtw_set_txpower with %d mBm %d (?dBm?)",(int)mbm,(int)value);
+	RTW_INFO("MODALAI:cfg80211_rtw_set_txpower with %d mBm %d (?dBm?)",(int)mbm,(int)value);
 if(value < 0)
 	value = 0;
 if(value > 40)

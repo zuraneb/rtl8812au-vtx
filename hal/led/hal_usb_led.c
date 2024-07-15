@@ -3111,9 +3111,9 @@ SwLedControlMode9(
 	PLED_USB	pLed2 = &(ledpriv->SwLed2);
 	BOOLEAN  bWPSOverLap = _FALSE;
 	/* RTW_INFO("LedAction=%d\n", LedAction); */
-	RTW_WARN("LedAction=%d\n", LedAction); 
+	// RTW_WARN("LedAction=%d\n", LedAction); 
 	if (LedAction != LED_CTL_POWER_ON && LedAction!= LED_CTL_POWER_OFF && LedAction != LED_CTL_CONNECTION_NO_TRANSFER){
-		RTW_WARN("Skipping unused LED action: %d\n", LedAction);
+		// RTW_WARN("Skipping unused LED action: %d\n", LedAction);
 		return;
 	}
 	switch (LedAction) {
@@ -4252,7 +4252,7 @@ LedControlUSB(
 		break;
 
 	case SW_LED_MODE9:
-		RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE9\n");
+		// RTW_WARN("ledpriv->LedStrategy: SW_LED_MODE9\n");
 		SwLedControlMode9(padapter, LedAction);
 		break;
 
