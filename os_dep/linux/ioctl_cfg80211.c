@@ -3681,14 +3681,14 @@ int value;
 	RTW_WARN("\n\n************MODALAI************ cfg80211_rtw_set_txpower \n\n");
 
 	RTW_INFO("OpenHD:cfg80211_rtw_set_txpower with %d mBm %d (?dBm?)",(int)mbm,(int)value);
-	RTW_INFO("MODALAI:cfg80211_rtw_set_txpower with %d mBm %d (?dBm?)",(int)mbm,(int)value);
+	RTW_PRINT("MODALAI:cfg80211_rtw_set_txpower with %d mBm %d (?dBm?)",(int)mbm,(int)value);
 if(value < 0)
 	value = 0;
 if(value > 40)
 	value = 40;
 
 if(type == NL80211_TX_POWER_FIXED) {
-    RTW_INFO("OpenHD:cfg80211_rtw_set_txpower NL80211_TX_POWER_FIXED");
+    RTW_PRINT("OpenHD:cfg80211_rtw_set_txpower NL80211_TX_POWER_FIXED");
 	// OpenHD dynamic tx power: We hack the driver here by repurposing really small dBm values
 	// as power index. This is a bit dangerous - since 63mBm now suddenly becomes max power.
 	// But since 25mW is already ~14dBm (and therefore 140 mBm if you go with the 100 factor)
@@ -3708,7 +3708,7 @@ if(type == NL80211_TX_POWER_FIXED) {
 	  padapter->registrypriv.RegTxPowerIndexOverride = mbm;
 	  RTW_WARN("OpenHD:interpreting %d mBm as tx power index override",(int)mbm);
 	}
-	RTW_INFO("OpenHD:Tx power index override is %d",padapter->registrypriv.RegTxPowerIndexOverride);
+	RTW_PRINT("OpenHD:Tx power index override is %d",padapter->registrypriv.RegTxPowerIndexOverride);
 
 	pHalData->CurrentTxPwrIdx = value;
 	rtw_hal_set_tx_power_level(padapter, pHalData->current_channel);
