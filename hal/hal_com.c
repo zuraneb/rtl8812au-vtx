@@ -10792,10 +10792,10 @@ int check_phy_efuse_tx_power_info_valid(PADAPTER padapter)
 	for (index = 0 ; index < 11 ; index++) {
 		RTW_PRINT("**MODALAI** EEPROM DATA[%i]: 0x%x", index, pContent[tx_index_offset + index]);
 		if (pContent[tx_index_offset + index] == 0xFF)
-			RTW_PRINT("**MODALAI** RETURNING FALSE: INDEX=%i %s", index,  __FUNCTION__);
+			RTW_PRINT("**MODALAI** %s RETURNING FALSE ",  __FUNCTION__);
 			return _FALSE;
 	}
-	RTW_PRINT("**MODALAI** RETURNING TRUE %s", __FUNCTION__);
+	RTW_PRINT("**MODALAI** %s RETURNING TRUE", __FUNCTION__);
 	return _TRUE;
 }
 
