@@ -3387,7 +3387,7 @@ static int cfg80211_rtw_connect(struct wiphy *wiphy, struct net_device *ndev,
 	struct wireless_dev *pwdev = padapter->rtw_wdev;
 	struct rtw_wdev_priv *pwdev_priv = adapter_wdev_data(padapter);
 	_irqL irqL;
-	
+
 	RTW_WARN("\n\n************MODALAI************ cfg80211_rtw_connect\n\n");
 
 	rtw_wdev_set_not_indic_disco(pwdev_priv, 1);
@@ -5038,7 +5038,6 @@ static int	cfg80211_rtw_set_channel(struct wiphy *wiphy
 	#endif
 	, struct ieee80211_channel *chan, enum nl80211_channel_type channel_type)
 {
-	RTW_WARN("\n\n************MODALAI************ cfg80211_rtw_set_channel\n\n");
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 35))
 	_adapter *padapter = (_adapter *)rtw_netdev_priv(ndev);
 #else
@@ -5048,6 +5047,7 @@ static int	cfg80211_rtw_set_channel(struct wiphy *wiphy
 	int chan_offset = HAL_PRIME_CHNL_OFFSET_DONT_CARE;
 	int chan_width = CHANNEL_WIDTH_20;
 
+	RTW_WARN("\n\n************MODALAI************ non-monitor cfg80211_rtw_set_channel\n\n");
 #if (CFG80211_API_LEVEL >= KERNEL_VERSION(2, 6, 35))
 	RTW_INFO(FUNC_NDEV_FMT"\n", FUNC_NDEV_ARG(ndev));
 #endif
