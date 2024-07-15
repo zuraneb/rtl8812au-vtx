@@ -3371,7 +3371,7 @@ leave_ibss:
 static int cfg80211_rtw_connect(struct wiphy *wiphy, struct net_device *ndev,
 				struct cfg80211_connect_params *sme)
 {
-	RTW_WARN("\n\n************MODALAI************ %s: %s\n\n", __FUNCTION__, __FILE__);
+	RTW_WARN("\n\n************MODALAI************ cfg80211_rtw_connect\n\n");
 	int ret = 0;
 	struct wlan_network *pnetwork = NULL;
 	NDIS_802_11_AUTHENTICATION_MODE authmode;
@@ -3677,7 +3677,7 @@ int value;
 	value = dbm;
 #endif
 
-	RTW_WARN("\n\n************MODALAI************ %s: %s\n\n", __FUNCTION__, __FILE__);
+	RTW_WARN("\n\n************MODALAI************ cfg80211_rtw_set_txpower \n\n");
 
 	RTW_INFO("OpenHD:cfg80211_rtw_set_txpower with %d mBm %d (?dBm?)",(int)mbm,(int)value);
 if(value < 0)
@@ -5037,7 +5037,7 @@ static int	cfg80211_rtw_set_channel(struct wiphy *wiphy
 	#endif
 	, struct ieee80211_channel *chan, enum nl80211_channel_type channel_type)
 {
-	RTW_WARN("\n\n************MODALAI************ %s: %s\n\n", __FUNCTION__, __FILE__);
+	RTW_WARN("\n\n************MODALAI************ cfg80211_rtw_set_channel\n\n");
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 35))
 	_adapter *padapter = (_adapter *)rtw_netdev_priv(ndev);
 #else
@@ -5228,7 +5228,7 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
     padapter->registrypriv.openhd_override_channel=get_openhd_override_channel();
     padapter->registrypriv.openhd_override_channel_width=get_openhd_override_channel_width();
 
-	RTW_ERR("\n\n************MODALAI************ %s: %s\n\n", __FUNCTION__, __FILE__);
+	RTW_ERR("\n\n************MODALAI************ cfg80211_rtw_set_monitor_channel\n\n");
 
     RTW_WARN("OpenHD: override %d %d",padapter->registrypriv.openhd_override_channel,padapter->registrypriv.openhd_override_channel_width);
     {
@@ -7985,9 +7985,9 @@ static struct cfg80211_ops rtw_cfg80211_ops = {
 #endif
 };
 
-struct wiphy *rtw_wiphy_alloc(_adapter *padapter, struct device *dev)
+struct wiphy *cfg80211_rtw_set_monitor_channel(_adapter *padapter, struct device *dev)
 {
-	RTW_WARN("\n\n************MODALAI************ %s: %s\n\n", __FUNCTION__, __FILE__);
+	RTW_WARN("\n\n************MODALAI************ wiphy cfg80211_rtw_set_monitor_channel\n\n");
 	struct wiphy *wiphy;
 	struct rtw_wiphy_data *wiphy_data;
 
@@ -8035,7 +8035,7 @@ void rtw_wiphy_free(struct wiphy *wiphy)
 
 int rtw_wiphy_register(struct wiphy *wiphy)
 {
-	RTW_WARN("\n\n************MODALAI************ %s: %s\n\n", __FUNCTION__, __FILE__);
+	RTW_WARN("\n\n************MODALAI************ rtw_wiphy_register\n\n");
 	RTW_INFO(FUNC_WIPHY_FMT"\n", FUNC_WIPHY_ARG(wiphy));
 
 #if (CFG80211_API_LEVEL >= KERNEL_VERSION(3, 14, 0)) || defined(RTW_VENDOR_EXT_SUPPORT)
@@ -8047,7 +8047,7 @@ int rtw_wiphy_register(struct wiphy *wiphy)
 
 void rtw_wiphy_unregister(struct wiphy *wiphy)
 {
-	RTW_WARN("\n\n************MODALAI************ %s: %s\n\n", __FUNCTION__, __FILE__);
+	RTW_WARN("\n\n************MODALAI************ rtw_wiphy_unregister\n\n");
 	RTW_INFO(FUNC_WIPHY_FMT"\n", FUNC_WIPHY_ARG(wiphy));
 
 #if (CFG80211_API_LEVEL >= KERNEL_VERSION(3, 14, 0)) || defined(RTW_VENDOR_EXT_SUPPORT)
@@ -8063,7 +8063,7 @@ void rtw_wiphy_unregister(struct wiphy *wiphy)
 
 int rtw_wdev_alloc(_adapter *padapter, struct wiphy *wiphy)
 {
-	RTW_WARN("\n\n************MODALAI************ %s: %s\n\n", __FUNCTION__, __FILE__);
+	RTW_WARN("\n\n************MODALAI************ rtw_wdev_alloc\n\n");
 	int ret = 0;
 	struct net_device *pnetdev = padapter->pnetdev;
 	struct wireless_dev *wdev;
