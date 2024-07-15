@@ -3371,7 +3371,6 @@ leave_ibss:
 static int cfg80211_rtw_connect(struct wiphy *wiphy, struct net_device *ndev,
 				struct cfg80211_connect_params *sme)
 {
-	RTW_WARN("\n\n************MODALAI************ cfg80211_rtw_connect\n\n");
 	int ret = 0;
 	struct wlan_network *pnetwork = NULL;
 	NDIS_802_11_AUTHENTICATION_MODE authmode;
@@ -3388,6 +3387,8 @@ static int cfg80211_rtw_connect(struct wiphy *wiphy, struct net_device *ndev,
 	struct wireless_dev *pwdev = padapter->rtw_wdev;
 	struct rtw_wdev_priv *pwdev_priv = adapter_wdev_data(padapter);
 	_irqL irqL;
+	
+	RTW_WARN("\n\n************MODALAI************ cfg80211_rtw_connect\n\n");
 
 	rtw_wdev_set_not_indic_disco(pwdev_priv, 1);
 
