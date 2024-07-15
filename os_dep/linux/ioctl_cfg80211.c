@@ -7986,33 +7986,33 @@ static struct cfg80211_ops rtw_cfg80211_ops = {
 #endif
 };
 
-struct wiphy *cfg80211_rtw_set_monitor_channel(_adapter *padapter, struct device *dev)
-{
-	struct wiphy *wiphy;
-	struct rtw_wiphy_data *wiphy_data;
+// struct wiphy *cfg80211_rtw_set_monitor_channel(_adapter *padapter, struct device *dev)
+// {
+// 	struct wiphy *wiphy;
+// 	struct rtw_wiphy_data *wiphy_data;
 
-	/* wiphy */
-	wiphy = wiphy_new(&rtw_cfg80211_ops, sizeof(struct rtw_wiphy_data));
-	if (!wiphy) {
-		RTW_INFO("Couldn't allocate wiphy device\n");
-		goto exit;
-	}
-	set_wiphy_dev(wiphy, dev);
+// 	/* wiphy */
+// 	wiphy = wiphy_new(&rtw_cfg80211_ops, sizeof(struct rtw_wiphy_data));
+// 	if (!wiphy) {
+// 		RTW_INFO("Couldn't allocate wiphy device\n");
+// 		goto exit;
+// 	}
+// 	set_wiphy_dev(wiphy, dev);
 
-	/* wiphy_data */
-	wiphy_data = rtw_wiphy_priv(wiphy);
-	wiphy_data->dvobj = adapter_to_dvobj(padapter);
-#ifndef RTW_SINGLE_WIPHY
-	wiphy_data->adapter = padapter;
-#endif
+// 	/* wiphy_data */
+// 	wiphy_data = rtw_wiphy_priv(wiphy);
+// 	wiphy_data->dvobj = adapter_to_dvobj(padapter);
+// #ifndef RTW_SINGLE_WIPHY
+// 	wiphy_data->adapter = padapter;
+// #endif
 
-	rtw_cfg80211_preinit_wiphy(padapter, wiphy);
+// 	rtw_cfg80211_preinit_wiphy(padapter, wiphy);
 
-	RTW_INFO(FUNC_WIPHY_FMT"\n", FUNC_WIPHY_ARG(wiphy));
+// 	RTW_INFO(FUNC_WIPHY_FMT"\n", FUNC_WIPHY_ARG(wiphy));
 
-exit:
-	return wiphy;
-}
+// exit:
+// 	return wiphy;
+// }
 
 void rtw_wiphy_free(struct wiphy *wiphy)
 {
