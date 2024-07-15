@@ -1036,7 +1036,7 @@ uint loadparam(_adapter *padapter)
 	registry_par->RegTxPowerIndexOverride = (u8)rtw_tx_pwr_idx_override;
 	RTW_INFO("OpenHD:rtw_tx_pwr_idx_override:%d\n",(int)rtw_tx_pwr_idx_override);
 
-	RTW_WARN("\n\n************MODALAI************\n\n");
+	RTW_WARN("************MODALAI*********** LOAD PARAM");
 
     registry_par->openhd_override_channel = openhd_override_channel;
     registry_par->openhd_override_channel_width = openhd_override_channel_width;

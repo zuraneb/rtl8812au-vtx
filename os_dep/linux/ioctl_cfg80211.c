@@ -3388,7 +3388,7 @@ static int cfg80211_rtw_connect(struct wiphy *wiphy, struct net_device *ndev,
 	struct rtw_wdev_priv *pwdev_priv = adapter_wdev_data(padapter);
 	_irqL irqL;
 
-	RTW_WARN("\n\n************MODALAI************ cfg80211_rtw_connect\n\n");
+	RTW_WARN("************MODALAI************ cfg80211_rtw_connect");
 
 	rtw_wdev_set_not_indic_disco(pwdev_priv, 1);
 
@@ -3678,7 +3678,7 @@ int value;
 	value = dbm;
 #endif
 
-	RTW_WARN("\n\n************MODALAI************ cfg80211_rtw_set_txpower \n\n");
+	RTW_WARN("************MODALAI************ cfg80211_rtw_set_txpower ");
 
 	RTW_INFO("OpenHD:cfg80211_rtw_set_txpower with %d mBm %d (?dBm?)",(int)mbm,(int)value);
 	RTW_PRINT("MODALAI:cfg80211_rtw_set_txpower with %d mBm %d (?dBm?)",(int)mbm,(int)value);
@@ -5048,7 +5048,7 @@ static int	cfg80211_rtw_set_channel(struct wiphy *wiphy
 	int chan_offset = HAL_PRIME_CHNL_OFFSET_DONT_CARE;
 	int chan_width = CHANNEL_WIDTH_20;
 
-	RTW_WARN("\n\n************MODALAI************ non-monitor cfg80211_rtw_set_channel\n\n");
+	RTW_WARN("************MODALAI************ non-monitor cfg80211_rtw_set_channel");
 #if (CFG80211_API_LEVEL >= KERNEL_VERSION(2, 6, 35))
 	RTW_INFO(FUNC_NDEV_FMT"\n", FUNC_NDEV_ARG(ndev));
 #endif
@@ -5230,7 +5230,7 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
     padapter->registrypriv.openhd_override_channel=get_openhd_override_channel();
     padapter->registrypriv.openhd_override_channel_width=get_openhd_override_channel_width();
 
-	RTW_ERR("\n\n************MODALAI************ cfg80211_rtw_set_monitor_channel\n\n");
+	RTW_ERR("************MODALAI************ cfg80211_rtw_set_monitor_channel");
 
     RTW_WARN("OpenHD: override %d %d",padapter->registrypriv.openhd_override_channel,padapter->registrypriv.openhd_override_channel_width);
     {

@@ -1967,7 +1967,7 @@ hal_InitPGData_8812A(
 	u32			i;
 	u16			value16;
 
-	RTW_PRINT("\n**MODALAI** %s %s", __FUNCTION__,__FILE__);
+	RTW_PRINT("**MODALAI** %s", __FUNCTION__);
 
 	if (_FALSE == pHalData->bautoload_fail_flag) {
 		/* autoload OK. */
@@ -2029,15 +2029,15 @@ hal_InitPGData_8812A(
 	}
 
 #ifdef CONFIG_EFUSE_CONFIG_FILE
-	RTW_PRINT("**MODALAI** CONFIG_EFUSE_CONFIG_FILE ENABLED: %s %s", __FUNCTION__,__FILE__);
+	RTW_PRINT("**MODALAI** %s CONFIG_EFUSE_CONFIG_FILE ENABLED", __FUNCTION__);
 	if (check_phy_efuse_tx_power_info_valid(padapter) == _FALSE) {
 		if (Hal_readPGDataFromConfigFile(padapter) != _SUCCESS)
 			RTW_ERR("invalid phy efuse and read from file fail, will use driver default!!\n");
 	} else {
-		RTW_PRINT("**MODALAI** check_phy_efuse_tx_power_info_valid(padapter) == _TRUE %s ", __FUNCTION__);
+		RTW_PRINT("**MODALAI** %s -> check_phy_efuse_tx_power_info_valid(padapter) == _TRUE ", __FUNCTION__);
 	}
 #else 
-	RTW_PRINT("**MODALAI** CONFIG_EFUSE_CONFIG_FILE DISABLED. %s %s", __FUNCTION__, __FILE__);
+	RTW_PRINT("**MODALAI** CONFIG_EFUSE_CONFIG_FILE DISABLED. %s", __FUNCTION__);
 #endif
 
 }
@@ -2224,7 +2224,7 @@ InitAdapterVariablesByPROM_8812AU(
 {
 	PHAL_DATA_TYPE pHalData = GET_HAL_DATA(Adapter);
 
-	RTW_PRINT("\n*** MODALAI *** %s : %s", __FUNCTION__, __FILE__);
+	RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
 	hal_InitPGData_8812A(Adapter, pHalData->efuse_eeprom_data);
 
 	Hal_EfuseParseIDCode8812A(Adapter, pHalData->efuse_eeprom_data);
@@ -2272,7 +2272,7 @@ static void Hal_ReadPROMContent_8812A(
 	PHAL_DATA_TYPE pHalData = GET_HAL_DATA(Adapter);
 	u8			eeValue;
 
-	RTW_PRINT("\n*** MODALAI *** %s : %s", __FUNCTION__, __FILE__);
+	RTW_PRINT("*** MODALAI *** %s ", __FUNCTION__);
 
 	/* check system boot selection */
 	eeValue = rtw_read8(Adapter, REG_9346CR);
@@ -2281,7 +2281,8 @@ static void Hal_ReadPROMContent_8812A(
 
 	RTW_INFO("Boot from %s, Autoload %s !\n", (pHalData->EepromOrEfuse ? "EEPROM" : "EFUSE"),
 		 (pHalData->bautoload_fail_flag ? "Fail" : "OK"));
-
+	RTW_PRINT("**MODALAI** Boot from %s, Autoload %s !\n", (pHalData->EepromOrEfuse ? "EEPROM" : "EFUSE"),
+		 (pHalData->bautoload_fail_flag ? "Fail" : "OK"));
 	/* pHalData->EEType = IS_BOOT_FROM_EEPROM(Adapter) ? EEPROM_93C46 : EEPROM_BOOT_EFUSE; */
 
 	InitAdapterVariablesByPROM_8812AU(Adapter);
@@ -2292,7 +2293,7 @@ ReadAdapterInfo8812AU(
 	IN PADAPTER			Adapter
 )
 {
-	RTW_PRINT("\n*** MODALAI *** %s : %s", __FUNCTION__, __FILE__);
+	RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
 
 	/* Read all content in Efuse/EEPROM. */
 	Hal_ReadPROMContent_8812A(Adapter);
@@ -2584,7 +2585,7 @@ void rtl8812au_set_hal_ops(_adapter *padapter)
 {
 	struct hal_ops	*pHalFunc = &padapter->hal_func;
 
-	RTW_PRINT("\n*** MODALAI *** %s : %s", __FUNCTION__, __FILE__);
+	RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
 
 	pHalFunc->hal_power_on = _InitPowerOn_8812AU;
 	pHalFunc->hal_power_off = hal_poweroff_8812au;

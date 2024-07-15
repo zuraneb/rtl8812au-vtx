@@ -10986,7 +10986,7 @@ u32 Hal_readPGDataFromConfigFile(PADAPTER padapter)
 		return _FALSE;
 	}	
 
-	RTW_PRINT("\n**MODALAI** EFUSE FILE PATH: %s ** %s: **%s", __FUNCTION__, __FILE__, EFUSE_MAP_PATH);
+	RTW_PRINT("**MODALAI** %s EFUSE FILE PATH: %s", __FUNCTION__, EFUSE_MAP_PATH);
 	ret = rtw_read_efuse_from_file(EFUSE_MAP_PATH, hal_data->efuse_eeprom_data, maplen);
 
 	hal_data->efuse_file_status = ((ret == _FAIL) ? EFUSE_FILE_FAILED : EFUSE_FILE_LOADED);

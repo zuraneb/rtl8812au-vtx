@@ -3124,7 +3124,7 @@ u32 rtw_read_efuse_from_file(const char *path, u8 *buf, int map_size)
 	u32 file_size, read_size, pos = 0;
 	u8 *map = NULL;
 
-	RTW_PRINT("\n**MODALAI** EFUSE FILE PATH: %s", path);
+	RTW_PRINT("**MODALAI** EFUSE FILE PATH: %s", path);
 	if (rtw_is_file_readable_with_size(path, &file_size) != _TRUE) {
 		RTW_PRINT("%s %s is not readable\n", __func__, path);
 		goto exit;

@@ -3340,7 +3340,7 @@ void InitPGData8812A(PADAPTER padapter)
 	u16 val16;
 	PHAL_DATA_TYPE pHalData = GET_HAL_DATA(padapter);
 
-	RTW_PRINT("\n**MODALAI** %s: %s", __FUNCTION__, __FILE__);
+	RTW_PRINT("**MODALAI** %s", __FUNCTION__);
 
 	if (_FALSE == pHalData->bautoload_fail_flag) {
 		/* autoload OK. */
@@ -3360,13 +3360,13 @@ void InitPGData8812A(PADAPTER padapter)
 			EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
 	}
 #ifdef CONFIG_EFUSE_CONFIG_FILE
-	RTW_PRINT("\n**MODALAI** CONFIG_EFUSE_CONFIG_FILE ENABLED: %s %s", __FUNCTION__,__FILE__);
+	RTW_PRINT("**MODALAI** CONFIG_EFUSE_CONFIG_FILE ENABLED: %s", __FUNCTION__);
 	if (check_phy_efuse_tx_power_info_valid(padapter) == _FALSE) {
 		if (Hal_readPGDataFromConfigFile(padapter) != _SUCCESS)
 			RTW_ERR("invalid phy efuse and read from file fail, will use driver default!!\n");
 	}
 #else 
-	RTW_PRINT("\n**MODALAI** CONFIG_EFUSE_CONFIG_FILE DISABLED. %s %s", __FUNCTION__, __FILE__);
+	RTW_PRINT("**MODALAI** CONFIG_EFUSE_CONFIG_FILE DISABLED. %s", __FUNCTION__);
 #endif
 }
 
