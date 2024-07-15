@@ -909,11 +909,13 @@ Hal_EfuseParseIDCode8812A(
 	EEPROMId = ReadLE2Byte(&hwinfo[0]);
 	if (EEPROMId != RTL_EEPROM_ID) {
 		RTW_INFO("EEPROM ID(%#x) is invalid!!\n", EEPROMId);
+		RTW_PRINT("EEPROM ID(%#x) is invalid!!\n", EEPROMId);
 		pHalData->bautoload_fail_flag = _TRUE;
 	} else
 		pHalData->bautoload_fail_flag = _FALSE;
 
 	RTW_INFO("EEPROM ID=0x%04x\n", EEPROMId);
+	RTW_PRINT("EEPROM ID=0x%04x\n", EEPROMId);
 }
 
 VOID

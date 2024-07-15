@@ -10957,6 +10957,7 @@ void rtw_dump_cur_efuse(PADAPTER padapter)
 		RTW_INFO("HW EFUSE\n");
 
 #ifdef CONFIG_RTW_DEBUG
+	RTW_PRINT("***MODALAI**** %s", __FUNCTION__);
 	for (i = 0; i < mapsize; i++) {
 		if (i % 16 == 0)
 			RTW_PRINT_SEL(RTW_DBGDUMP, "0x%03x: ", i);
@@ -10967,6 +10968,7 @@ void rtw_dump_cur_efuse(PADAPTER padapter)
 		);
 	}
 	_RTW_PRINT_SEL(RTW_DBGDUMP, "\n");
+	RTW_PRINT("***MODALAI**** %s", __FUNCTION__);
 #endif
 }
 
