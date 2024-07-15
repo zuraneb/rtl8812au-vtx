@@ -703,6 +703,8 @@ exit:
 
 u8 rtw_set_hal_ops(_adapter *padapter)
 {
+	RTW_PRINT("\n*** MODALAI *** %s : %s", __FUNCTION__, __FILE__);
+
 	/* alloc memory for HAL DATA */
 	if (rtw_hal_data_init(padapter) == _FAIL)
 		return _FAIL;
@@ -1241,6 +1243,8 @@ _adapter *rtw_usb_primary_adapter_init(struct dvobj_priv *dvobj,
 	_adapter *padapter = NULL;
 	int status = _FAIL;
 
+	RTW_PRINT("\n*** MODALAI *** %s : %s", __FUNCTION__, __FILE__);
+
 	padapter = (_adapter *)rtw_zvmalloc(sizeof(*padapter));
 	if (padapter == NULL)
 		goto exit;
@@ -1446,6 +1450,8 @@ static int rtw_drv_init(struct usb_interface *pusb_intf, const struct usb_device
 #ifdef CONFIG_CONCURRENT_MODE
 	int i;
 #endif
+
+	RTW_PRINT("\n*** MODALAI *** %s : %s", __FUNCTION__, __FILE__);
 
 	/* RTW_INFO("+rtw_drv_init\n"); */
 

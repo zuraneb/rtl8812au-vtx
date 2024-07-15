@@ -2222,6 +2222,7 @@ InitAdapterVariablesByPROM_8812AU(
 {
 	PHAL_DATA_TYPE pHalData = GET_HAL_DATA(Adapter);
 
+	RTW_PRINT("\n*** MODALAI *** %s : %s", __FUNCTION__, __FILE__);
 	hal_InitPGData_8812A(Adapter, pHalData->efuse_eeprom_data);
 
 	Hal_EfuseParseIDCode8812A(Adapter, pHalData->efuse_eeprom_data);
@@ -2269,6 +2270,8 @@ static void Hal_ReadPROMContent_8812A(
 	PHAL_DATA_TYPE pHalData = GET_HAL_DATA(Adapter);
 	u8			eeValue;
 
+	RTW_PRINT("\n*** MODALAI *** %s : %s", __FUNCTION__, __FILE__);
+
 	/* check system boot selection */
 	eeValue = rtw_read8(Adapter, REG_9346CR);
 	pHalData->EepromOrEfuse		= (eeValue & BOOT_FROM_EEPROM) ? _TRUE : _FALSE;
@@ -2287,6 +2290,8 @@ ReadAdapterInfo8812AU(
 	IN PADAPTER			Adapter
 )
 {
+	RTW_PRINT("\n*** MODALAI *** %s : %s", __FUNCTION__, __FILE__);
+
 	/* Read all content in Efuse/EEPROM. */
 	Hal_ReadPROMContent_8812A(Adapter);
 
@@ -2577,6 +2582,7 @@ void rtl8812au_set_hal_ops(_adapter *padapter)
 {
 	struct hal_ops	*pHalFunc = &padapter->hal_func;
 
+	RTW_PRINT("\n*** MODALAI *** %s : %s", __FUNCTION__, __FILE__);
 
 	pHalFunc->hal_power_on = _InitPowerOn_8812AU;
 	pHalFunc->hal_power_off = hal_poweroff_8812au;
