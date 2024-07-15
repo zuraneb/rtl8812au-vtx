@@ -8035,7 +8035,6 @@ void rtw_wiphy_free(struct wiphy *wiphy)
 
 int rtw_wiphy_register(struct wiphy *wiphy)
 {
-	RTW_WARN("\n\n************MODALAI************ rtw_wiphy_register\n\n");
 	RTW_INFO(FUNC_WIPHY_FMT"\n", FUNC_WIPHY_ARG(wiphy));
 
 #if (CFG80211_API_LEVEL >= KERNEL_VERSION(3, 14, 0)) || defined(RTW_VENDOR_EXT_SUPPORT)
@@ -8047,7 +8046,6 @@ int rtw_wiphy_register(struct wiphy *wiphy)
 
 void rtw_wiphy_unregister(struct wiphy *wiphy)
 {
-	RTW_WARN("\n\n************MODALAI************ rtw_wiphy_unregister\n\n");
 	RTW_INFO(FUNC_WIPHY_FMT"\n", FUNC_WIPHY_ARG(wiphy));
 
 #if (CFG80211_API_LEVEL >= KERNEL_VERSION(3, 14, 0)) || defined(RTW_VENDOR_EXT_SUPPORT)
@@ -8068,7 +8066,6 @@ int rtw_wdev_alloc(_adapter *padapter, struct wiphy *wiphy)
 	struct wireless_dev *wdev;
 	struct rtw_wdev_priv *pwdev_priv;
 	
-	RTW_WARN("\n\n************MODALAI************ rtw_wdev_alloc\n\n");
 
 	RTW_INFO("%s(padapter=%p)\n", __func__, padapter);
 
