@@ -7988,7 +7988,6 @@ static struct cfg80211_ops rtw_cfg80211_ops = {
 
 struct wiphy *cfg80211_rtw_set_monitor_channel(_adapter *padapter, struct device *dev)
 {
-	RTW_WARN("\n\n************MODALAI************ wiphy cfg80211_rtw_set_monitor_channel\n\n");
 	struct wiphy *wiphy;
 	struct rtw_wiphy_data *wiphy_data;
 
