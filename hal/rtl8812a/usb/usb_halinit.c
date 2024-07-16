@@ -2376,9 +2376,12 @@ u8 SetHwReg8812AU(PADAPTER Adapter, u8 variable, u8 *val)
 		break;
 
 	case HW_VAR_USB_MODE:
+		RTW_PRINT("**MODALAI** %s::HW_VAR_USB_MODE", __FUNCTION__);
 		/* U2 to U3 */
 		if (registry_par->switch_usb_mode == 1) {
+			RTW_PRINT("**MODALAI** %s::HW_VAR_USB_MODE::registry_par->switch_usb_mode == 1", __FUNCTION__);
 			if (IS_HIGH_SPEED_USB(Adapter)) {
+				RTW_PRINT("**MODALAI** %s::HW_VAR_USB_MODE::IS_HIGH_SPEED_USB(Adapter)", __FUNCTION__);
 				if ((rtw_read8(Adapter, 0x74) & (BIT(2) | BIT(3))) != BIT(3)) {
 					rtw_write8(Adapter, 0x74, 0x8);
 					rtw_write8(Adapter, 0x70, 0x2);
@@ -2389,12 +2392,15 @@ u8 SetHwReg8812AU(PADAPTER Adapter, u8 variable, u8 *val)
 					*val = _TRUE;
 				}
 			} else if (IS_SUPER_SPEED_USB(Adapter)) {
+				RTW_PRINT("**MODALAI** %s::HW_VAR_USB_MODE::IS_SUPER_SPEED_USB(Adapter)", __FUNCTION__);
 				rtw_write8(Adapter, 0x70, rtw_read8(Adapter, 0x70) & (~BIT(1)));
 				rtw_write8(Adapter, 0x3e, rtw_read8(Adapter, 0x3e) & (~BIT(0)));
 			}
 		} else if (registry_par->switch_usb_mode == 2) {
+			RTW_PRINT("**MODALAI** %s::HW_VAR_USB_MODE::registry_par->switch_usb_mode == 2", __FUNCTION__);
 			/* U3 to U2 */
 			if (IS_SUPER_SPEED_USB(Adapter)) {
+				RTW_PRINT("**MODALAI** %s::HW_VAR_USB_MODE::IS_SUPER_SPEED_USB(Adapter)", __FUNCTION__);
 				if ((rtw_read8(Adapter, 0x74) & (BIT(2) | BIT(3))) != BIT(2)) {
 					rtw_write8(Adapter, 0x74, 0x4);
 					rtw_write8(Adapter, 0x70, 0x2);
@@ -2405,6 +2411,7 @@ u8 SetHwReg8812AU(PADAPTER Adapter, u8 variable, u8 *val)
 					*val = _TRUE;
 				}
 			} else if (IS_HIGH_SPEED_USB(Adapter)) {
+				RTW_PRINT("**MODALAI** %s::HW_VAR_USB_MODE::IS_HIGH_SPEED_USB(Adapter)", __FUNCTION__);
 				rtw_write8(Adapter, 0x70, rtw_read8(Adapter, 0x70) & (~BIT(1)));
 				rtw_write8(Adapter, 0x3e, rtw_read8(Adapter, 0x3e) & (~BIT(0)));
 			}
