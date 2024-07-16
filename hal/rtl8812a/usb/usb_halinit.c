@@ -2384,8 +2384,6 @@ u8 SetHwReg8812AU(PADAPTER Adapter, u8 variable, u8 *val)
 				RTW_PRINT("**MODALAI** %s::HW_VAR_USB_MODE::IS_HIGH_SPEED_USB(Adapter)", __FUNCTION__);
 				RTW_PRINT("**MODALAI** %s::HW_VAR_USB_MODE::IS_HIGH_SPEED_USB(ADAPTER) READ --> %u", __FUNCTION__, rtw_read8(Adapter, 0x74));
 				if ((rtw_read8(Adapter, 0x74) & (BIT(2) | BIT(3))) != BIT(3)) {
-					//TEST
-					break;
 					rtw_write8(Adapter, 0x74, 0x8);
 					rtw_write8(Adapter, 0x70, 0x2);
 					rtw_write8(Adapter, 0x3e, 0x1);
