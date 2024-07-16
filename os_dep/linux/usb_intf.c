@@ -1535,8 +1535,7 @@ free_if_vir:
 	}
 
 free_if_prim:
-	RTW_PRINT("**MODALAI** %s: free_if_prim:
-", __FUNCTION__);
+	RTW_PRINT("**MODALAI** %s: free_if_prim", __FUNCTION__);
 	if (status != _SUCCESS && padapter)
 		rtw_usb_primary_adapter_deinit(padapter);
 
