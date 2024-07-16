@@ -10952,9 +10952,9 @@ void rtw_dump_cur_efuse(PADAPTER padapter)
 	}
 
 	if (hal_data->efuse_file_status == EFUSE_FILE_LOADED)
-		RTW_INFO("EFUSE FILE\n");
+		RTW_PRINT("EFUSE FILE\n");
 	else
-		RTW_INFO("HW EFUSE\n");
+		RTW_PRINT("HW EFUSE\n");
 
 #ifdef CONFIG_RTW_DEBUG
 	RTW_PRINT("***MODALAI**** %s", __FUNCTION__);
