@@ -11453,15 +11453,15 @@ u8 rtw_hal_get_gpio(_adapter *adapter, u8 gpio_num)
 
 	/* According the direction to read register value */
 	if (direction){
-		RTW_PRINT("\t[MODALAI] GPIO direction: OUTPUT");
+		RTW_PRINT("\tGPIO direction: OUTPUT");
 		value =  (rtw_read8(adapter, gpio_pin_output_val) & BIT(gpio_num_to_set)) >> gpio_num_to_set;
 	} else {
-		RTW_PRINT("\t[MODALAI] GPIO direction: INPUT");
+		RTW_PRINT("\n\tGPIO direction: INPUT");
 		value =  (rtw_read8(adapter, gpio_pin_input_val) & BIT(gpio_num_to_set)) >> gpio_num_to_set;
 	}
 	rtw_ps_deny_cancel(adapter, PS_DENY_IOCTL);
 	RTW_INFO("%s direction=%d value=%d\n", __FUNCTION__, direction, value);
-	RTW_WARN("%s direction=%d value=%d\n", __FUNCTION__, direction, value);
+	RTW_PRINT("\t%s GPIO=%u direction=%d value=%d\n", __FUNCTION__, gpio_num, direction, value);
 
 	return value;
 }
