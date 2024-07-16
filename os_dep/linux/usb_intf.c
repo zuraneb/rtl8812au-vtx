@@ -1526,8 +1526,8 @@ os_ndevs_deinit:
 		rtw_os_ndevs_deinit(dvobj);
 #endif
 free_if_vir:
-	RTW_PRINT("**MODALAI** %s: free_if_vir", __FUNCTION__);
 	if (status != _SUCCESS) {
+		RTW_PRINT("**MODALAI** %s: free_if_vir", __FUNCTION__);
 		#ifdef CONFIG_CONCURRENT_MODE
 		rtw_drv_stop_vir_ifaces(dvobj);
 		rtw_drv_free_vir_ifaces(dvobj);
@@ -1535,16 +1535,18 @@ free_if_vir:
 	}
 
 free_if_prim:
-	RTW_PRINT("**MODALAI** %s: free_if_prim", __FUNCTION__);
-	if (status != _SUCCESS && padapter)
+	if (status != _SUCCESS && padapter){
 		rtw_usb_primary_adapter_deinit(padapter);
+		RTW_PRINT("**MODALAI** %s: free_if_prim", __FUNCTION__);
+	}
 
 free_dvobj:
-	RTW_PRINT("**MODALAI** %s: free_dvobj", __FUNCTION__);
-	if (status != _SUCCESS)
+	if (status != _SUCCESS){
 		usb_dvobj_deinit(pusb_intf);
+		RTW_PRINT("**MODALAI** %s: free_dvobj", __FUNCTION__);
+	}
 exit:
-	RTW_PRINT("**MODALAI** %s: exit", __FUNCTION__);
+	RTW_PRINT("**MODALAI** %s: exit -> STATUS: %s", __FUNCTION__, status == _SUCCESS ? "SUCCESS" : "FAIL");
 	return status == _SUCCESS ? 0 : -ENODEV;
 }
 
