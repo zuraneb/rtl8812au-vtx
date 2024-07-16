@@ -1475,6 +1475,7 @@ static int rtw_drv_init(struct usb_interface *pusb_intf, const struct usb_device
 		RTW_PRINT("rtw_usb_primary_adapter_init Failed!\n");
 		goto free_dvobj;
 	}
+	RTW_PRINT("rtw_usb_primary_adapter_init SUCCESS!\n");
 
 	if (usb_reprobe_switch_usb_mode(padapter) == _TRUE)
 		goto free_if_prim;
@@ -1503,6 +1504,7 @@ static int rtw_drv_init(struct usb_interface *pusb_intf, const struct usb_device
 #endif
 
 	/* dev_alloc_name && register_netdev */
+	RTW_PRINT("**MODALAI** rtw_os_ndevs_init");
 	if (rtw_os_ndevs_init(dvobj) != _SUCCESS)
 		goto free_if_vir;
 
@@ -1524,6 +1526,7 @@ os_ndevs_deinit:
 		rtw_os_ndevs_deinit(dvobj);
 #endif
 free_if_vir:
+	RTW_PRINT("**MODALAI** %s: free_if_vir", __FUNCTION__);
 	if (status != _SUCCESS) {
 		#ifdef CONFIG_CONCURRENT_MODE
 		rtw_drv_stop_vir_ifaces(dvobj);
@@ -1532,13 +1535,17 @@ free_if_vir:
 	}
 
 free_if_prim:
+	RTW_PRINT("**MODALAI** %s: free_if_prim:
+", __FUNCTION__);
 	if (status != _SUCCESS && padapter)
 		rtw_usb_primary_adapter_deinit(padapter);
 
 free_dvobj:
+	RTW_PRINT("**MODALAI** %s: free_dvobj", __FUNCTION__);
 	if (status != _SUCCESS)
 		usb_dvobj_deinit(pusb_intf);
 exit:
+	RTW_PRINT("**MODALAI** %s: exit", __FUNCTION__);
 	return status == _SUCCESS ? 0 : -ENODEV;
 }
 
