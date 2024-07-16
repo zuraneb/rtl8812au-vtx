@@ -689,12 +689,16 @@ static int usb_reprobe_switch_usb_mode(PADAPTER Adapter)
 	u8 ret = _FALSE;
 
 	/* efuse not allow driver to switch usb mode */
-	if (pHalData->EEPROMUsbSwitch == _FALSE)
+	if (pHalData->EEPROMUsbSwitch == _FALSE){
+		RTW_PRINT("*** MODALAI *** %s: efuse not allow driver to switch usb mode", __FUNCTION__);
 		goto exit;
+	}
 
 	/* registry not allow driver to switch usb mode */
-	if (registry_par->switch_usb_mode == 0)
+	if (registry_par->switch_usb_mode == 0){
+		RTW_PRINT("*** MODALAI *** %s: registry not allow driver to switch usb mode", __FUNCTION__);
 		goto exit;
+	}
 
 	rtw_hal_set_hwreg(Adapter, HW_VAR_USB_MODE, &ret);
 exit:
@@ -1475,11 +1479,12 @@ static int rtw_drv_init(struct usb_interface *pusb_intf, const struct usb_device
 		RTW_PRINT("rtw_usb_primary_adapter_init Failed!\n");
 		goto free_dvobj;
 	}
-	RTW_PRINT("rtw_usb_primary_adapter_init SUCCESS!\n");
+	RTW_PRINT("**MODALAI** rtw_usb_primary_adapter_init SUCCESS!\n");
 
-	if (usb_reprobe_switch_usb_mode(padapter) == _TRUE)
+	if (usb_reprobe_switch_usb_mode(padapter) == _TRUE){
+		RTW_PRINT("**MODALAI** usb_reprobe_switch_usb_mode SWITCH USB MODE!\n");
 		goto free_if_prim;
-
+	}
 #ifdef CONFIG_CONCURRENT_MODE
 	if (padapter->registrypriv.virtual_iface_num > (CONFIG_IFACE_NUMBER - 1))
 		padapter->registrypriv.virtual_iface_num = (CONFIG_IFACE_NUMBER - 1);
