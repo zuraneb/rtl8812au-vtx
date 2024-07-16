@@ -1282,17 +1282,22 @@ _adapter *rtw_usb_primary_adapter_init(struct dvobj_priv *dvobj,
 	padapter->intf_stop = &usb_intf_stop;
 
 	/* step read_chip_version */
+	RTW_PRINT("*** MODALAI *** rtw_hal_read_chip_version");
 	rtw_hal_read_chip_version(padapter);
 
 	/* step usb endpoint mapping */
+	RTW_PRINT("*** MODALAI *** rtw_hal_chip_configure");
 	rtw_hal_chip_configure(padapter);
 
 	/* step read efuse/eeprom data and get mac_addr */
+	RTW_PRINT("*** MODALAI *** rtw_hal_read_chip_version");
 	if (rtw_hal_read_chip_info(padapter) == _FAIL)
 		goto free_hal_data;
 
 	/* step 5. */
+	RTW_PRINT("*** MODALAI *** rtw_init_drv_sw");
 	if (rtw_init_drv_sw(padapter) == _FAIL) {
+		RTW_PRINT("\t\t*** MODALAI *** rtw_init_drv_sw FAIL");
 		goto free_hal_data;
 	}
 
@@ -1361,7 +1366,7 @@ _adapter *rtw_usb_primary_adapter_init(struct dvobj_priv *dvobj,
 #ifdef CONFIG_P2P
 	rtw_init_wifidirect_addrs(padapter, adapter_mac_addr(padapter), adapter_mac_addr(padapter));
 #endif /* CONFIG_P2P */
-	RTW_INFO("bDriverStopped:%s, bSurpriseRemoved:%s, bup:%d, hw_init_completed:%d\n"
+	RTW_PRINT("bDriverStopped:%s, bSurpriseRemoved:%s, bup:%d, hw_init_completed:%d\n"
 		 , rtw_is_drv_stopped(padapter) ? "True" : "False"
 		 , rtw_is_surprise_removed(padapter) ? "True" : "False"
 		 , padapter->bup
@@ -1467,6 +1472,7 @@ static int rtw_drv_init(struct usb_interface *pusb_intf, const struct usb_device
 	padapter = rtw_usb_primary_adapter_init(dvobj, pusb_intf);
 	if (padapter == NULL) {
 		RTW_INFO("rtw_usb_primary_adapter_init Failed!\n");
+		RTW_PRINT("rtw_usb_primary_adapter_init Failed!\n");
 		goto free_dvobj;
 	}
 

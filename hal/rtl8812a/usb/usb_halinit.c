@@ -2631,5 +2631,6 @@ void rtl8812au_set_hal_ops(_adapter *padapter)
 #endif
 
 	rtl8812_set_hal_ops(pHalFunc);
+	RTW_PRINT("*** MODALAI *** RETURN %s", __FUNCTION__);
 
 }
