@@ -2389,6 +2389,7 @@ u8 SetHwReg8812AU(PADAPTER Adapter, u8 variable, u8 *val)
 					rtw_write8(Adapter, 0x3d, 0x3);
 					/* usb disconnect */
 					rtw_write8(Adapter, 0x5, 0x80);
+					RTW_PRINT("**MODALAI** %s::HW_VAR_USB_MODE::IS_HIGH_SPEED_USB(Adapter)::USB DISCONNECT", __FUNCTION__);
 					*val = _TRUE;
 				}
 			} else if (IS_SUPER_SPEED_USB(Adapter)) {
