@@ -11452,8 +11452,10 @@ u8 rtw_hal_get_gpio(_adapter *adapter, u8 gpio_num)
 
 	/* According the direction to read register value */
 	if (direction)
+		RTW_PRINT("\t[MODALAI] GPIO direction: OUTPUT");
 		value =  (rtw_read8(adapter, gpio_pin_output_val) & BIT(gpio_num_to_set)) >> gpio_num_to_set;
 	else
+		RTW_PRINT("\t[MODALAI] GPIO direction: INPUT");
 		value =  (rtw_read8(adapter, gpio_pin_input_val) & BIT(gpio_num_to_set)) >> gpio_num_to_set;
 
 	rtw_ps_deny_cancel(adapter, PS_DENY_IOCTL);
