@@ -5183,7 +5183,8 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 
 #ifdef CONFIG_GPIO_CONTROL
 #ifdef CONFIG_GPIO_API
-	if(rtw_hal_get_gpio(padapter, 1) < 0){
+	// Bind button/GPIO1 is pulled up (reads high by default)
+	if(rtw_hal_get_gpio(padapter, 1) < 1){
 		RTW_PRINT("***** DETECTED GPIO INPUT ON GPIO 1 *****");
 		rtw_led_control(padapter, LED_CTL_POWER_OFF);
 		// rtw_led_control(padapter, LED_CTL_CONNECTION_NO_TRANSFER);
