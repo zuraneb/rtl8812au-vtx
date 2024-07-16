@@ -385,7 +385,7 @@ rtl8812au_InitSwLeds(
 	// 	RTW_WARN("FAILED to set GPIO 1 config as output!!\n");
 	// }
 
-	// Set GPIO 1 as input
+	// Set GPIO 2 as input
 	if(rtw_hal_config_gpio(padapter, (u8)2, false) == 0){
 		RTW_WARN("Set GPIO 2 config as input successfully\n");
 	} else {
