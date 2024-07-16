@@ -378,26 +378,33 @@ rtl8812au_InitSwLeds(
 
 	InitLed(padapter, &(pledpriv->SwLed2), LED_PIN_LED2);
 
-	// Set GPIO 7 as output
-	// if(rtw_hal_config_gpio(padapter, (u8)7, true) == 0){
-	// 	RTW_WARN("Set GPIO 1 config as output successfully\n");
-	// } else {
-	// 	RTW_WARN("FAILED to set GPIO 1 config as output!!\n");
-	// }
-
+	// Set GPIO 1 as input
+	if(rtw_hal_config_gpio(padapter, (u8)1, false) == 0){
+		RTW_PRINT("Set GPIO 1 config as input successfully");
+	} else {
+		RTW_PRINT("FAILED to set GPIO 1 config as input!");
+	}
+	
 	// Set GPIO 2 as input
 	if(rtw_hal_config_gpio(padapter, (u8)2, false) == 0){
-		RTW_WARN("Set GPIO 2 config as input successfully\n");
+		RTW_PRINT("Set GPIO 2 config as input successfully");
 	} else {
-		RTW_WARN("FAILED to set GPIO 2 config as input!!\n");
+		RTW_PRINT("FAILED to set GPIO 2 config as input!");
 	}
 
-	// Register callback
-	if(rtw_hal_register_gpio_interrupt(padapter, 2, gpio_cb) < 0){
-		RTW_WARN("Failed to set GPIO 2 interrupt!");
+	// Set GPIO 3 as input
+	if(rtw_hal_config_gpio(padapter, (u8)3, false) == 0){
+		RTW_PRINT("Set GPIO 3 config as input successfully");
 	} else {
-		RTW_WARN("Successfully set GPIO 2 interrupt!");
+		RTW_PRINT("FAILED to set GPIO 3 config as input!");
 	}
+
+	// Register callback, not used r.n.
+	// if(rtw_hal_register_gpio_interrupt(padapter, 2, gpio_cb) < 0){
+	// 	RTW_WARN("Failed to set GPIO 2 interrupt!");
+	// } else {
+	// 	RTW_WARN("Successfully set GPIO 2 interrupt!");
+	// }
 }
 
 
