@@ -700,6 +700,7 @@ static int usb_reprobe_switch_usb_mode(PADAPTER Adapter)
 		goto exit;
 	}
 
+	RTW_PRINT("*** MODALAI *** %s: rtw_hal_set_hwreg HW_VAR_USB_MODE", __FUNCTION__);
 	rtw_hal_set_hwreg(Adapter, HW_VAR_USB_MODE, &ret);
 exit:
 	return ret;
