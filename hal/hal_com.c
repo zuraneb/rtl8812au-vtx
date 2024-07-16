@@ -1191,6 +1191,7 @@ void rtw_restore_mac_addr(_adapter *adapter)
 	_adapter *iface;
 	struct dvobj_priv *dvobj = adapter_to_dvobj(adapter);
 
+	RTW_PRINT("**MODALAI** %s", __FUNCTION__);
 	for (i = 0; i < dvobj->iface_nums; i++) {
 		iface = dvobj->padapters[i];
 		if (iface)

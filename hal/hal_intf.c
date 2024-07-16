@@ -221,7 +221,9 @@ uint	 rtw_hal_init(_adapter *padapter)
 
 	status = padapter->hal_func.hal_init(padapter);
 
+	RTW_PRINT("**MODALAI** %s", __FUNCTION__);
 	if (status == _SUCCESS) {
+		RTW_PRINT("rtw_hal_init: hal_init SUCCESS\n");
 		pHalData->hw_init_completed = _TRUE;
 		rtw_restore_mac_addr(padapter);
 		#ifdef RTW_HALMAC
@@ -246,6 +248,7 @@ uint	 rtw_hal_init(_adapter *padapter)
 	} else {
 		pHalData->hw_init_completed = _FALSE;
 		RTW_INFO("rtw_hal_init: hal_init fail\n");
+		RTW_PRINT("rtw_hal_init: hal_init fail\n");
 	}
 
 
