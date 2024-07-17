@@ -3114,7 +3114,7 @@ SwLedControlMode9(
 	/* RTW_INFO("LedAction=%d\n", LedAction); */
 	// RTW_WARN("LedAction=%d\n", LedAction); 
 	if (LedAction != LED_CTL_POWER_ON && LedAction!= LED_CTL_POWER_OFF && LedAction != LED_CTL_CONNECTION_NO_TRANSFER){
-		// RTW_WARN("Skipping unused LED action: %d\n", LedAction);
+		RTW_PRINT("Skipping unused LED action: %d\n", LedAction);
 		return;
 	}
 	switch (LedAction) {
