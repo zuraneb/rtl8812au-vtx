@@ -5184,15 +5184,17 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 #ifdef CONFIG_GPIO_CONTROL
 #ifdef CONFIG_GPIO_API
 	// Bind button/GPIO1 is pulled up (reads high by default)
+	// GPIO1 -> TP 15 or BUTTON on side 
 	if(rtw_hal_get_gpio(padapter, 1) < 1){
 		RTW_PRINT("***** DETECTED GPIO INPUT ON GPIO 1 *****");
-		rtw_led_control(padapter, LED_CTL_POWER_OFF);
-		// rtw_led_control(padapter, LED_CTL_CONNECTION_NO_TRANSFER);
+		// rtw_led_control(padapter, LED_CTL_POWER_OFF);
+		rtw_led_control(padapter, LED_CTL_CONNECTION_NO_TRANSFER);
 
 		// Set GPIO9 (bind button) LOW -> TP14
 		rtw_hal_set_gpio_output_value(padapter, 9, false);
 	}
 
+	// GPIO2 -> TP 16
 	if(rtw_hal_get_gpio(padapter, 2) > 0){
 		RTW_PRINT("***** DETECTED GPIO INPUT ON GPIO 2 *****");
 		rtw_led_control(padapter, LED_CTL_POWER_ON);
@@ -5202,6 +5204,7 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 		rtw_hal_set_gpio_output_value(padapter, 8, false);
 	}
 
+	// GPIO3 -> TP 23
 	if(rtw_hal_get_gpio(padapter, 3) > 0){
 		RTW_PRINT("***** DETECTED GPIO INPUT ON GPIO 3 *****");
 		rtw_led_control(padapter, LED_CTL_POWER_ON);

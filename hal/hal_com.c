@@ -11502,8 +11502,8 @@ int  rtw_hal_set_gpio_output_value(_adapter *adapter, u8 gpio_num, bool isHigh)
 		res = 0;
 	} else {
 		res = -1;
-		RTW_WARN("%s The gpio is input,not be set! Result: %d\n", __FUNCTION__, res);
-		RTW_PRINT("%s The gpio is input,not be set! Result: %d\n", __FUNCTION__, res);
+		RTW_WARN("%s The gpio %u is input,not be set! Result: %d\n", __FUNCTION__, gpio_num, res);
+		RTW_PRINT("%s The gpio %u is input,not be set! Result: %d\n", __FUNCTION__, gpio_num,res);
 	}
 
 	rtw_ps_deny_cancel(adapter, PS_DENY_IOCTL);
