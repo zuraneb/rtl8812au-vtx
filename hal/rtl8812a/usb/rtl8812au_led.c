@@ -115,12 +115,14 @@ SwLedOff_8812AU(
 	u8	LedCfg;
 	HAL_DATA_TYPE	*pHalData = GET_HAL_DATA(padapter);
 
+	RTW_PRINT("%s",__FUNCTION__);
 	if (RTW_CANNOT_RUN(padapter))
 		return;
 
 	if (RT_GetInterfaceSelection(padapter) == INTF_SEL2_MINICARD ||
 	    RT_GetInterfaceSelection(padapter) == INTF_SEL3_USB_Solo ||
 	    RT_GetInterfaceSelection(padapter) == INTF_SEL4_USB_Combo) {
+		RTW_PRINT("%s:: INTF_SEL2_MINICARD || INTF_SEL3_USB_Solo || INTF_SEL4_USB_Combo",__FUNCTION__);
 		LedCfg = rtw_read8(padapter, REG_LEDCFG2);
 
 		/* 2009/10/23 MH Issau eed to move the LED GPIO from bit  0 to bit3. */
@@ -131,20 +133,26 @@ SwLedOff_8812AU(
 		switch (pLed->LedPin) {
 
 		case LED_PIN_GPIO0:
+			RTW_PRINT("%s:: LED_PIN_GPIO0 -> break",__FUNCTION__);
 			break;
 
 		case LED_PIN_LED0:
+			RTW_PRINT("%s:: LED_PIN_LED0",__FUNCTION__);
 			if (pHalData->bLedOpenDrain == _TRUE) {
+				RTW_PRINT("%s:: LED_PIN_LED0-> LED open drain",__FUNCTION__);
 				LedCfg &= 0x90; /* Set to software control.				 */
 				rtw_write8(padapter, REG_LEDCFG2, (LedCfg | BIT3));
 				LedCfg = rtw_read8(padapter, REG_MAC_PINMUX_CFG);
 				LedCfg &= 0xFE;
 				rtw_write8(padapter, REG_MAC_PINMUX_CFG, LedCfg);
-			} else
+			} else{
 				rtw_write8(padapter, REG_LEDCFG2, (LedCfg | BIT3 | BIT5 | BIT6));
+				RTW_PRINT("%s:: LED_PIN_LED0-> LED *NOT* open drain",__FUNCTION__);
+			}
 			break;
 
 		case LED_PIN_LED1:
+			RTW_PRINT("%s:: LED_PIN_LED1",__FUNCTION__);
 			LedCfg &= 0x0f; /* Set to software control. */
 			rtw_write8(padapter, REG_LEDCFG2, (LedCfg | BIT3));
 			break;
@@ -153,11 +161,15 @@ SwLedOff_8812AU(
 			break;
 		}
 	} else {
+		RTW_PRINT("%s:: NOT USB",__FUNCTION__);
 		switch (pLed->LedPin) {
 		case LED_PIN_GPIO0:
+			RTW_PRINT("%s:: LED_PIN_GPIO0 -> break",__FUNCTION__);
 			break;
 
 		case LED_PIN_LED0:
+			RTW_PRINT("%s:: LED_PIN_LED0",__FUNCTION__);
+
 			if (pHalData->AntDivCfg == 0) {
 				LedCfg = rtw_read8(padapter, REG_LEDCFG0);
 				LedCfg &= 0x70; /* Set to software control. */
@@ -170,12 +182,14 @@ SwLedOff_8812AU(
 			break;
 
 		case LED_PIN_LED1:
+			RTW_PRINT("%s:: LED_PIN_LED1",__FUNCTION__);
 			LedCfg = rtw_read8(padapter, REG_LEDCFG1);
 			LedCfg &= 0x70; /* Set to software control. */
 			rtw_write8(padapter, REG_LEDCFG1, (LedCfg | BIT3 | BIT5));
 			break;
 
 		case LED_PIN_LED2:
+			RTW_PRINT("%s:: LED_PIN_LED2",__FUNCTION__);
 			LedCfg = rtw_read8(padapter, REG_LEDCFG2);
 			LedCfg &= 0x70; /* Set to software control. */
 			rtw_write8(padapter, REG_LEDCFG2, (LedCfg | BIT3 | BIT5));
@@ -186,6 +200,7 @@ SwLedOff_8812AU(
 		}
 	}
 
+	RTW_PRINT("%s:: LED_PIN_LED1 -> pLed->bLenOn -> false",__FUNCTION__);
 	pLed->bLedOn = _FALSE;
 }
 
