@@ -416,6 +416,28 @@ rtl8812au_InitSwLeds(
 		RTW_PRINT("FAILED to set GPIO 3 config as input!");
 	}
 
+
+	// Set GPIO 8 as output
+	if(rtw_hal_config_gpio(padapter, (u8)8, true) == 0){
+		RTW_PRINT("Set GPIO 8 config as output successfully");
+	} else {
+		RTW_PRINT("FAILED to set GPIO 8 config as output!");
+	}
+
+	// Set GPIO 9 as output
+	if(rtw_hal_config_gpio(padapter, (u8)9, true) == 0){
+		RTW_PRINT("Set GPIO 9 config as output successfully");
+	} else {
+		RTW_PRINT("FAILED to set GPIO 9 config as output!");
+	}
+
+	// Set GPIO 10 as output
+	if(rtw_hal_config_gpio(padapter, (u8)10, true) == 0){
+		RTW_PRINT("Set GPIO 10 config as output successfully");
+	} else {
+		RTW_PRINT("FAILED to set GPIO 10 config as output!");
+	}
+
 	// Register callback, not used r.n.
 	// if(rtw_hal_register_gpio_interrupt(padapter, 2, gpio_cb) < 0){
 	// 	RTW_WARN("Failed to set GPIO 2 interrupt!");
