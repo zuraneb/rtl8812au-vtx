@@ -940,13 +940,14 @@ s32 rtl8812au_xmitframe_complete(_adapter *padapter, struct xmit_priv *pxmitpriv
 static s32 xmitframe_direct(_adapter *padapter, struct xmit_frame *pxmitframe)
 {
 	s32 res = _SUCCESS;
-	/* RTW_INFO("==> %s\n",__FUNCTION__); */
+	RTW_PRINT("==> %s\n",__FUNCTION__); 
 
 	res = rtw_xmitframe_coalesce(padapter, pxmitframe->pkt, pxmitframe);
 	if (res == _SUCCESS)
 		rtw_dump_xframe(padapter, pxmitframe);
 	else
-		RTW_INFO("==> %s xmitframe_coalsece failed\n", __FUNCTION__);
+		RTW_PRINT("==> %s xmitframe_coalsece failed\n", __FUNCTION__);
+		// RTW_INFO("==> %s xmitframe_coalsece failed\n", __FUNCTION__);
 
 	return res;
 }

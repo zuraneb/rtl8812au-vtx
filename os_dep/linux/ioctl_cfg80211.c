@@ -5197,7 +5197,7 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 			RTW_PRINT("FAILED to set GPIO 9 config as output!");
 		}
 
-		rtw_hal_get_gpio(adapter,(u8)9);
+		rtw_hal_get_gpio(padapter,(u8)9);
 		
 		// Set GPIO9 (bind button) LOW -> TP14
 		rtw_hal_set_gpio_output_value(padapter, 9, false);
@@ -5216,7 +5216,7 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 			RTW_PRINT("FAILED to set GPIO 8 config as output!");
 		}
 		
-		rtw_hal_get_gpio(adapter,(u8)8);
+		rtw_hal_get_gpio(padapter,(u8)8);
 
 		// Set GPIO8 LOW -> TP25
 		rtw_hal_set_gpio_output_value(padapter, 8, false);
@@ -5235,7 +5235,7 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 			RTW_PRINT("FAILED to set GPIO 10 config as output!");
 		}
 
-		rtw_hal_get_gpio(adapter,(u8)10);
+		rtw_hal_get_gpio(padapter,(u8)10);
 
 		// Set GPIO10 LOW -> TP17
 		rtw_hal_set_gpio_output_value(padapter, 10, false);

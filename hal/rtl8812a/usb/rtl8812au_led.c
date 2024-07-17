@@ -168,7 +168,7 @@ SwLedOff_8812AU(
 			break;
 
 		case LED_PIN_LED0:
-			RTW_PRINT("%s:: LED_PIN_LED0",__FUNCTION__);
+			// RTW_PRINT("%s:: LED_PIN_LED0",__FUNCTION__);
 
 			if (pHalData->AntDivCfg == 0) {
 				// RTW_PRINT("%s:: LED_PIN_LED0::pHalData->AntDivCfg == 0",__FUNCTION__);
@@ -184,14 +184,14 @@ SwLedOff_8812AU(
 			// break;
 
 		case LED_PIN_LED1:
-			RTW_PRINT("%s:: LED_PIN_LED1",__FUNCTION__);
+			// RTW_PRINT("%s:: LED_PIN_LED1",__FUNCTION__);
 			LedCfg = rtw_read8(padapter, REG_LEDCFG1);
 			LedCfg &= 0x70; /* Set to software control. */
 			rtw_write8(padapter, REG_LEDCFG1, (LedCfg | BIT3 | BIT5));
 			// break;
 
 		case LED_PIN_LED2:
-			RTW_PRINT("%s:: LED_PIN_LED2",__FUNCTION__);
+			// RTW_PRINT("%s:: LED_PIN_LED2",__FUNCTION__);
 			LedCfg = rtw_read8(padapter, REG_LEDCFG2);
 			LedCfg &= 0x70; /* Set to software control. */
 			rtw_write8(padapter, REG_LEDCFG2, (LedCfg | BIT3 | BIT5));
