@@ -1605,6 +1605,8 @@ Hal_EfuseReadEFuse8812A(
 	u8	efuse_usage = 0;
 	u8	u1temp = 0;
 
+	RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
+
 	/*  */
 	/* Do NOT excess total size of EFuse table. Added by Roger, 2008.11.10. */
 	/*  */
@@ -1642,6 +1644,7 @@ Hal_EfuseReadEFuse8812A(
 		eFuse_Addr++;
 	} else {
 		RTW_INFO("EFUSE is empty efuse_Addr-%d efuse_data=%x\n", eFuse_Addr, *rtemp8);
+		RTW_PRINT("%s EFUSE is empty efuse_Addr-%d efuse_data=%x\n", __FUNCTION__, eFuse_Addr, *rtemp8);
 		goto exit;
 	}
 
@@ -1760,6 +1763,7 @@ Hal_EfuseReadEFuse8812A(
 	efuse_usage = (u1Byte)((eFuse_Addr * 100) / EFUSE_REAL_CONTENT_LEN_JAGUAR);
 	rtw_hal_set_hwreg(Adapter, HW_VAR_EFUSE_BYTES, (u8 *)&eFuse_Addr);
 	RTW_INFO("%s: eFuse_Addr offset(%#x) !!\n", __FUNCTION__, eFuse_Addr);
+	RTW_PRINT("%s: eFuse_Addr offset(%#x) !! Efause_usage: %u\n", __FUNCTION__, eFuse_Addr, efuse_usage);
 
 exit:
 	if (efuseTbl)

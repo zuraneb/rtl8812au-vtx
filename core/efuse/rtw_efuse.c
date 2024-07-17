@@ -422,6 +422,7 @@ static void rtw_mask_map_read(PADAPTER padapter, u16 addr, u16 cnts, u8 *data)
 						data[i] = 0xff;
 				} else {
 					/*RTW_INFO(" %s , data[%d] = %x\n", __func__, i, data[i]);*/
+					RTW_PRINT(" %s , data[%d] = %x\n", __func__, i, data[i]);
 					if (efuse_IsMasked(padapter, addr + i)) {
 						data[i] = 0xff;
 						/*RTW_INFO(" %s ,mask data[%d] = %x\n", __func__, i, data[i]);*/
