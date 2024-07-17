@@ -5189,7 +5189,14 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 		RTW_PRINT("***** DETECTED GPIO INPUT ON GPIO 1 *****");
 		// rtw_led_control(padapter, LED_CTL_POWER_OFF);
 		rtw_led_control(padapter, LED_CTL_CONNECTION_NO_TRANSFER);
-
+		
+		// Set GPIO 9 as output
+		if(rtw_hal_config_gpio(padapter, (u8)9, true) == 0){
+			RTW_PRINT("Set GPIO 9 config as output successfully");
+		} else {
+			RTW_PRINT("FAILED to set GPIO 9 config as output!");
+		}
+		
 		// Set GPIO9 (bind button) LOW -> TP14
 		rtw_hal_set_gpio_output_value(padapter, 9, false);
 	}
@@ -5199,6 +5206,13 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 		RTW_PRINT("***** DETECTED GPIO INPUT ON GPIO 2 *****");
 		rtw_led_control(padapter, LED_CTL_POWER_ON);
 		rtw_led_control(padapter, LED_CTL_CONNECTION_NO_TRANSFER);
+
+		// Set GPIO 8 as output
+		if(rtw_hal_config_gpio(padapter, (u8)8, true) == 0){
+			RTW_PRINT("Set GPIO 8 config as output successfully");
+		} else {
+			RTW_PRINT("FAILED to set GPIO 8 config as output!");
+		}
 
 		// Set GPIO8 LOW -> TP25
 		rtw_hal_set_gpio_output_value(padapter, 8, false);
@@ -5210,6 +5224,13 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 		rtw_led_control(padapter, LED_CTL_POWER_ON);
 		rtw_led_control(padapter, LED_CTL_CONNECTION_NO_TRANSFER);
 		
+		// Set GPIO 10 as output
+		if(rtw_hal_config_gpio(padapter, (u8)10, true) == 0){
+			RTW_PRINT("Set GPIO 10 config as output successfully");
+		} else {
+			RTW_PRINT("FAILED to set GPIO 10 config as output!");
+		}
+
 		// Set GPIO10 LOW -> TP17
 		rtw_hal_set_gpio_output_value(padapter, 10, false);
 	}
