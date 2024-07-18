@@ -620,9 +620,12 @@ PHY_SetTxPowerIndex_8812A(
 	//OpenHD Consti10: If you start at set_tx_power_level_handler and then go through all the
 	// different functions that do cryptic things in the end you land here
   	RTW_PRINT("%s: PHY_SetTxPowerIndex_8812A with RFPath: %u PowerIndex:%d Override:%d Rate:%d ", __FUNCTION__,(u8)RFPath,PowerIndex,Adapter->registrypriv.RegTxPowerIndexOverride,(int)Rate);
+	RTW_PRINT("%s: Is test chip: %s", IS_TEST_CHIP(pHalData->version_id) ? "TRUE" : "FALSE");
 
-	if (Adapter->registrypriv.RegTxPowerIndexOverride)
+	if (Adapter->registrypriv.RegTxPowerIndexOverride){
 		PowerIndex = (u32)Adapter->registrypriv.RegTxPowerIndexOverride;
+		RTW_PRINT("%s: Using Adapter->registrypriv.RegTxPowerIndexOverride");
+	}
 
 	/* <20120928, Kordan> A workaround in 8812A/8821A testchip, to fix the bug of odd Tx power indexes. */
 	if ((PowerIndex % 2 == 1) && IS_HARDWARE_TYPE_JAGUAR(Adapter) && IS_TEST_CHIP(pHalData->version_id))

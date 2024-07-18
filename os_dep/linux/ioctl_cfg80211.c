@@ -3704,6 +3704,7 @@ if(type == NL80211_TX_POWER_FIXED) {
     }else{
         padapter->registrypriv.RegTxPowerIndexOverride = 0;
     }*/
+
     if(mbm>=0 && mbm<=63){
 	  padapter->registrypriv.RegTxPowerIndexOverride = mbm;
 	  RTW_WARN("OpenHD:interpreting %d mBm as tx power index override",(int)mbm);
