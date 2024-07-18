@@ -3678,7 +3678,7 @@ int value;
 	value = dbm;
 #endif
 
-	RTW_WARN("************MODALAI************ cfg80211_rtw_set_txpower ");
+	RTW_PRINT("************MODALAI************ cfg80211_rtw_set_txpower ");
 
 	RTW_INFO("OpenHD:cfg80211_rtw_set_txpower with %d mBm %d (?dBm?)",(int)mbm,(int)value);
 	RTW_PRINT("MODALAI:cfg80211_rtw_set_txpower with %d mBm %d (?dBm?)",(int)mbm,(int)value);

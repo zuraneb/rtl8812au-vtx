@@ -64,7 +64,8 @@ PHY_SetBBReg8812(
 #if (DISABLE_BB_RF == 1)
 	return;
 #endif
-
+	// modaljc: Set Baseband register on RTL8812au happens here
+	RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
 	if (BitMask != bMaskDWord) {
 		/* if not "double word" write */
 		OriginalValue = rtw_read32(Adapter, RegAddr);
@@ -75,6 +76,7 @@ PHY_SetBBReg8812(
 	rtw_write32(Adapter, RegAddr, Data);
 
 	/* RTW_INFO("BBW MASK=0x%x Addr[0x%x]=0x%x\n", BitMask, RegAddr, Data); */
+	RTW_PRINT("%s: BBW MASK=0x%x Addr[0x%x]=0x%x\n", __FUNCTION__, BitMask, RegAddr, Data); 
 }
 
 /*
@@ -618,7 +620,7 @@ PHY_SetTxPowerIndex_8812A(
 
 	//OpenHD Consti10: If you start at set_tx_power_level_handler and then go through all the
 	// different functions that do cryptic things in the end you land here
-  	//RTW_INFO("OpenHD:PHY_SetTxPowerIndex_8812A with PowerIndex:%d Override:%d Rate:%d ",PowerIndex,Adapter->registrypriv.RegTxPowerIndexOverride,(int)Rate);
+  	RTW_PRINT("%s: PHY_SetTxPowerIndex_8812A with PowerIndex:%d Override:%d Rate:%d ", __FUNCTION__,PowerIndex,Adapter->registrypriv.RegTxPowerIndexOverride,(int)Rate);
 
 	if (Adapter->registrypriv.RegTxPowerIndexOverride)
 		PowerIndex = (u32)Adapter->registrypriv.RegTxPowerIndexOverride;
