@@ -115,7 +115,7 @@ SwLedOff_8812AU(
 	u8	LedCfg;
 	HAL_DATA_TYPE	*pHalData = GET_HAL_DATA(padapter);
 
-	RTW_PRINT("%s",__FUNCTION__);
+	// RTW_PRINT("%s",__FUNCTION__);
 	if (RTW_CANNOT_RUN(padapter))
 		return;
 
