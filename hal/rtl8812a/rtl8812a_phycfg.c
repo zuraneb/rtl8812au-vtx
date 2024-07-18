@@ -674,9 +674,9 @@ PHY_SetTxPowerIndex_8812A(
 
 		case MGN_MCS0:
 			// phy_set_bb_reg(Adapter, rTxAGC_A_MCS3_MCS0_JAguar, bMaskByte0, PowerIndex);	
-			// Try set -1 dbm
+			// Try set -10 dbm
 			RTW_PRINT("**MODALAI** %s: Set Power index 0xFF", __func__);
-			phy_set_bb_reg(Adapter, rTxAGC_A_MCS3_MCS0_JAguar, bMaskByte0, 0xff);
+			phy_set_bb_reg(Adapter, rTxAGC_A_MCS3_MCS0_JAguar, bMaskByte0, 0xF6);
 			break;
 		case MGN_MCS1:
 			phy_set_bb_reg(Adapter, rTxAGC_A_MCS3_MCS0_JAguar, bMaskByte1, PowerIndex);
