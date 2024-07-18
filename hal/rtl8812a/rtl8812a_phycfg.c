@@ -624,7 +624,7 @@ PHY_SetTxPowerIndex_8812A(
 
 	if (Adapter->registrypriv.RegTxPowerIndexOverride){
 		PowerIndex = (u32)Adapter->registrypriv.RegTxPowerIndexOverride;
-		RTW_PRINT("%s: Using Adapter->registrypriv.RegTxPowerIndexOverride= %lu", __FUNCTION__, (u32)Adapter->registrypriv.RegTxPowerIndexOverride);
+		RTW_PRINT("%s: Using Adapter->registrypriv.RegTxPowerIndexOverride= %u", __FUNCTION__, (u32)Adapter->registrypriv.RegTxPowerIndexOverride);
 	}
 
 	/* <20120928, Kordan> A workaround in 8812A/8821A testchip, to fix the bug of odd Tx power indexes. */
