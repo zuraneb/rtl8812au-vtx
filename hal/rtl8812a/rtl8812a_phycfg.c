@@ -624,7 +624,7 @@ PHY_SetTxPowerIndex_8812A(
 
 	if (Adapter->registrypriv.RegTxPowerIndexOverride){
 		PowerIndex = (u32)Adapter->registrypriv.RegTxPowerIndexOverride;
-		RTW_PRINT("%s: Using Adapter->registrypriv.RegTxPowerIndexOverride", __FUNCTION__);
+		RTW_PRINT("%s: Using Adapter->registrypriv.RegTxPowerIndexOverride= %lu", __FUNCTION__, (u32)Adapter->registrypriv.RegTxPowerIndexOverride);
 	}
 
 	/* <20120928, Kordan> A workaround in 8812A/8821A testchip, to fix the bug of odd Tx power indexes. */
@@ -673,7 +673,10 @@ PHY_SetTxPowerIndex_8812A(
 			break;
 
 		case MGN_MCS0:
-			phy_set_bb_reg(Adapter, rTxAGC_A_MCS3_MCS0_JAguar, bMaskByte0, PowerIndex);
+			// phy_set_bb_reg(Adapter, rTxAGC_A_MCS3_MCS0_JAguar, bMaskByte0, PowerIndex);	
+			// Try set -1 dbm
+			RTW_PRINT("**MODALAI** %s: Set Power index 0xFF", __func__);
+			phy_set_bb_reg(Adapter, rTxAGC_A_MCS3_MCS0_JAguar, bMaskByte0, 0xff);
 			break;
 		case MGN_MCS1:
 			phy_set_bb_reg(Adapter, rTxAGC_A_MCS3_MCS0_JAguar, bMaskByte1, PowerIndex);
