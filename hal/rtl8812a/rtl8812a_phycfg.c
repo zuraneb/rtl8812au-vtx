@@ -620,7 +620,7 @@ PHY_SetTxPowerIndex_8812A(
 	//OpenHD Consti10: If you start at set_tx_power_level_handler and then go through all the
 	// different functions that do cryptic things in the end you land here
   	RTW_PRINT("%s: PHY_SetTxPowerIndex_8812A with RFPath: %u PowerIndex:%d Override:%d Rate:%d ", __FUNCTION__,(u8)RFPath,PowerIndex,Adapter->registrypriv.RegTxPowerIndexOverride,(int)Rate);
-	RTW_PRINT("%s: Is test chip: %s", IS_TEST_CHIP(pHalData->version_id) ? "TRUE" : "FALSE");
+	RTW_PRINT("%s: Is test chip: %s", __FUNCTION__, IS_TEST_CHIP(pHalData->version_id) ? "TRUE" : "FALSE");
 
 	if (Adapter->registrypriv.RegTxPowerIndexOverride){
 		PowerIndex = (u32)Adapter->registrypriv.RegTxPowerIndexOverride;
