@@ -675,7 +675,7 @@ PHY_SetTxPowerIndex_8812A(
 		case MGN_MCS0:
 			// phy_set_bb_reg(Adapter, rTxAGC_A_MCS3_MCS0_JAguar, bMaskByte0, PowerIndex);	
 			// Try set -10 dbm
-			RTW_PRINT("**MODALAI** %s: Set Power index 0xFF", __func__);
+			// RTW_PRINT("**MODALAI** %s: Set Power index 0xF6", __func__);
 			phy_set_bb_reg(Adapter, rTxAGC_A_MCS3_MCS0_JAguar, bMaskByte0, 0xF6);
 			break;
 		case MGN_MCS1:
@@ -1263,8 +1263,12 @@ phy_SetRFEReg8821(
 
 	if (Band == BAND_ON_2_4G) {
 		/* Turn off RF PA and LNA */
-		phy_set_bb_reg(Adapter, rA_RFE_Pinmux_Jaguar, 0xF000, 0x7);	/* 0xCB0[15:12] = 0x7 (LNA_On) */
-		phy_set_bb_reg(Adapter, rA_RFE_Pinmux_Jaguar, 0xF0, 0x7);	/* 0xCB0[7:4] = 0x7 (PAPE_A)			 */
+		// phy_set_bb_reg(Adapter, rA_RFE_Pinmux_Jaguar, 0xF000, 0x7);	/* 0xCB0[15:12] = 0x7 (LNA_On) */
+		// phy_set_bb_reg(Adapter, rA_RFE_Pinmux_Jaguar, 0xF0, 0x7);	/* 0xCB0[7:4] = 0x7 (PAPE_A)			 */
+
+		/* Turn ON RF PA and LNA */
+		phy_set_bb_reg(Adapter, rA_RFE_Pinmux_Jaguar, 0xF000, 0x5);	/* 0xCB0[15:12] = 0x5 (LNA_On) */
+		phy_set_bb_reg(Adapter, rA_RFE_Pinmux_Jaguar, 0xF0, 0x4);	/* 0xCB0[7:4] = 0x4 (PAPE_A)			 */
 
 		if (pHalData->ExternalLNA_2G) {
 			/* <20131223, VincentL> Turn on 2.4G External LNA (Asked by Luke Lee & Alex Wang) */
@@ -1328,8 +1332,9 @@ PHY_SwitchWirelessBand8812(
 
 		phy_set_bb_reg(Adapter, rOFDMCCKEN_Jaguar, bOFDMEN_Jaguar | bCCKEN_Jaguar, 0x03);
 
-		if (IS_HARDWARE_TYPE_8821(Adapter))
-			phy_SetRFEReg8821(Adapter, Band);
+		// if (IS_HARDWARE_TYPE_8821(Adapter))
+			// phy_SetRFEReg8821(Adapter, Band);
+		phy_SetRFEReg8821(Adapter, Band);
 
 		if (IS_HARDWARE_TYPE_8812(Adapter)) {
 			/* <20131128, VincentL> Remove 0x830[3:1] setting when switching 2G/5G, requested by Yn. */
