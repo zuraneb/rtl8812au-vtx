@@ -1133,6 +1133,7 @@ hal_ReadPAType_8812A(
 {
 	HAL_DATA_TYPE		*pHalData = GET_HAL_DATA(Adapter);
 	RTW_PRINT("%s() --->", __FUNCTION__);
+	RTW_PRINT("%s() ---> CUSTOMER ID: %u", __FUNCTION__, pHalData->CustomerID);
 
 	if (!AutoloadFail) {
 		RTW_PRINT("%s() ---> !AutoloadFail", __FUNCTION__);
