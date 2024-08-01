@@ -1219,6 +1219,8 @@ void phy_SetBBSwingByBand_8812A(
 {
 	HAL_DATA_TYPE	*pHalData = GET_HAL_DATA(GetDefaultAdapter(Adapter));
 
+	RTW_PRINT("%s() --->\n", __FUNCTION__);
+
 	/* <20120903, Kordan> Tx BB swing setting for RL6286, asked by Ynlin. */
 	if (IS_NORMAL_CHIP(pHalData->version_id) || IS_HARDWARE_TYPE_8821(Adapter)) {
 #if (MP_DRIVER == 1)
@@ -1316,6 +1318,21 @@ PHY_SwitchWirelessBand8812(
 
 	/* RTW_INFO("==>PHY_SwitchWirelessBand8812() %s\n", ((Band==0)?"2.4G":"5G")); */
 	RTW_PRINT("%s() --->\n", __FUNCTION__);
+	if(IS_VENDOR_8812A_MP_CHIP(Adapter)) {
+		RTW_PRINT("%s() ---> MP CHIP\n", __FUNCTION__);
+	} else {
+		RTW_PRINT("%s() ---> NON-MP CHIP\n", __FUNCTION__);
+		if(IS_VENDOR_8812A_C_CUT(Adapter)){
+			RTW_PRINT("%s() ---> C CUT CHIP\n", __FUNCTION__);
+		} else {
+			RTW_PRINT("%s() ---> NOT C CUT CHIP\n", __FUNCTION__);
+			if (IS_VENDOR_8812A_TEST_CHIP(Adapter)){
+				RTW_PRINT("%s() ---> TEST  CHIP\n", __FUNCTION__);
+			} else {
+				RTW_PRINT("%s() ---> WTF IS THIS CHIP???\n", __FUNCTION__);
+			}
+		}
+	}
 
 	pHalData->current_band_type = (BAND_TYPE)Band;
 
