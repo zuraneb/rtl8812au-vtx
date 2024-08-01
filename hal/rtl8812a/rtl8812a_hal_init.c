@@ -1132,18 +1132,25 @@ hal_ReadPAType_8812A(
 )
 {
 	HAL_DATA_TYPE		*pHalData = GET_HAL_DATA(Adapter);
+	RTW_PRINT("%s() --->", __FUNCTION__);
 
 	if (!AutoloadFail) {
+		RTW_PRINT("%s() ---> !AutoloadFail", __FUNCTION__);
 		if (GetRegAmplifierType2G(Adapter) == 0) { /* AUTO */
+			RTW_PRINT("%s() ---> !AutoloadFail -->  AUTO ", __FUNCTION__);
 			pHalData->PAType_2G = ReadLE1Byte(&PROMContent[EEPROM_PA_TYPE_8812AU]);
 			pHalData->LNAType_2G = ReadLE1Byte(&PROMContent[EEPROM_LNA_TYPE_2G_8812AU]);
 			if (pHalData->PAType_2G == 0xFF)
-				pHalData->PAType_2G = 0;
+				// pHalData->PAType_2G = 0;
+				pHalData->PAType_2G = 1;
 			if (pHalData->LNAType_2G == 0xFF)
-				pHalData->LNAType_2G = 0;
+				// pHalData->LNAType_2G = 0;
+				pHalData->LNAType_2G = 1;
 
-			pHalData->ExternalPA_2G = ((pHalData->PAType_2G & BIT5) && (pHalData->PAType_2G & BIT4)) ? 1 : 0;
-			pHalData->ExternalLNA_2G = ((pHalData->LNAType_2G & BIT7) && (pHalData->LNAType_2G & BIT3)) ? 1 : 0;
+			// pHalData->ExternalPA_2G = ((pHalData->PAType_2G & BIT5) && (pHalData->PAType_2G & BIT4)) ? 1 : 0;
+			// pHalData->ExternalLNA_2G = ((pHalData->LNAType_2G & BIT7) && (pHalData->LNAType_2G & BIT3)) ? 1 : 0;
+			pHalData->ExternalPA_2G = 1;
+			pHalData->ExternalLNA_2G = 1;
 		} else {
 			pHalData->ExternalPA_2G  = (GetRegAmplifierType2G(Adapter) & ODM_BOARD_EXT_PA)  ? 1 : 0;
 			pHalData->ExternalLNA_2G = (GetRegAmplifierType2G(Adapter) & ODM_BOARD_EXT_LNA) ? 1 : 0;
@@ -1164,6 +1171,7 @@ hal_ReadPAType_8812A(
 			pHalData->external_lna_5g = (GetRegAmplifierType5G(Adapter) & ODM_BOARD_EXT_LNA_5G) ? 1 : 0;
 		}
 	} else {
+		RTW_PRINT("%s() ---> AutoloadFail", __FUNCTION__);
 		pHalData->ExternalPA_2G  = EEPROM_Default_PAType;
 		pHalData->external_pa_5g  = 0xFF;
 		pHalData->ExternalLNA_2G = EEPROM_Default_LNAType;
@@ -1184,10 +1192,10 @@ hal_ReadPAType_8812A(
 			pHalData->external_lna_5g = (GetRegAmplifierType5G(Adapter) & ODM_BOARD_EXT_LNA_5G) ? 1 : 0;
 		}
 	}
-	RTW_INFO("pHalData->PAType_2G is 0x%x, pHalData->ExternalPA_2G = %d\n", pHalData->PAType_2G, pHalData->ExternalPA_2G);
-	RTW_INFO("pHalData->PAType_5G is 0x%x, pHalData->external_pa_5g = %d\n", pHalData->PAType_5G, pHalData->external_pa_5g);
-	RTW_INFO("pHalData->LNAType_2G is 0x%x, pHalData->ExternalLNA_2G = %d\n", pHalData->LNAType_2G, pHalData->ExternalLNA_2G);
-	RTW_INFO("pHalData->LNAType_5G is 0x%x, pHalData->external_lna_5g = %d\n", pHalData->LNAType_5G, pHalData->external_lna_5g);
+	RTW_PRINT("pHalData->PAType_2G is 0x%x, pHalData->ExternalPA_2G = %d\n", pHalData->PAType_2G, pHalData->ExternalPA_2G);
+	RTW_PRINT("pHalData->PAType_5G is 0x%x, pHalData->external_pa_5g = %d\n", pHalData->PAType_5G, pHalData->external_pa_5g);
+	RTW_PRINT("pHalData->LNAType_2G is 0x%x, pHalData->ExternalLNA_2G = %d\n", pHalData->LNAType_2G, pHalData->ExternalLNA_2G);
+	RTW_PRINT("pHalData->LNAType_5G is 0x%x, pHalData->external_lna_5g = %d\n", pHalData->LNAType_5G, pHalData->external_lna_5g);
 }
 
 VOID
