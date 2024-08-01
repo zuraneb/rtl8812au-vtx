@@ -1260,12 +1260,14 @@ phy_SetRFEReg8821(
 )
 {
 	HAL_DATA_TYPE	*pHalData = GET_HAL_DATA(Adapter);
+	RTW_INFO("%s() --->\n", __FUNCTION__);
 
 	if (Band == BAND_ON_2_4G) {
 		/* Turn off RF PA and LNA */
 		// phy_set_bb_reg(Adapter, rA_RFE_Pinmux_Jaguar, 0xF000, 0x7);	/* 0xCB0[15:12] = 0x7 (LNA_On) */
 		// phy_set_bb_reg(Adapter, rA_RFE_Pinmux_Jaguar, 0xF0, 0x7);	/* 0xCB0[7:4] = 0x7 (PAPE_A)			 */
 
+		RTW_INFO("%s() ---> TURNING RF PA AND LNA ON\n", __FUNCTION__);
 		/* Turn ON RF PA and LNA */
 		phy_set_bb_reg(Adapter, rA_RFE_Pinmux_Jaguar, 0xF000, 0x5);	/* 0xCB0[15:12] = 0x5 (LNA_On) */
 		phy_set_bb_reg(Adapter, rA_RFE_Pinmux_Jaguar, 0xF0, 0x4);	/* 0xCB0[7:4] = 0x4 (PAPE_A)			 */
