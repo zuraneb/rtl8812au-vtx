@@ -1554,6 +1554,7 @@ u32 rtl8812au_hal_init(PADAPTER Adapter)
 		phy_set_bb_reg(Adapter, rTxPath_Jaguar, bMaskLWord, 0x1111);
 #endif
 
+	RTW_PRINT("%s() --->\n", __FUNCTION__);
 	if (Adapter->registrypriv.channel <= 14)
 		PHY_SwitchWirelessBand8812(Adapter, BAND_ON_2_4G);
 	else
