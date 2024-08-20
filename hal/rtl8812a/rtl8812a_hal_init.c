@@ -1231,10 +1231,24 @@ Hal_ReadAmplifierType_8812A(
 	if ((pHalData->LNAType_5G & (BIT7 | BIT3)) == (BIT7 | BIT3)) /* [5G] Path A and B are both extLNA */
 		pHalData->TypeALNA = extTypeLNA_5G_B << 2 | extTypeLNA_5G_A;
 
-	RTW_INFO("pHalData->TypeGPA = 0x%X\n", pHalData->TypeGPA);
-	RTW_INFO("pHalData->TypeAPA = 0x%X\n", pHalData->TypeAPA);
-	RTW_INFO("pHalData->TypeGLNA = 0x%X\n", pHalData->TypeGLNA);
-	RTW_INFO("pHalData->TypeALNA = 0x%X\n", pHalData->TypeALNA);
+	
+	RTW_PRINT("pHalData->extTypePA_2G_A  = 0x%X\n", pHalData->extTypePA_2G_A);
+	RTW_PRINT("pHalData->extTypePA_2G_B  = 0x%X\n", pHalData->extTypePA_2G_b);
+	RTW_PRINT("pHalData->extTypePA_5G_A  = 0x%X\n", pHalData->extTypePA_5G_A);
+	RTW_PRINT("pHalData->extTypePA_5G_B  = 0x%X\n", pHalData->extTypePA_5G_B);
+	RTW_PRINT("pHalData->extTypeLNA_2G_A = 0x%X\n", pHalData->extTypeLNA_2G_A);
+	RTW_PRINT("pHalData->extTypeLNA_2G_B = 0x%X\n", pHalData->extTypeLNA_2G_B);
+	RTW_PRINT("pHalData->extTypeLNA_5G_A = 0x%X\n", pHalData->extTypeLNA_5G_A);
+	RTW_PRINT("pHalData->extTypeLNA_5G_B = 0x%X\n", pHalData->extTypeLNA_5G_B);
+
+	RTW_PRINT("pHalData->TypeGPA = 0x%X\n", pHalData->TypeGPA);
+	RTW_PRINT("pHalData->TypeAPA = 0x%X\n", pHalData->TypeAPA);
+	RTW_PRINT("pHalData->TypeGLNA = 0x%X\n", pHalData->TypeGLNA);
+	RTW_PRINT("pHalData->TypeALNA = 0x%X\n", pHalData->TypeALNA);
+	// RTW_INFO("pHalData->TypeGPA = 0x%X\n", pHalData->TypeGPA);
+	// RTW_INFO("pHalData->TypeAPA = 0x%X\n", pHalData->TypeAPA);
+	// RTW_INFO("pHalData->TypeGLNA = 0x%X\n", pHalData->TypeGLNA);
+	// RTW_INFO("pHalData->TypeALNA = 0x%X\n", pHalData->TypeALNA);
 }
 
 VOID
