@@ -1232,6 +1232,8 @@ Hal_ReadAmplifierType_8812A(
 		pHalData->TypeALNA = extTypeLNA_5G_B << 2 | extTypeLNA_5G_A;
 
 	
+	RTW_PRINT("PROMCONTENT[0xBD]  = 0x%X\n", PROMContent[0xBD]);
+	RTW_PRINT("PROMCONTENT[0xBF]  = 0x%X\n", PROMContent[0xBF]);
 	RTW_PRINT("extTypePA_2G_A  = 0x%X\n", extTypePA_2G_A);
 	RTW_PRINT("extTypePA_2G_B  = 0x%X\n", extTypePA_2G_B);
 	RTW_PRINT("extTypePA_5G_A  = 0x%X\n", extTypePA_5G_A);
