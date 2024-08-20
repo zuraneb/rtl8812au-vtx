@@ -1999,6 +1999,7 @@ efuse_ReadEFuse(
 	IN	BOOLEAN	bPseudoTest
 )
 {
+	RTW_PRINT("*** MDOALAI *** %s\n", __FUNCTION__);
 	Adapter->hal_func.ReadEFuse(Adapter, efuseType, _offset, _size_byte, pbuf, bPseudoTest);
 }
 
@@ -2915,6 +2916,7 @@ void EFUSE_ShadowMapUpdate(
 #ifdef RTW_HALMAC
 	u8 *efuse_map = NULL;
 	int err;
+
 
 
 	mapLen = EEPROM_MAX_SIZE;
