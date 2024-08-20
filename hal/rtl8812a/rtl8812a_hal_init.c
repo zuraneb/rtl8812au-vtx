@@ -3393,7 +3393,7 @@ void InitPGData8812A(PADAPTER padapter)
 			/* 5. Calculate Efuse utilization. */
 			/*  */
 			efuse_usage = (u1Byte)((eFuse_Addr * 100) / EFUSE_REAL_CONTENT_LEN_JAGUAR);
-			rtw_hal_set_hwreg(Adapter, HW_VAR_EFUSE_BYTES, (u8 *)&eFuse_Addr);
+			rtw_hal_set_hwreg(padapter, HW_VAR_EFUSE_BYTES, (u8 *)&eFuse_Addr);
 			RTW_PRINT("%s: eFuse_Addr offset(%#x) !! Efuse_usage: %u\n", __FUNCTION__, eFuse_Addr, efuse_usage);
 			
 		}
