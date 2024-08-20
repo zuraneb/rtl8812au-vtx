@@ -1971,14 +1971,17 @@ hal_InitPGData_8812A(
 	RTW_PRINT("**MODALAI** %s", __FUNCTION__);
 
 	if (_FALSE == pHalData->bautoload_fail_flag) {
+		RTW_PRINT("*** MODALAI *** %s() ----> _FALSE == pHalData->bautoload_fail_flag\n", __FUNCTION__);
 		/* autoload OK. */
 		if (is_boot_from_eeprom(padapter)) {
+			RTW_PRINT("*** MODALAI *** %s() ----> TRUE == is_boot_from_eeprom(padapter)\n", __FUNCTION__);
 			/* Read all Content from EEPROM or EFUSE. */
 			for (i = 0; i < HWSET_MAX_SIZE_JAGUAR; i += 2) {
 				/* value16 = EF2Byte(ReadEEprom(pAdapter, (u2Byte) (i>>1))); */
 				/* *((u16*)(&PROMContent[i])) = value16; */
 			}
 		} else {
+			RTW_PRINT("*** MODALAI *** %s() ----> FALSE == is_boot_from_eeprom(padapter)\n", __FUNCTION__);
 			/*  */
 			/* 2013/03/08 MH Add for 8812A HW limitation, ROM code can only */
 			/*  */
@@ -2001,6 +2004,7 @@ hal_InitPGData_8812A(
 			EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
 		}
 	} else {
+		RTW_PRINT("*** MODALAI *** %s() ----> _TRUE == pHalData->bautoload_fail_flag\n", __FUNCTION__);
 		/* autoload fail */
 		/* pHalData->AutoloadFailFlag = _TRUE; */
 		/*  */
@@ -2025,8 +2029,10 @@ hal_InitPGData_8812A(
 		}
 
 		/* update to default value 0xFF */
-		if (!is_boot_from_eeprom(padapter))
+		if (!is_boot_from_eeprom(padapter)){
+			RTW_PRINT("*** MODALAI *** %s() ----> FALSE == is_boot_from_eeprom(padapter) ---> update to default value 0xFF\n", __FUNCTION__);
 			EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
+		}
 	}
 
 #ifdef CONFIG_EFUSE_CONFIG_FILE

@@ -2916,6 +2916,8 @@ void EFUSE_ShadowMapUpdate(
 {
 	PHAL_DATA_TYPE pHalData = GET_HAL_DATA(pAdapter);
 	u16	mapLen = 0;
+	RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
+	
 #ifdef RTW_HALMAC
 	u8 *efuse_map = NULL;
 	int err;
