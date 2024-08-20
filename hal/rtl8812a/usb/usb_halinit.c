@@ -2026,6 +2026,9 @@ hal_InitPGData_8812A(
 			rtw_hal_set_hwreg(padapter, HW_VAR_EFUSE_BYTES, (u8 *)&eFuse_Addr);
 			RTW_PRINT("%s: eFuse_Addr offset(%#x) !! Efuse_usage: %u\n", __FUNCTION__, eFuse_Addr, efuse_usage);
 
+			rtw_mask_map_read(padapter, 0x00, EFUSE_MAP_LEN_JAGUAR, pHalData->efuse_eeprom_data);
+		
+			rtw_dump_cur_efuse(padapter);
 		}
 	} else {
 		RTW_PRINT("*** MODALAI *** %s() ----> _TRUE == pHalData->bautoload_fail_flag\n", __FUNCTION__);
