@@ -3387,8 +3387,8 @@ void InitPGData8812A(PADAPTER padapter)
 		} else {
 			RTW_PRINT("*** MODALAI *** %s() ----> FALSE == is_boot_from_eeprom(padapter)\n", __FUNCTION__);
 			/* Read EFUSE real map to shadow. */
-			// EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
-			EFUSE_ModalShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
+			EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
+			// EFUSE_ModalShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
 		}
 	} else {
 		RTW_PRINT("*** MODALAI *** %s() ----> _TRUE == pHalData->bautoload_fail_flag\n", __FUNCTION__);
