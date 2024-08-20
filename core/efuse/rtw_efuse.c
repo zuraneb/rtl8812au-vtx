@@ -2921,6 +2921,7 @@ void EFUSE_ShadowMapUpdate(
 #ifdef RTW_HALMAC
 	u8 *efuse_map = NULL;
 	int err;
+	RTW_PRINT("*** MODALAI *** %s()----> RTW_HALMAC DEFINED\n", __FUNCTION__);
 
 
 
@@ -2946,18 +2947,21 @@ void EFUSE_ShadowMapUpdate(
 			RTW_ERR("%s: <ERROR> fail to get efuse map!\n", __FUNCTION__);
 	}
 #else /* !RTW_HALMAC */
+	RTW_PRINT("*** MODALAI *** %s()----> RTW_HALMAC !!NOT!! DEFINED\n", __FUNCTION__);
 	EFUSE_GetEfuseDefinition(pAdapter, efuseType, TYPE_EFUSE_MAP_LEN, (PVOID)&mapLen, bPseudoTest);
 
 	if (pHalData->bautoload_fail_flag == _TRUE)
 		_rtw_memset(pHalData->efuse_eeprom_data, 0xFF, mapLen);
 	else {
 #ifdef CONFIG_ADAPTOR_INFO_CACHING_FILE
+		RTW_PRINT("*** MODALAI *** %s()----> CONFIG_ADAPTOR_INFO_CACHING_FILE DEFINED ---> retriveAdaptorInfoFile\n", __FUNCTION__);
 		if (_SUCCESS != retriveAdaptorInfoFile(pAdapter->registrypriv.adaptor_info_caching_file_path, pHalData->efuse_eeprom_data)) {
 #endif
 
 			Efuse_ReadAllMap(pAdapter, efuseType, pHalData->efuse_eeprom_data, bPseudoTest);
 
 #ifdef CONFIG_ADAPTOR_INFO_CACHING_FILE
+			RTW_PRINT("*** MODALAI *** %s()----> CONFIG_ADAPTOR_INFO_CACHING_FILE DEFINED ---> storeAdaptorInfoFile\n", __FUNCTION__);
 			storeAdaptorInfoFile(pAdapter->registrypriv.adaptor_info_caching_file_path, pHalData->efuse_eeprom_data);
 		}
 #endif
