@@ -1142,16 +1142,16 @@ hal_ReadPAType_8812A(
 			pHalData->PAType_2G = ReadLE1Byte(&PROMContent[EEPROM_PA_TYPE_8812AU]);
 			pHalData->LNAType_2G = ReadLE1Byte(&PROMContent[EEPROM_LNA_TYPE_2G_8812AU]);
 			if (pHalData->PAType_2G == 0xFF)
-				// pHalData->PAType_2G = 0;
-				pHalData->PAType_2G = 1;
+				pHalData->PAType_2G = 0;
+				// pHalData->PAType_2G = 1;
 			if (pHalData->LNAType_2G == 0xFF)
-				// pHalData->LNAType_2G = 0;
-				pHalData->LNAType_2G = 1;
+				pHalData->LNAType_2G = 0;
+				// pHalData->LNAType_2G = 1;
 
-			// pHalData->ExternalPA_2G = ((pHalData->PAType_2G & BIT5) && (pHalData->PAType_2G & BIT4)) ? 1 : 0;
-			// pHalData->ExternalLNA_2G = ((pHalData->LNAType_2G & BIT7) && (pHalData->LNAType_2G & BIT3)) ? 1 : 0;
-			pHalData->ExternalPA_2G = 1;
-			pHalData->ExternalLNA_2G = 1;
+			pHalData->ExternalPA_2G = ((pHalData->PAType_2G & BIT5) && (pHalData->PAType_2G & BIT4)) ? 1 : 0;
+			pHalData->ExternalLNA_2G = ((pHalData->LNAType_2G & BIT7) && (pHalData->LNAType_2G & BIT3)) ? 1 : 0;
+			// pHalData->ExternalPA_2G = 1;
+			// pHalData->ExternalLNA_2G = 1;
 		} else {
 			pHalData->ExternalPA_2G  = (GetRegAmplifierType2G(Adapter) & ODM_BOARD_EXT_PA)  ? 1 : 0;
 			pHalData->ExternalLNA_2G = (GetRegAmplifierType2G(Adapter) & ODM_BOARD_EXT_LNA) ? 1 : 0;
