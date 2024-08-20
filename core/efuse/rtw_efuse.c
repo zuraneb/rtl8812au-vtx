@@ -1999,7 +1999,7 @@ efuse_ReadEFuse(
 	IN	BOOLEAN	bPseudoTest
 )
 {
-	RTW_PRINT("*** MDOALAI *** %s\n", __FUNCTION__);
+	RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
 	Adapter->hal_func.ReadEFuse(Adapter, efuseType, _offset, _size_byte, pbuf, bPseudoTest);
 }
 
@@ -2302,6 +2302,7 @@ u8 efuse_bt_GetCurrentSize(PADAPTER padapter, u16 *size)
 u8 rtw_efuse_map_read(PADAPTER padapter, u16 addr, u16 cnts, u8 *data)
 {
 	u16	mapLen = 0;
+	RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
 
 	EFUSE_GetEfuseDefinition(padapter, EFUSE_WIFI, TYPE_EFUSE_MAP_LEN, (PVOID)&mapLen, _FALSE);
 
@@ -2320,6 +2321,7 @@ u8 rtw_efuse_map_read(PADAPTER padapter, u16 addr, u16 cnts, u8 *data)
 u8 rtw_BT_efuse_map_read(PADAPTER padapter, u16 addr, u16 cnts, u8 *data)
 {
 	u16	mapLen = 0;
+	RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
 
 	EFUSE_GetEfuseDefinition(padapter, EFUSE_BT, TYPE_EFUSE_MAP_LEN, (PVOID)&mapLen, _FALSE);
 
@@ -2602,6 +2604,7 @@ Efuse_ReadAllMap(
 	IN		BOOLEAN		bPseudoTest)
 {
 	u16	mapLen = 0;
+	RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
 
 	Efuse_PowerSwitch(pAdapter, _FALSE, _TRUE);
 
