@@ -1763,6 +1763,7 @@ Hal_EfuseReadEFuse8812A(
 	/*  */
 	/* 4. Copy from Efuse map to output pointer memory!!! */
 	/*  */
+	RTW_PRINT("*** MODALAI *** %s() -----> Write offset: %u\n", __FUNCTION__, _offset);
 	for (i = 0; i < _size_byte; i++)
 		pbuf[i] = efuseTbl[_offset + i];
 
@@ -1772,7 +1773,7 @@ Hal_EfuseReadEFuse8812A(
 	efuse_usage = (u1Byte)((eFuse_Addr * 100) / EFUSE_REAL_CONTENT_LEN_JAGUAR);
 	rtw_hal_set_hwreg(Adapter, HW_VAR_EFUSE_BYTES, (u8 *)&eFuse_Addr);
 	RTW_INFO("%s: eFuse_Addr offset(%#x) !!\n", __FUNCTION__, eFuse_Addr);
-	RTW_PRINT("%s: eFuse_Addr offset(%#x) !! Efause_usage: %u\n", __FUNCTION__, eFuse_Addr, efuse_usage);
+	RTW_PRINT("%s: eFuse_Addr offset(%#x) !! Efuse_usage: %u\n", __FUNCTION__, eFuse_Addr, efuse_usage);
 
 exit:
 	if (efuseTbl)
