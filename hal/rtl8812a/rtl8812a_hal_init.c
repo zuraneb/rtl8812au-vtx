@@ -1233,7 +1233,7 @@ Hal_ReadAmplifierType_8812A(
 
 	
 	RTW_PRINT("extTypePA_2G_A  = 0x%X\n", extTypePA_2G_A);
-	RTW_PRINT("extTypePA_2G_B  = 0x%X\n", extTypePA_2G_b);
+	RTW_PRINT("extTypePA_2G_B  = 0x%X\n", extTypePA_2G_B);
 	RTW_PRINT("extTypePA_5G_A  = 0x%X\n", extTypePA_5G_A);
 	RTW_PRINT("extTypePA_5G_B  = 0x%X\n", extTypePA_5G_B);
 	RTW_PRINT("extTypeLNA_2G_A = 0x%X\n", extTypeLNA_2G_A);
