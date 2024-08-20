@@ -1232,14 +1232,14 @@ Hal_ReadAmplifierType_8812A(
 		pHalData->TypeALNA = extTypeLNA_5G_B << 2 | extTypeLNA_5G_A;
 
 	
-	RTW_PRINT("pHalData->extTypePA_2G_A  = 0x%X\n", pHalData->extTypePA_2G_A);
-	RTW_PRINT("pHalData->extTypePA_2G_B  = 0x%X\n", pHalData->extTypePA_2G_b);
-	RTW_PRINT("pHalData->extTypePA_5G_A  = 0x%X\n", pHalData->extTypePA_5G_A);
-	RTW_PRINT("pHalData->extTypePA_5G_B  = 0x%X\n", pHalData->extTypePA_5G_B);
-	RTW_PRINT("pHalData->extTypeLNA_2G_A = 0x%X\n", pHalData->extTypeLNA_2G_A);
-	RTW_PRINT("pHalData->extTypeLNA_2G_B = 0x%X\n", pHalData->extTypeLNA_2G_B);
-	RTW_PRINT("pHalData->extTypeLNA_5G_A = 0x%X\n", pHalData->extTypeLNA_5G_A);
-	RTW_PRINT("pHalData->extTypeLNA_5G_B = 0x%X\n", pHalData->extTypeLNA_5G_B);
+	RTW_PRINT("extTypePA_2G_A  = 0x%X\n", extTypePA_2G_A);
+	RTW_PRINT("extTypePA_2G_B  = 0x%X\n", extTypePA_2G_b);
+	RTW_PRINT("extTypePA_5G_A  = 0x%X\n", extTypePA_5G_A);
+	RTW_PRINT("extTypePA_5G_B  = 0x%X\n", extTypePA_5G_B);
+	RTW_PRINT("extTypeLNA_2G_A = 0x%X\n", extTypeLNA_2G_A);
+	RTW_PRINT("extTypeLNA_2G_B = 0x%X\n", extTypeLNA_2G_B);
+	RTW_PRINT("extTypeLNA_5G_A = 0x%X\n", extTypeLNA_5G_A);
+	RTW_PRINT("extTypeLNA_5G_B = 0x%X\n", extTypeLNA_5G_B);
 
 	RTW_PRINT("pHalData->TypeGPA = 0x%X\n", pHalData->TypeGPA);
 	RTW_PRINT("pHalData->TypeAPA = 0x%X\n", pHalData->TypeAPA);
