@@ -3413,8 +3413,8 @@ phy_set_tx_power_limit(
 	u8 ntx_idx;
 	s8 powerLimit = 0, prevPowerLimit, channelIndex;
 
-	if (0)
-		RTW_INFO("Index of power limit table [regulation %s][band %s][bw %s][rate section %s][ntx %s][chnl %s][val %s]\n"
+	// if (0)
+		RTW_PRINT("Index of power limit table [regulation %s][band %s][bw %s][rate section %s][ntx %s][chnl %s][val %s]\n"
 			, Regulation, Band, Bandwidth, RateSection, ntx, Channel, PowerLimit);
 
 	if (GetU1ByteIntegerFromStringInDecimal((s8 *)Channel, &channel) == _FALSE
