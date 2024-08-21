@@ -3511,6 +3511,7 @@ phy_get_tx_power_index(
 	IN	u8					Channel
 )
 {
+	RTW_PRINT("*** MODALAI *** %s()\n", __FUNCTION__);
 	return rtw_hal_get_tx_power_index(pAdapter, RFPath, Rate, BandWidth, Channel, NULL);
 }
 
