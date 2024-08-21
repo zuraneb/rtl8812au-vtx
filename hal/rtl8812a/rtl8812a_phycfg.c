@@ -573,6 +573,12 @@ PHY_GetTxPowerIndex_8812A(
 #endif
 
 	limit = PHY_GetTxPowerLimit(pAdapter, NULL, (u8)(!bIn24G), pHalData->current_channel_bw, RFPath, Rate, ntx_idx, pHalData->current_channel);
+	RTW_PRINT("*** MODALAI *** %s() ---> Power limit: %i\n", __FUNCTION__, limit);
+	#ifdef CONFIG_TXPWR_LIMIT
+	RTW_PRINT("*** MODALAI *** %s() ---> CONFIG_TXPWR_LIMIT ON\n", __FUNCTION__);
+	#else 
+	RTW_PRINT("*** MODALAI *** %s() ---> CONFIG_TXPWR_LIMIT OFF\n", __FUNCTION__);
+	#endif
 
 	tpt_offset = PHY_GetTxPowerTrackingOffset(pAdapter, RFPath, Rate);
 
@@ -597,6 +603,7 @@ PHY_GetTxPowerIndex_8812A(
 	if (power_idx % 2 == 1 && !IS_NORMAL_CHIP(pHalData->version_id))
 		--power_idx;
 
+	RTW_PRINT("*** MODALAI *** %s() ---> Power Index: %u\n", __FUNCTION__, power_idx);
 	return power_idx;
 }
 

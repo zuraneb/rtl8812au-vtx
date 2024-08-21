@@ -3005,7 +3005,7 @@ PHY_GetTxPowerLimit(_adapter *adapter
 		}
 
 		lmt = phy_get_txpwr_lmt_abs(adapter, regd_name, band, tmp_bw, tlrs, ntx_idx, tmp_cch, 0);
-		RTW_PRINT("*** MODALAI *** %s() ---> Power limit: %i\tMin Limit: %i\tTmp bw: %u\n", lmt, min_lmt, tmp_bw);
+		RTW_PRINT("*** MODALAI *** %s() ---> Power limit: %i\tMin Limit: %i\tTmp bw: %u\n", __FUNCTION__, lmt, min_lmt, tmp_bw);
 
 		if (min_lmt >= lmt) {
 			min_lmt = lmt;
@@ -3031,7 +3031,7 @@ exit:
 				, ch_width_str(bw), cch
 				, ch_width_str(final_bw), final_cch);
 	}
-	RTW_PRINT("*** MODALAI *** %s() ---> Power min_lmt: %i\n", min_lmt);
+	RTW_PRINT("*** MODALAI *** %s() ---> Power min_lmt: %i\n", __FUNCTION__, min_lmt);
 	return min_lmt;
 }
 
