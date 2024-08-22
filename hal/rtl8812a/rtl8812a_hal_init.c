@@ -1381,7 +1381,7 @@ Hal_ReadRFEType_8812A(
 		}
 	}
 
-	RTW_INFO("RFE Type: 0x%2x\n", pHalData->rfe_type);
+	RTW_PRINT("RFE Type: 0x%2x\n", pHalData->rfe_type);
 }
 
 void Hal_EfuseParseKFreeData_8821A(
