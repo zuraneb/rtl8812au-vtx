@@ -5288,7 +5288,7 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
     // update if module param has been updated
     padapter->registrypriv.openhd_override_channel=get_openhd_override_channel();
     padapter->registrypriv.openhd_override_channel_width=get_openhd_override_channel_width();
-	padapter->registrypriv.rtw_RFE_type = get_RFE_type();
+	padapter->registrypriv.RFE_type = get_RFE_type();
 
 	// RTW_ERR("************MODALAI************ cfg80211_rtw_set_monitor_channel");
 
