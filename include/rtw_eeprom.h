@@ -96,6 +96,7 @@ typedef enum _RT_CUSTOMER_ID {
 	RT_CID_819x_ALPHA_Dlink = 44,/* add by ylb 20121012 for customer led for alpha */
 	RT_CID_WNC_NEC = 45,/* add by page for NEC */
 	RT_CID_DNI_BUFFALO = 46,/* add by page for NEC */
+	RT_CID_MODALAI = 47,/* MODALAI M0175/M0176*/
 } RT_CUSTOMER_ID, *PRT_CUSTOMER_ID;
 
 extern void eeprom_write16(_adapter *padapter, u16 reg, u16 data);

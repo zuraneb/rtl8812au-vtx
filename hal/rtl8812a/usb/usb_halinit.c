@@ -1953,6 +1953,8 @@ hal_ReadIDs_8812AU(
 		((pHalData->EEPROMVID == 0x2001) && (pHalData->EEPROMPID == 0x3315)) ||
 		((pHalData->EEPROMVID == 0x2001) && (pHalData->EEPROMPID == 0x3316)))
 		pHalData->CustomerID = RT_CID_DLINK;
+	// else if ((pHalData->EEPROMVID == 0x0BEE) && (pHalData->EEPROMPID == 0x0BEE))
+		// pHalData->CustomerID = RT_CID_MODALAI;
 
 	RTW_INFO("VID = 0x%04X, PID = 0x%04X\n", pHalData->EEPROMVID, pHalData->EEPROMPID);
 	RTW_INFO("Customer ID: 0x%02X, SubCustomer ID: 0x%02X\n", pHalData->EEPROMCustomerID, pHalData->EEPROMSubCustomerID);
@@ -2002,8 +2004,8 @@ hal_InitPGData_8812A(
 			}
 
 			/* Read EFUSE real map to shadow. */
-			EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
-			// EFUSE_ModalShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
+			// EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
+			EFUSE_ModalShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
 		}
 	} else {
 		RTW_PRINT("*** MODALAI *** %s() ----> _TRUE == pHalData->bautoload_fail_flag\n", __FUNCTION__);
@@ -2033,8 +2035,8 @@ hal_InitPGData_8812A(
 		/* update to default value 0xFF */
 		if (!is_boot_from_eeprom(padapter)){
 			RTW_PRINT("*** MODALAI *** %s() ----> FALSE == is_boot_from_eeprom(padapter) ---> update to default value 0xFF\n", __FUNCTION__);
-			EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
-			// EFUSE_ModalShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
+			// EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
+			EFUSE_ModalShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
 		}
 	}
 
