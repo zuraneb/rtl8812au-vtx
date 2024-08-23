@@ -1193,6 +1193,15 @@ hal_ReadPAType_8812A(
 			pHalData->external_lna_5g = (GetRegAmplifierType5G(Adapter) & ODM_BOARD_EXT_LNA_5G) ? 1 : 0;
 		}
 	}
+
+	pHalData->PAType_2G  = 0x33; 
+	pHalData->LNAType_2G = 0x88;
+	pHalData->PAType_5G  = 0x33; 
+	pHalData->LNAType_5G = 0x88;
+	pHalData->ExternalPA_2G   = 1;
+	pHalData->external_pa_5g  = 1;
+	pHalData->ExternalLNA_2G  = 1;
+	pHalData->external_lna_5g = 1;
 	RTW_PRINT("pHalData->PAType_2G is 0x%x, pHalData->ExternalPA_2G = %d\n", pHalData->PAType_2G, pHalData->ExternalPA_2G);
 	RTW_PRINT("pHalData->PAType_5G is 0x%x, pHalData->external_pa_5g = %d\n", pHalData->PAType_5G, pHalData->external_pa_5g);
 	RTW_PRINT("pHalData->LNAType_2G is 0x%x, pHalData->ExternalLNA_2G = %d\n", pHalData->LNAType_2G, pHalData->ExternalLNA_2G);
@@ -1232,6 +1241,11 @@ Hal_ReadAmplifierType_8812A(
 		pHalData->TypeALNA = extTypeLNA_5G_B << 2 | extTypeLNA_5G_A;
 
 	
+	pHalData->TypeGPA =  0;
+	pHalData->TypeAPA =  0;
+	pHalData->TypeGLNA = 0;
+	pHalData->TypeALNA = 0;
+
 	RTW_PRINT("PROMCONTENT[0xBD]  = 0x%X\n", PROMContent[0xBD]);
 	RTW_PRINT("PROMCONTENT[0xBF]  = 0x%X\n", PROMContent[0xBF]);
 	RTW_PRINT("extTypePA_2G_A  = 0x%X\n", extTypePA_2G_A);
