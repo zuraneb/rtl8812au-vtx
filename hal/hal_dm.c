@@ -243,6 +243,12 @@ void Init_ODM_ComInfo(_adapter *adapter)
 			odm_board_type |= ODM_BOARD_BT;
 
 		odm_cmn_info_init(pDM_Odm, ODM_CMNINFO_BOARD_TYPE, odm_board_type);
+
+		RTW_PRINT("odm_board_type = %u\n",   odm_board_type);
+		RTW_PRINT("pHalData->ExternalPA_2G = %d\n",   pHalData->ExternalPA_2G);
+		RTW_PRINT("pHalData->external_pa_5g = %d\n",  pHalData->external_pa_5g);
+		RTW_PRINT("pHalData->ExternalLNA_2G = %d\n",  pHalData->ExternalLNA_2G);
+		RTW_PRINT("pHalData->external_lna_5g = %d\n", pHalData->external_lna_5g);
 		/* 1 ============== End of BoardType ============== */
 	}
 

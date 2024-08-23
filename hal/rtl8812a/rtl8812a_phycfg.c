@@ -993,10 +993,13 @@ u32 phy_get_tx_bb_swing_8812a(
 	s8	bbSwing_5G = -1 * GetRegTxBBSwing_5G(Adapter);
 	u32	out = 0x200;
 	const s8	AUTO = -1;
+	RTW_PRINT("*** MODALAI *** %s()\n", __FUNCTION__);
 
 
 	if (pHalData->bautoload_fail_flag) {
+		RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed\n", __FUNCTION__);
 		if (Band == BAND_ON_2_4G) {
+			RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on 2G\n", __FUNCTION__);
 			pRFCalibrateInfo->bb_swing_diff_2g = bbSwing_2G;
 			if (bbSwing_2G == 0)
 				out = 0x200; /* 0 dB */
@@ -1015,7 +1018,9 @@ u32 phy_get_tx_bb_swing_8812a(
 					out = 0x200;
 				}
 			}
+			RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on 2G ---> out: 0x%x\n", __FUNCTION__, out);
 		} else if (Band == BAND_ON_5G) {
+			RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on 5G\n", __FUNCTION__);
 			pRFCalibrateInfo->bb_swing_diff_5g = bbSwing_5G;
 			if (bbSwing_5G == 0)
 				out = 0x200; /* 0 dB */
@@ -1034,15 +1039,19 @@ u32 phy_get_tx_bb_swing_8812a(
 					out = 0x200;
 				}
 			}
+			RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on 5G ---> out: 0x%x\n", __FUNCTION__, out);
 		} else  {
+			RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on unknown band, out: 0x16A\n", __FUNCTION__);
 			pRFCalibrateInfo->bb_swing_diff_2g = -3;
 			pRFCalibrateInfo->bb_swing_diff_5g = -3;
 			out = 0x16A; /* -3 dB */
 		}
 	} else {
 		u32 swing = 0, onePathSwing = 0;
+		RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful\n", __FUNCTION__);
 
 		if (Band == BAND_ON_2_4G) {
+			RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> on 2G\n", __FUNCTION__);
 			if (GetRegTxBBSwing_2G(Adapter) == AUTO) {
 				EFUSE_ShadowRead(Adapter, 1, EEPROM_TX_BBSWING_2G_8812, (u32 *)&swing);
 				swing = (swing == 0xFF) ? 0x00 : swing;
@@ -1056,7 +1065,9 @@ u32 phy_get_tx_bb_swing_8812a(
 				swing = 0xFF; /* -9 dB */
 			else
 				swing = 0x00;
+			RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> on 2G ---> swing: 0x%x\n", __FUNCTION__, swing);
 		} else {
+			RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> on 5G\n", __FUNCTION__);
 			if (GetRegTxBBSwing_5G(Adapter) == AUTO) {
 				EFUSE_ShadowRead(Adapter, 1, EEPROM_TX_BBSWING_5G_8812, (u32 *)&swing);
 				swing = (swing == 0xFF) ? 0x00 : swing;
@@ -1070,12 +1081,16 @@ u32 phy_get_tx_bb_swing_8812a(
 				swing = 0xFF; /* -9 dB */
 			else
 				swing = 0x00;
+			RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> on 5G ---> swing: 0x%x\n", __FUNCTION__, swing);
 		}
 
+		RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> RFPath: %d\n", __FUNCTION__, (int)RFPath);
 		if (RFPath == RF_PATH_A)
 			onePathSwing = (swing & 0x3) >> 0; /* 0xC6/C7[1:0] */
 		else if (RFPath == RF_PATH_B)
 			onePathSwing = (swing & 0xC) >> 2; /* 0xC6/C7[3:2] */
+
+		RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> onePathSwing: 0x%x\n", __FUNCTION__, onePathSwing);
 
 		if (onePathSwing == 0x0) {
 			if (Band == BAND_ON_2_4G)
@@ -1102,6 +1117,7 @@ u32 phy_get_tx_bb_swing_8812a(
 				pRFCalibrateInfo->bb_swing_diff_5g = -9;
 			out = 0x0B6; /* -9 dB */
 		}
+		RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> out: 0x%x\n", __FUNCTION__, out);
 	}
 
 	/* RTW_INFO("<=== phy_get_tx_bb_swing_8812a, out = 0x%X\n", out); */
