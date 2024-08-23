@@ -1387,7 +1387,7 @@ Hal_ReadRFEType_8812A(
 			pHalData->rfe_type = GetRegRFEType(Adapter);
 		else {
 			if (IS_HARDWARE_TYPE_8812AU(Adapter))
-				pHalData->rfe_type = 0;
+				pHalData->rfe_type = 3;
 			else if (IS_HARDWARE_TYPE_8812E(Adapter))
 				pHalData->rfe_type = 2;
 			else
