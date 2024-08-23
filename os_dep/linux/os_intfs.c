@@ -4895,3 +4895,6 @@ int get_openhd_override_channel_width(void){
 int get_openhd_override_tx_power_index(void){
     return openhd_override_tx_power_index;
 }
+uint get_RFE_type(void){
+    return rtw_RFE_type;
+}
