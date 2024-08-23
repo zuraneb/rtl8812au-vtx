@@ -5105,6 +5105,8 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 	int target_offset = HAL_PRIME_CHNL_OFFSET_DONT_CARE;
 	int target_width = CHANNEL_WIDTH_20;
 	int direction = 0;
+	HAL_DATA_TYPE	*pHalData = GET_HAL_DATA(padapter);
+	struct PHY_DM_STRUCT		*pDM_Odm = &(pHalData->odmpriv);
 
 #if (CFG80211_API_LEVEL >= KERNEL_VERSION(3, 8, 0))
 #ifdef CONFIG_DEBUG_CFG80211
@@ -5289,6 +5291,8 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
     padapter->registrypriv.openhd_override_channel=get_openhd_override_channel();
     padapter->registrypriv.openhd_override_channel_width=get_openhd_override_channel_width();
 	padapter->registrypriv.RFE_Type = get_RFE_type();
+	pHalData->rfe_type = padapter->registrypriv.RFE_Type;
+	odm_cmn_info_init(pDM_Odm, ODM_CMNINFO_RFE_TYPE, pHalData->rfe_type);
 
 	// RTW_ERR("************MODALAI************ cfg80211_rtw_set_monitor_channel");
 
