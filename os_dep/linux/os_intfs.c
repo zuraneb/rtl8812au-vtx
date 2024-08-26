@@ -533,11 +533,11 @@ uint rtw_amplifier_type_5g = CONFIG_RTW_AMPLIFIER_TYPE_5G;
 module_param(rtw_amplifier_type_5g, uint, 0644);
 MODULE_PARM_DESC(rtw_amplifier_type_5g, "BIT6:5G ext-PA, BIT7:5G ext-LNA");
 
-uint rtw_RFE_type = CONFIG_RTW_RFE_TYPE;
-// uint rtw_RFE_type = 3;
+// uint rtw_RFE_type = CONFIG_RTW_RFE_TYPE;
+uint rtw_RFE_type = 1;
 module_param(rtw_RFE_type, uint, 0644);
-MODULE_PARM_DESC(rtw_RFE_type, "default init value:64");
-// MODULE_PARM_DESC(rtw_RFE_type, "default init value:3");
+// MODULE_PARM_DESC(rtw_RFE_type, "default init value:64");
+MODULE_PARM_DESC(rtw_RFE_type, "default init value:1");
 
 uint rtw_powertracking_type = 64;
 module_param(rtw_powertracking_type, uint, 0644);
