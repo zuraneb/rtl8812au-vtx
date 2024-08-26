@@ -2004,8 +2004,8 @@ hal_InitPGData_8812A(
 			}
 
 			/* Read EFUSE real map to shadow. */
-			// EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
-			EFUSE_ModalShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
+			EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
+			// EFUSE_ModalShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
 		}
 	} else {
 		RTW_PRINT("*** MODALAI *** %s() ----> _TRUE == pHalData->bautoload_fail_flag\n", __FUNCTION__);
@@ -2035,8 +2035,8 @@ hal_InitPGData_8812A(
 		/* update to default value 0xFF */
 		if (!is_boot_from_eeprom(padapter)){
 			RTW_PRINT("*** MODALAI *** %s() ----> FALSE == is_boot_from_eeprom(padapter) ---> update to default value 0xFF\n", __FUNCTION__);
-			// EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
-			EFUSE_ModalShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
+			EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
+			// EFUSE_ModalShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
 		}
 	}
 
