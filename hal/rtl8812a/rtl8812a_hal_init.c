@@ -3082,6 +3082,7 @@ hal_EfusePgPacketWrite_8812A(IN	PADAPTER	pAdapter,
 	u16			startAddr = 0;
 
 	RTW_INFO("===> efuse_PgPacketWrite[%s], offset: 0x%X\n", (efuseType == EFUSE_WIFI) ? "WIFI" : "BT", offset);
+	RTW_PRINT("===> efuse_PgPacketWrite[%s], offset: 0x%X\n", (efuseType == EFUSE_WIFI) ? "WIFI" : "BT", offset);
 
 	/* 4 [1] Check if the remaining space is available to write. */
 	if (!efuse_PgPacketCheck(pAdapter, efuseType, bPseudoTest)) {
