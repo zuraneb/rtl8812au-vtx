@@ -177,7 +177,7 @@ void dump_chip_info(HAL_VERSION	ChipVersion)
 	cnt += sprintf((buf + cnt), "RomVer(%d)\n", ChipVersion.ROMVer);
 
 	RTW_INFO("%s", buf);
-	RTW_PRINT("%S() ---> %s", __FUNCTION__, buf);
+	RTW_PRINT("%s() ---> %s", __FUNCTION__, buf);
 }
 void rtw_hal_config_rftype(PADAPTER  padapter)
 {
