@@ -203,6 +203,7 @@ void rtw_hal_config_rftype(PADAPTER  padapter)
 	}
 
 	RTW_INFO("%s RF_Type is %d TotalTxPath is %d\n", __FUNCTION__, pHalData->rf_type, pHalData->NumTotalRFPath);
+	RTW_PRINT("%s RF_Type is %d TotalTxPath is %d\n", __FUNCTION__, pHalData->rf_type, pHalData->NumTotalRFPath);
 }
 
 #define	EEPROM_CHANNEL_PLAN_BY_HW_MASK	0x80
