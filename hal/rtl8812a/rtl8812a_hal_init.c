@@ -1132,8 +1132,8 @@ hal_ReadPAType_8812A(
 )
 {
 	HAL_DATA_TYPE		*pHalData = GET_HAL_DATA(Adapter);
-	RTW_PRINT("%s() --->", __FUNCTION__);
-	RTW_PRINT("%s() ---> CUSTOMER ID: %u", __FUNCTION__, pHalData->CustomerID);
+	// RTW_PRINT("%s() --->", __FUNCTION__);
+	// RTW_PRINT("%s() ---> CUSTOMER ID: %u", __FUNCTION__, pHalData->CustomerID);
 
 	if (!AutoloadFail) {
 		RTW_PRINT("%s() ---> !AutoloadFail", __FUNCTION__);
@@ -1202,10 +1202,10 @@ hal_ReadPAType_8812A(
 	pHalData->external_pa_5g  = 1;
 	pHalData->ExternalLNA_2G  = 1;
 	pHalData->external_lna_5g = 1;
-	RTW_PRINT("pHalData->PAType_2G is 0x%x, pHalData->ExternalPA_2G = %d\n", pHalData->PAType_2G, pHalData->ExternalPA_2G);
-	RTW_PRINT("pHalData->PAType_5G is 0x%x, pHalData->external_pa_5g = %d\n", pHalData->PAType_5G, pHalData->external_pa_5g);
-	RTW_PRINT("pHalData->LNAType_2G is 0x%x, pHalData->ExternalLNA_2G = %d\n", pHalData->LNAType_2G, pHalData->ExternalLNA_2G);
-	RTW_PRINT("pHalData->LNAType_5G is 0x%x, pHalData->external_lna_5g = %d\n", pHalData->LNAType_5G, pHalData->external_lna_5g);
+	// RTW_PRINT("pHalData->PAType_2G is 0x%x, pHalData->ExternalPA_2G = %d\n", pHalData->PAType_2G, pHalData->ExternalPA_2G);
+	// RTW_PRINT("pHalData->PAType_5G is 0x%x, pHalData->external_pa_5g = %d\n", pHalData->PAType_5G, pHalData->external_pa_5g);
+	// RTW_PRINT("pHalData->LNAType_2G is 0x%x, pHalData->ExternalLNA_2G = %d\n", pHalData->LNAType_2G, pHalData->ExternalLNA_2G);
+	// RTW_PRINT("pHalData->LNAType_5G is 0x%x, pHalData->external_lna_5g = %d\n", pHalData->LNAType_5G, pHalData->external_lna_5g);
 }
 
 VOID
@@ -1246,21 +1246,21 @@ Hal_ReadAmplifierType_8812A(
 	pHalData->TypeGLNA = 0;
 	pHalData->TypeALNA = 0;
 
-	RTW_PRINT("PROMCONTENT[0xBD]  = 0x%X\n", PROMContent[0xBD]);
-	RTW_PRINT("PROMCONTENT[0xBF]  = 0x%X\n", PROMContent[0xBF]);
-	RTW_PRINT("extTypePA_2G_A  = 0x%X\n", extTypePA_2G_A);
-	RTW_PRINT("extTypePA_2G_B  = 0x%X\n", extTypePA_2G_B);
-	RTW_PRINT("extTypePA_5G_A  = 0x%X\n", extTypePA_5G_A);
-	RTW_PRINT("extTypePA_5G_B  = 0x%X\n", extTypePA_5G_B);
-	RTW_PRINT("extTypeLNA_2G_A = 0x%X\n", extTypeLNA_2G_A);
-	RTW_PRINT("extTypeLNA_2G_B = 0x%X\n", extTypeLNA_2G_B);
-	RTW_PRINT("extTypeLNA_5G_A = 0x%X\n", extTypeLNA_5G_A);
-	RTW_PRINT("extTypeLNA_5G_B = 0x%X\n", extTypeLNA_5G_B);
+	// RTW_PRINT("PROMCONTENT[0xBD]  = 0x%X\n", PROMContent[0xBD]);
+	// RTW_PRINT("PROMCONTENT[0xBF]  = 0x%X\n", PROMContent[0xBF]);
+	// RTW_PRINT("extTypePA_2G_A  = 0x%X\n", extTypePA_2G_A);
+	// RTW_PRINT("extTypePA_2G_B  = 0x%X\n", extTypePA_2G_B);
+	// RTW_PRINT("extTypePA_5G_A  = 0x%X\n", extTypePA_5G_A);
+	// RTW_PRINT("extTypePA_5G_B  = 0x%X\n", extTypePA_5G_B);
+	// RTW_PRINT("extTypeLNA_2G_A = 0x%X\n", extTypeLNA_2G_A);
+	// RTW_PRINT("extTypeLNA_2G_B = 0x%X\n", extTypeLNA_2G_B);
+	// RTW_PRINT("extTypeLNA_5G_A = 0x%X\n", extTypeLNA_5G_A);
+	// RTW_PRINT("extTypeLNA_5G_B = 0x%X\n", extTypeLNA_5G_B);
 
-	RTW_PRINT("pHalData->TypeGPA = 0x%X\n", pHalData->TypeGPA);
-	RTW_PRINT("pHalData->TypeAPA = 0x%X\n", pHalData->TypeAPA);
-	RTW_PRINT("pHalData->TypeGLNA = 0x%X\n", pHalData->TypeGLNA);
-	RTW_PRINT("pHalData->TypeALNA = 0x%X\n", pHalData->TypeALNA);
+	// RTW_PRINT("pHalData->TypeGPA = 0x%X\n", pHalData->TypeGPA);
+	// RTW_PRINT("pHalData->TypeAPA = 0x%X\n", pHalData->TypeAPA);
+	// RTW_PRINT("pHalData->TypeGLNA = 0x%X\n", pHalData->TypeGLNA);
+	// RTW_PRINT("pHalData->TypeALNA = 0x%X\n", pHalData->TypeALNA);
 	// RTW_INFO("pHalData->TypeGPA = 0x%X\n", pHalData->TypeGPA);
 	// RTW_INFO("pHalData->TypeAPA = 0x%X\n", pHalData->TypeAPA);
 	// RTW_INFO("pHalData->TypeGLNA = 0x%X\n", pHalData->TypeGLNA);
@@ -1644,7 +1644,7 @@ Hal_EfuseReadEFuse8812A(
 	u8	efuse_usage = 0;
 	u8	u1temp = 0;
 
-	RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
 
 	/*  */
 	/* Do NOT excess total size of EFuse table. Added by Roger, 2008.11.10. */
@@ -1683,7 +1683,7 @@ Hal_EfuseReadEFuse8812A(
 		eFuse_Addr++;
 	} else {
 		RTW_INFO("EFUSE is empty efuse_Addr-%d efuse_data=%x\n", eFuse_Addr, *rtemp8);
-		RTW_PRINT("%s EFUSE is empty efuse_Addr-%d efuse_data=%x\n", __FUNCTION__, eFuse_Addr, *rtemp8);
+		// RTW_PRINT("%s EFUSE is empty efuse_Addr-%d efuse_data=%x\n", __FUNCTION__, eFuse_Addr, *rtemp8);
 		goto exit;
 	}
 
@@ -1793,7 +1793,7 @@ Hal_EfuseReadEFuse8812A(
 	/*  */
 	/* 4. Copy from Efuse map to output pointer memory!!! */
 	/*  */
-	RTW_PRINT("*** MODALAI *** %s() -----> Write offset: %u\n", __FUNCTION__, _offset);
+	// RTW_PRINT("*** MODALAI *** %s() -----> Write offset: %u\n", __FUNCTION__, _offset);
 	for (i = 0; i < _size_byte; i++)
 		pbuf[i] = efuseTbl[_offset + i];
 
@@ -1803,7 +1803,7 @@ Hal_EfuseReadEFuse8812A(
 	efuse_usage = (u1Byte)((eFuse_Addr * 100) / EFUSE_REAL_CONTENT_LEN_JAGUAR);
 	rtw_hal_set_hwreg(Adapter, HW_VAR_EFUSE_BYTES, (u8 *)&eFuse_Addr);
 	RTW_INFO("%s: eFuse_Addr offset(%#x) !!\n", __FUNCTION__, eFuse_Addr);
-	RTW_PRINT("%s: eFuse_Addr offset(%#x) !! Efuse_usage: %u\n", __FUNCTION__, eFuse_Addr, efuse_usage);
+	// RTW_PRINT("%s: eFuse_Addr offset(%#x) !! Efuse_usage: %u\n", __FUNCTION__, eFuse_Addr, efuse_usage);
 
 exit:
 	if (efuseTbl)
@@ -3387,7 +3387,7 @@ void InitPGData8812A(PADAPTER padapter)
 	u16 val16;
 	PHAL_DATA_TYPE pHalData = GET_HAL_DATA(padapter);
 
-	RTW_PRINT("**MODALAI** %s", __FUNCTION__);
+	// RTW_PRINT("**MODALAI** %s", __FUNCTION__);
 
 	if (_FALSE == pHalData->bautoload_fail_flag) {
 		/* autoload OK. */
@@ -3412,13 +3412,13 @@ void InitPGData8812A(PADAPTER padapter)
 			EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
 	}
 #ifdef CONFIG_EFUSE_CONFIG_FILE
-	RTW_PRINT("**MODALAI** CONFIG_EFUSE_CONFIG_FILE ENABLED: %s", __FUNCTION__);
+	// RTW_PRINT("**MODALAI** CONFIG_EFUSE_CONFIG_FILE ENABLED: %s", __FUNCTION__);
 	if (check_phy_efuse_tx_power_info_valid(padapter) == _FALSE) {
 		if (Hal_readPGDataFromConfigFile(padapter) != _SUCCESS)
 			RTW_ERR("invalid phy efuse and read from file fail, will use driver default!!\n");
 	}
 #else 
-	RTW_PRINT("**MODALAI** CONFIG_EFUSE_CONFIG_FILE DISABLED. %s", __FUNCTION__);
+	// RTW_PRINT("**MODALAI** CONFIG_EFUSE_CONFIG_FILE DISABLED. %s", __FUNCTION__);
 #endif
 }
 

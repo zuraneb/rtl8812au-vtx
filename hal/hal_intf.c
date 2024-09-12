@@ -221,7 +221,7 @@ uint	 rtw_hal_init(_adapter *padapter)
 
 	status = padapter->hal_func.hal_init(padapter);
 
-	RTW_PRINT("**MODALAI** %s", __FUNCTION__);
+	// RTW_PRINT("**MODALAI** %s", __FUNCTION__);
 	if (status == _SUCCESS) {
 		RTW_PRINT("rtw_hal_init: hal_init SUCCESS\n");
 		pHalData->hw_init_completed = _TRUE;

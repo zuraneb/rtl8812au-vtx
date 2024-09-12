@@ -1898,13 +1898,13 @@ hal_InitPGData_8814A(
 	}
 
 #ifdef CONFIG_EFUSE_CONFIG_FILE
-	RTW_PRINT("**MODALAI** %s CONFIG_EFUSE_CONFIG_FILE ENABLED ", __FUNCTION__);
+	// RTW_PRINT("**MODALAI** %s CONFIG_EFUSE_CONFIG_FILE ENABLED ", __FUNCTION__);
 	if (check_phy_efuse_tx_power_info_valid(padapter) == _FALSE) {
 		if (Hal_readPGDataFromConfigFile(padapter) != _SUCCESS)
 			RTW_ERR("invalid phy efuse and read from file fail, will use driver default!!\n");
 	}
-#else 
-	RTW_PRINT("**MODALAI** %s CONFIG_EFUSE_CONFIG_FILE DISABLED.", __FUNCTION__);
+// #else 
+	// RTW_PRINT("**MODALAI** %s CONFIG_EFUSE_CONFIG_FILE DISABLED.", __FUNCTION__);
 #endif
 }
 

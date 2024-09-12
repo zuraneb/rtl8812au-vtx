@@ -397,23 +397,23 @@ rtl8812au_InitSwLeds(
 
 	// Set GPIO 1 as input
 	if(rtw_hal_config_gpio(padapter, (u8)1, false) == 0){
-		RTW_PRINT("Set GPIO 1 config as input successfully");
+		// RTW_PRINT("Set GPIO 1 config as input successfully");
 	} else {
-		RTW_PRINT("FAILED to set GPIO 1 config as input!");
+		// RTW_PRINT("FAILED to set GPIO 1 config as input!");
 	}
 	
 	// Set GPIO 2 as input
 	if(rtw_hal_config_gpio(padapter, (u8)2, false) == 0){
-		RTW_PRINT("Set GPIO 2 config as input successfully");
+		// RTW_PRINT("Set GPIO 2 config as input successfully");
 	} else {
-		RTW_PRINT("FAILED to set GPIO 2 config as input!");
+		// RTW_PRINT("FAILED to set GPIO 2 config as input!");
 	}
 
 	// Set GPIO 3 as input
 	if(rtw_hal_config_gpio(padapter, (u8)3, false) == 0){
-		RTW_PRINT("Set GPIO 3 config as input successfully");
+		// RTW_PRINT("Set GPIO 3 config as input successfully");
 	} else {
-		RTW_PRINT("FAILED to set GPIO 3 config as input!");
+		// RTW_PRINT("FAILED to set GPIO 3 config as input!");
 	}
 
 

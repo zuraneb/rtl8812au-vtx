@@ -709,7 +709,7 @@ exit:
 
 u8 rtw_set_hal_ops(_adapter *padapter)
 {
-	RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
 
 	/* alloc memory for HAL DATA */
 	if (rtw_hal_data_init(padapter) == _FAIL)
@@ -1249,7 +1249,7 @@ _adapter *rtw_usb_primary_adapter_init(struct dvobj_priv *dvobj,
 	_adapter *padapter = NULL;
 	int status = _FAIL;
 
-	RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
 
 	padapter = (_adapter *)rtw_zvmalloc(sizeof(*padapter));
 	if (padapter == NULL)
@@ -1462,7 +1462,7 @@ static int rtw_drv_init(struct usb_interface *pusb_intf, const struct usb_device
 	int i;
 #endif
 
-	RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
 
 	/* RTW_INFO("+rtw_drv_init\n"); */
 
@@ -1481,7 +1481,7 @@ static int rtw_drv_init(struct usb_interface *pusb_intf, const struct usb_device
 		RTW_PRINT("rtw_usb_primary_adapter_init Failed!\n");
 		goto free_dvobj;
 	}
-	RTW_PRINT("**MODALAI** rtw_usb_primary_adapter_init SUCCESS!\n");
+	// RTW_PRINT("**MODALAI** rtw_usb_primary_adapter_init SUCCESS!\n");
 
 	if (usb_reprobe_switch_usb_mode(padapter) == _TRUE){
 		RTW_PRINT("**MODALAI** usb_reprobe_switch_usb_mode SWITCH USB MODE!\n");
@@ -1640,7 +1640,7 @@ static int __init rtw_drv_entry(void)
 	int ret = 0;
 
 	RTW_PRINT("module init start\n");
-	RTW_ERR("************MODALAI************ %s", __FILE__);
+	// RTW_ERR("************MODALAI************ %s", __FILE__);
 
 	dump_drv_version(RTW_DBGDUMP);
 #ifdef BTCOEXVERSION

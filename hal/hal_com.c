@@ -177,7 +177,7 @@ void dump_chip_info(HAL_VERSION	ChipVersion)
 	cnt += sprintf((buf + cnt), "RomVer(%d)\n", ChipVersion.ROMVer);
 
 	RTW_INFO("%s", buf);
-	RTW_PRINT("%s() ---> %s", __FUNCTION__, buf);
+	// RTW_PRINT("%s() ---> %s", __FUNCTION__, buf);
 }
 void rtw_hal_config_rftype(PADAPTER  padapter)
 {
@@ -204,7 +204,7 @@ void rtw_hal_config_rftype(PADAPTER  padapter)
 	}
 
 	RTW_INFO("%s RF_Type is %d TotalTxPath is %d\n", __FUNCTION__, pHalData->rf_type, pHalData->NumTotalRFPath);
-	RTW_PRINT("%s RF_Type is %d TotalTxPath is %d\n", __FUNCTION__, pHalData->rf_type, pHalData->NumTotalRFPath);
+	// RTW_PRINT("%s RF_Type is %d TotalTxPath is %d\n", __FUNCTION__, pHalData->rf_type, pHalData->NumTotalRFPath);
 }
 
 #define	EEPROM_CHANNEL_PLAN_BY_HW_MASK	0x80
@@ -1193,7 +1193,7 @@ void rtw_restore_mac_addr(_adapter *adapter)
 	_adapter *iface;
 	struct dvobj_priv *dvobj = adapter_to_dvobj(adapter);
 
-	RTW_PRINT("**MODALAI** %s", __FUNCTION__);
+	// RTW_PRINT("**MODALAI** %s", __FUNCTION__);
 	for (i = 0; i < dvobj->iface_nums; i++) {
 		iface = dvobj->padapters[i];
 		if (iface)
@@ -10749,7 +10749,7 @@ int check_phy_efuse_tx_power_info_valid(PADAPTER padapter)
 	int index = 0;
 	u16 tx_index_offset = 0x0000;
 
-	RTW_PRINT("**MODALAI** CONFIG_EFUSE_CONFIG_FILE ENABLED: %s", __FUNCTION__);
+	// RTW_PRINT("**MODALAI** CONFIG_EFUSE_CONFIG_FILE ENABLED: %s", __FUNCTION__);
 
 	switch (rtw_get_chip_type(padapter)) {
 	case RTL8723B:
@@ -10774,7 +10774,7 @@ int check_phy_efuse_tx_power_info_valid(PADAPTER padapter)
 		tx_index_offset = EEPROM_TX_PWR_INX_8821;
 		break;
 	case RTL8812:
-		RTW_PRINT("**MODALAI** CHIP TYPE: RTL8812 %s", __FUNCTION__);
+		// RTW_PRINT("**MODALAI** CHIP TYPE: RTL8812 %s", __FUNCTION__);
 		tx_index_offset = EEPROM_TX_PWR_INX_8812;
 		break;
 	case RTL8814A:
@@ -10793,12 +10793,12 @@ int check_phy_efuse_tx_power_info_valid(PADAPTER padapter)
 
 	/* TODO: chacking length by ICs */
 	for (index = 0 ; index < 11 ; index++) {
-		RTW_PRINT("**MODALAI** EEPROM DATA[%i]: 0x%x", index, pContent[tx_index_offset + index]);
+		// RTW_PRINT("**MODALAI** EEPROM DATA[%i]: 0x%x", index, pContent[tx_index_offset + index]);
 		if (pContent[tx_index_offset + index] == 0xFF)
-			RTW_PRINT("**MODALAI** %s RETURNING FALSE ",  __FUNCTION__);
+			// RTW_PRINT("**MODALAI** %s RETURNING FALSE ",  __FUNCTION__);
 			return _FALSE;
 	}
-	RTW_PRINT("**MODALAI** %s RETURNING TRUE", __FUNCTION__);
+	// RTW_PRINT("**MODALAI** %s RETURNING TRUE", __FUNCTION__);
 	return _TRUE;
 }
 
@@ -10960,7 +10960,7 @@ void rtw_dump_cur_efuse(PADAPTER padapter)
 		RTW_PRINT("HW EFUSE\n");
 
 #ifdef CONFIG_RTW_DEBUG
-	RTW_PRINT("***MODALAI**** %s", __FUNCTION__);
+	// RTW_PRINT("***MODALAI**** %s", __FUNCTION__);
 	for (i = 0; i < mapsize; i++) {
 		if (i % 16 == 0)
 			RTW_PRINT_SEL(RTW_DBGDUMP, "0x%03x: ", i);
@@ -10971,7 +10971,7 @@ void rtw_dump_cur_efuse(PADAPTER padapter)
 		);
 	}
 	_RTW_PRINT_SEL(RTW_DBGDUMP, "\n");
-	RTW_PRINT("***MODALAI**** %s", __FUNCTION__);
+	// RTW_PRINT("***MODALAI**** %s", __FUNCTION__);
 #endif
 }
 
@@ -10991,7 +10991,7 @@ u32 Hal_readPGDataFromConfigFile(PADAPTER padapter)
 		return _FALSE;
 	}	
 
-	RTW_PRINT("**MODALAI** %s EFUSE FILE PATH: %s", __FUNCTION__, EFUSE_MAP_PATH);
+	// RTW_PRINT("**MODALAI** %s EFUSE FILE PATH: %s", __FUNCTION__, EFUSE_MAP_PATH);
 	ret = rtw_read_efuse_from_file(EFUSE_MAP_PATH, hal_data->efuse_eeprom_data, maplen);
 
 	hal_data->efuse_file_status = ((ret == _FAIL) ? EFUSE_FILE_FAILED : EFUSE_FILE_LOADED);
@@ -11455,15 +11455,15 @@ u8 rtw_hal_get_gpio(_adapter *adapter, u8 gpio_num)
 
 	/* According the direction to read register value */
 	if (direction){
-		RTW_PRINT("\tGPIO direction: OUTPUT");
+		// RTW_PRINT("\tGPIO direction: OUTPUT");
 		value =  (rtw_read8(adapter, gpio_pin_output_val) & BIT(gpio_num_to_set)) >> gpio_num_to_set;
 	} else {
-		RTW_PRINT("\n\tGPIO direction: INPUT");
+		// RTW_PRINT("\n\tGPIO direction: INPUT");
 		value =  (rtw_read8(adapter, gpio_pin_input_val) & BIT(gpio_num_to_set)) >> gpio_num_to_set;
 	}
 	rtw_ps_deny_cancel(adapter, PS_DENY_IOCTL);
 	RTW_INFO("%s direction=%d value=%d\n", __FUNCTION__, direction, value);
-	RTW_PRINT("\t%s GPIO=%u direction=%d value=%d\n", __FUNCTION__, gpio_num, direction, value);
+	// RTW_PRINT("\t%s GPIO=%u direction=%d value=%d\n", __FUNCTION__, gpio_num, direction, value);
 
 	return value;
 }
@@ -11500,12 +11500,12 @@ int  rtw_hal_set_gpio_output_value(_adapter *adapter, u8 gpio_num, bool isHigh)
 			rtw_write8(adapter, gpio_pin_output_val, rtw_read8(adapter, gpio_pin_output_val) & ~BIT(gpio_num_to_set));
 
 		RTW_INFO("%s Set gpio %x[%d]=%d\n", __FUNCTION__, REG_GPIO_PIN_CTRL + 1, gpio_num, isHigh);
-		RTW_PRINT("%s Set gpio %x[%d]=%d\n", __FUNCTION__, REG_GPIO_PIN_CTRL + 1, gpio_num, isHigh);
+		// RTW_PRINT("%s Set gpio %x[%d]=%d\n", __FUNCTION__, REG_GPIO_PIN_CTRL + 1, gpio_num, isHigh);
 		res = 0;
 	} else {
 		res = -1;
 		RTW_WARN("%s The gpio %u is input,not be set! Result: %d\n", __FUNCTION__, gpio_num, res);
-		RTW_PRINT("%s The gpio %u is input,not be set! Result: %d\n", __FUNCTION__, gpio_num,res);
+		// RTW_PRINT("%s The gpio %u is input,not be set! Result: %d\n", __FUNCTION__, gpio_num,res);
 	}
 
 	rtw_ps_deny_cancel(adapter, PS_DENY_IOCTL);

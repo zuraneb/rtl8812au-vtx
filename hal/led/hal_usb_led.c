@@ -2789,7 +2789,7 @@ SwLedControlMode4(
 		break;
 
 	case LED_CTL_CONNECTION_NO_TRANSFER:
-		RTW_PRINT("%s: KEEPING THE LIGHTS ON: LED_CTL_CONNECTION_NO_TRANSFER\n", __FUNCTION__);
+		// RTW_PRINT("%s: KEEPING THE LIGHTS ON: LED_CTL_CONNECTION_NO_TRANSFER\n", __FUNCTION__);
 		if (pLed->bLedBlinkInProgress == _FALSE) {
 			if (pLed->bLedNoLinkBlinkInProgress == _TRUE) {
 				_cancel_timer_ex(&(pLed->BlinkTimer));
@@ -3408,7 +3408,7 @@ SwLedControlMode9(
 		break;
 
 	case LED_CTL_CONNECTION_NO_TRANSFER:
-		RTW_PRINT("%s: KEEPING THE LIGHTS ON: LED_CTL_CONNECTION_NO_TRANSFER\n", __FUNCTION__);
+		// RTW_PRINT("%s: KEEPING THE LIGHTS ON: LED_CTL_CONNECTION_NO_TRANSFER\n", __FUNCTION__);
 		if (pLed->bLedBlinkInProgress == _FALSE) {
 			if (pLed->bLedNoLinkBlinkInProgress == _TRUE) {
 				_cancel_timer_ex(&(pLed->BlinkTimer));

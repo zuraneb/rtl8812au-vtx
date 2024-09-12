@@ -422,7 +422,7 @@ static void rtw_mask_map_read(PADAPTER padapter, u16 addr, u16 cnts, u8 *data)
 						data[i] = 0xff;
 				} else {
 					/*RTW_INFO(" %s , data[%d] = %x\n", __func__, i, data[i]);*/
-					RTW_PRINT(" %s , data[%d] = %x\n", __func__, i, data[i]);
+					// RTW_PRINT(" %s , data[%d] = %x\n", __func__, i, data[i]);
 					if (efuse_IsMasked(padapter, addr + i)) {
 						data[i] = 0xff;
 						/*RTW_INFO(" %s ,mask data[%d] = %x\n", __func__, i, data[i]);*/
@@ -1999,7 +1999,7 @@ efuse_ReadEFuse(
 	IN	BOOLEAN	bPseudoTest
 )
 {
-	RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
 	Adapter->hal_func.ReadEFuse(Adapter, efuseType, _offset, _size_byte, pbuf, bPseudoTest);
 }
 
@@ -2302,7 +2302,7 @@ u8 efuse_bt_GetCurrentSize(PADAPTER padapter, u16 *size)
 u8 rtw_efuse_map_read(PADAPTER padapter, u16 addr, u16 cnts, u8 *data)
 {
 	u16	mapLen = 0;
-	RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
 
 	EFUSE_GetEfuseDefinition(padapter, EFUSE_WIFI, TYPE_EFUSE_MAP_LEN, (PVOID)&mapLen, _FALSE);
 
@@ -2321,7 +2321,7 @@ u8 rtw_efuse_map_read(PADAPTER padapter, u16 addr, u16 cnts, u8 *data)
 u8 rtw_BT_efuse_map_read(PADAPTER padapter, u16 addr, u16 cnts, u8 *data)
 {
 	u16	mapLen = 0;
-	RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
 
 	EFUSE_GetEfuseDefinition(padapter, EFUSE_BT, TYPE_EFUSE_MAP_LEN, (PVOID)&mapLen, _FALSE);
 
@@ -2604,7 +2604,7 @@ Efuse_ReadAllMap(
 	IN		BOOLEAN		bPseudoTest)
 {
 	u16	mapLen = 0;
-	RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
 
 	Efuse_PowerSwitch(pAdapter, _FALSE, _TRUE);
 
@@ -2916,12 +2916,12 @@ void EFUSE_ShadowMapUpdate(
 {
 	PHAL_DATA_TYPE pHalData = GET_HAL_DATA(pAdapter);
 	u16	mapLen = 0;
-	RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
 	
 #ifdef RTW_HALMAC
 	u8 *efuse_map = NULL;
 	int err;
-	RTW_PRINT("*** MODALAI *** %s()----> RTW_HALMAC DEFINED\n", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s()----> RTW_HALMAC DEFINED\n", __FUNCTION__);
 
 
 
@@ -2953,14 +2953,14 @@ void EFUSE_ShadowMapUpdate(
 		_rtw_memset(pHalData->efuse_eeprom_data, 0xFF, mapLen);
 	else {
 #ifdef CONFIG_ADAPTOR_INFO_CACHING_FILE
-		RTW_PRINT("*** MODALAI *** %s()----> CONFIG_ADAPTOR_INFO_CACHING_FILE DEFINED ---> retriveAdaptorInfoFile\n", __FUNCTION__);
+		// RTW_PRINT("*** MODALAI *** %s()----> CONFIG_ADAPTOR_INFO_CACHING_FILE DEFINED ---> retriveAdaptorInfoFile\n", __FUNCTION__);
 		if (_SUCCESS != retriveAdaptorInfoFile(pAdapter->registrypriv.adaptor_info_caching_file_path, pHalData->efuse_eeprom_data)) {
 #endif
 
 			Efuse_ReadAllMap(pAdapter, efuseType, pHalData->efuse_eeprom_data, bPseudoTest);
 
 #ifdef CONFIG_ADAPTOR_INFO_CACHING_FILE
-			RTW_PRINT("*** MODALAI *** %s()----> CONFIG_ADAPTOR_INFO_CACHING_FILE DEFINED ---> storeAdaptorInfoFile\n", __FUNCTION__);
+			// RTW_PRINT("*** MODALAI *** %s()----> CONFIG_ADAPTOR_INFO_CACHING_FILE DEFINED ---> storeAdaptorInfoFile\n", __FUNCTION__);
 			storeAdaptorInfoFile(pAdapter->registrypriv.adaptor_info_caching_file_path, pHalData->efuse_eeprom_data);
 		}
 #endif
@@ -3000,12 +3000,12 @@ void EFUSE_ModalShadowMapUpdate(
 	u32			i;
 
 
-	RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s\n", __FUNCTION__);
 
 	/*  */
 	/* 4. Copy from Efuse map to output pointer memory!!! */
 	/*  */
-	RTW_PRINT("*** MODALAI *** %s() -----> Write offset: %u\n", __FUNCTION__, _offset);
+	// RTW_PRINT("*** MODALAI *** %s() -----> Write offset: %u\n", __FUNCTION__, _offset);
 	for (i = 0; i < _size_byte; i++)
 		pHalData->efuse_eeprom_data[i] = efuseTbl[_offset + i];
 
@@ -3014,11 +3014,11 @@ void EFUSE_ModalShadowMapUpdate(
 	/*  */
 	efuse_usage = (u1Byte)((eFuse_Addr * 100) / 512);
 	rtw_hal_set_hwreg(pAdapter, HW_VAR_EFUSE_BYTES, (u8 *)&eFuse_Addr);
-	RTW_PRINT("%s: eFuse_Addr offset(%#x) !! Efuse_usage: %u\n", __FUNCTION__, eFuse_Addr, efuse_usage);
+	// RTW_PRINT("%s: eFuse_Addr offset(%#x) !! Efuse_usage: %u\n", __FUNCTION__, eFuse_Addr, efuse_usage);
 
 	rtw_mask_map_read(pAdapter, 0x00, 512, pHalData->efuse_eeprom_data);
 
-	rtw_dump_cur_efuse(pAdapter);
+	// rtw_dump_cur_efuse(pAdapter);	// Uncomment this line if you want to dump the contents of the EEPROM to dmesg
 }/* EFUSE_ModalShadowMapUpdate */
 
 
@@ -3182,7 +3182,7 @@ u32 rtw_read_efuse_from_file(const char *path, u8 *buf, int map_size)
 	u32 file_size, read_size, pos = 0;
 	u8 *map = NULL;
 
-	RTW_PRINT("**MODALAI** EFUSE FILE PATH: %s", path);
+	// RTW_PRINT("**MODALAI** EFUSE FILE PATH: %s", path);
 	if (rtw_is_file_readable_with_size(path, &file_size) != _TRUE) {
 		RTW_PRINT("%s %s is not readable\n", __func__, path);
 		goto exit;
@@ -3249,7 +3249,7 @@ u32 rtw_read_efuse_from_file(const char *path, u8 *buf, int map_size)
 		}
 	}
 
-	RTW_PRINT("efuse file:%s, 0x%03x byte content read\n", path, i);
+	// RTW_PRINT("efuse file:%s, 0x%03x byte content read\n", path, i);
 
 	_rtw_memcpy(buf, map, map_size);
 

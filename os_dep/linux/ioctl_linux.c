@@ -8652,7 +8652,7 @@ static int rtw_mp_efuse_get(struct net_device *dev,
 
 	pch = extra;
 	RTW_INFO("%s: in=%s\n", __FUNCTION__, extra);
-	RTW_WARN("************MODALAI************ %s", __FUNCTION__);
+	// RTW_WARN("************MODALAI************ %s", __FUNCTION__);
 
 	i = 0;
 	/* mac 16 "00e04c871200" rmap,00,2 */

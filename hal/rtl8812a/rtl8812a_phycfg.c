@@ -573,12 +573,7 @@ PHY_GetTxPowerIndex_8812A(
 #endif
 
 	limit = PHY_GetTxPowerLimit(pAdapter, NULL, (u8)(!bIn24G), pHalData->current_channel_bw, RFPath, Rate, ntx_idx, pHalData->current_channel);
-	RTW_PRINT("*** MODALAI *** %s() ---> Power limit: %i\n", __FUNCTION__, limit);
-	#ifdef CONFIG_TXPWR_LIMIT
-	RTW_PRINT("*** MODALAI *** %s() ---> CONFIG_TXPWR_LIMIT ON\n", __FUNCTION__);
-	#else 
-	RTW_PRINT("*** MODALAI *** %s() ---> CONFIG_TXPWR_LIMIT OFF\n", __FUNCTION__);
-	#endif
+	// RTW_PRINT("*** MODALAI *** %s() ---> Power limit: %i\n", __FUNCTION__, limit);
 
 	tpt_offset = PHY_GetTxPowerTrackingOffset(pAdapter, RFPath, Rate);
 
@@ -603,7 +598,7 @@ PHY_GetTxPowerIndex_8812A(
 	if (power_idx % 2 == 1 && !IS_NORMAL_CHIP(pHalData->version_id))
 		--power_idx;
 
-	RTW_PRINT("*** MODALAI *** %s() ---> Power Index: %u\n", __FUNCTION__, power_idx);
+	// RTW_PRINT("*** MODALAI *** %s() ---> Power Index: %u\n", __FUNCTION__, power_idx);
 	return power_idx;
 }
 
@@ -624,14 +619,11 @@ PHY_SetTxPowerIndex_8812A(
 {
 	HAL_DATA_TYPE		*pHalData	= GET_HAL_DATA(Adapter);
 
-	//OpenHD Consti10: If you start at set_tx_power_level_handler and then go through all the
-	// different functions that do cryptic things in the end you land here
-  	RTW_PRINT("%s: PHY_SetTxPowerIndex_8812A with RFPath: %u PowerIndex:%d Override:%d Rate:%d ", __FUNCTION__,(u8)RFPath,PowerIndex,Adapter->registrypriv.RegTxPowerIndexOverride,(int)Rate);
-	// RTW_PRINT("%s: Is test chip: %s", __FUNCTION__, IS_TEST_CHIP(pHalData->version_id) ? "TRUE" : "FALSE");
+  	// RTW_PRINT("%s: PHY_SetTxPowerIndex_8812A with RFPath: %u PowerIndex:%d Override:%d Rate:%d ", __FUNCTION__,(u8)RFPath,PowerIndex,Adapter->registrypriv.RegTxPowerIndexOverride,(int)Rate);
 
 	if (Adapter->registrypriv.RegTxPowerIndexOverride){
 		PowerIndex = (u32)Adapter->registrypriv.RegTxPowerIndexOverride;
-		RTW_PRINT("%s: Using Adapter->registrypriv.RegTxPowerIndexOverride= %u", __FUNCTION__, (u32)Adapter->registrypriv.RegTxPowerIndexOverride);
+		// RTW_PRINT("%s: Using Adapter->registrypriv.RegTxPowerIndexOverride= %u", __FUNCTION__, (u32)Adapter->registrypriv.RegTxPowerIndexOverride);
 	}
 
 	/* <20120928, Kordan> A workaround in 8812A/8821A testchip, to fix the bug of odd Tx power indexes. */
@@ -993,13 +985,13 @@ u32 phy_get_tx_bb_swing_8812a(
 	s8	bbSwing_5G = -1 * GetRegTxBBSwing_5G(Adapter);
 	u32	out = 0x200;
 	const s8	AUTO = -1;
-	RTW_PRINT("*** MODALAI *** %s()\n", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s()\n", __FUNCTION__);
 
 
 	if (pHalData->bautoload_fail_flag) {
-		RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed\n", __FUNCTION__);
+		// RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed\n", __FUNCTION__);
 		if (Band == BAND_ON_2_4G) {
-			RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on 2G\n", __FUNCTION__);
+			// RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on 2G\n", __FUNCTION__);
 			pRFCalibrateInfo->bb_swing_diff_2g = bbSwing_2G;
 			if (bbSwing_2G == 0)
 				out = 0x200; /* 0 dB */
@@ -1018,9 +1010,9 @@ u32 phy_get_tx_bb_swing_8812a(
 					out = 0x200;
 				}
 			}
-			RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on 2G ---> out: 0x%x\n", __FUNCTION__, out);
+			// RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on 2G ---> out: 0x%x\n", __FUNCTION__, out);
 		} else if (Band == BAND_ON_5G) {
-			RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on 5G\n", __FUNCTION__);
+			// RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on 5G\n", __FUNCTION__);
 			pRFCalibrateInfo->bb_swing_diff_5g = bbSwing_5G;
 			if (bbSwing_5G == 0)
 				out = 0x200; /* 0 dB */
@@ -1039,19 +1031,19 @@ u32 phy_get_tx_bb_swing_8812a(
 					out = 0x200;
 				}
 			}
-			RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on 5G ---> out: 0x%x\n", __FUNCTION__, out);
+			// RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on 5G ---> out: 0x%x\n", __FUNCTION__, out);
 		} else  {
-			RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on unknown band, out: 0x16A\n", __FUNCTION__);
+			// RTW_PRINT("*** MODALAI *** %s() ---> Autoload failed ---> on unknown band, out: 0x16A\n", __FUNCTION__);
 			pRFCalibrateInfo->bb_swing_diff_2g = -3;
 			pRFCalibrateInfo->bb_swing_diff_5g = -3;
 			out = 0x16A; /* -3 dB */
 		}
 	} else {
 		u32 swing = 0, onePathSwing = 0;
-		RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful\n", __FUNCTION__);
+		// RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful\n", __FUNCTION__);
 
 		if (Band == BAND_ON_2_4G) {
-			RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> on 2G\n", __FUNCTION__);
+			// RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> on 2G\n", __FUNCTION__);
 			if (GetRegTxBBSwing_2G(Adapter) == AUTO) {
 				EFUSE_ShadowRead(Adapter, 1, EEPROM_TX_BBSWING_2G_8812, (u32 *)&swing);
 				swing = (swing == 0xFF) ? 0x00 : swing;
@@ -1065,9 +1057,9 @@ u32 phy_get_tx_bb_swing_8812a(
 				swing = 0xFF; /* -9 dB */
 			else
 				swing = 0x00;
-			RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> on 2G ---> swing: 0x%x\n", __FUNCTION__, swing);
+			// RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> on 2G ---> swing: 0x%x\n", __FUNCTION__, swing);
 		} else {
-			RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> on 5G\n", __FUNCTION__);
+			// RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> on 5G\n", __FUNCTION__);
 			if (GetRegTxBBSwing_5G(Adapter) == AUTO) {
 				EFUSE_ShadowRead(Adapter, 1, EEPROM_TX_BBSWING_5G_8812, (u32 *)&swing);
 				swing = (swing == 0xFF) ? 0x00 : swing;
@@ -1081,16 +1073,16 @@ u32 phy_get_tx_bb_swing_8812a(
 				swing = 0xFF; /* -9 dB */
 			else
 				swing = 0x00;
-			RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> on 5G ---> swing: 0x%x\n", __FUNCTION__, swing);
+			// RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> on 5G ---> swing: 0x%x\n", __FUNCTION__, swing);
 		}
 
-		RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> RFPath: %d\n", __FUNCTION__, (int)RFPath);
+		// RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> RFPath: %d\n", __FUNCTION__, (int)RFPath);
 		if (RFPath == RF_PATH_A)
 			onePathSwing = (swing & 0x3) >> 0; /* 0xC6/C7[1:0] */
 		else if (RFPath == RF_PATH_B)
 			onePathSwing = (swing & 0xC) >> 2; /* 0xC6/C7[3:2] */
 
-		RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> onePathSwing: 0x%x\n", __FUNCTION__, onePathSwing);
+		// RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> onePathSwing: 0x%x\n", __FUNCTION__, onePathSwing);
 
 		if (onePathSwing == 0x0) {
 			if (Band == BAND_ON_2_4G)
@@ -1117,7 +1109,7 @@ u32 phy_get_tx_bb_swing_8812a(
 				pRFCalibrateInfo->bb_swing_diff_5g = -9;
 			out = 0x0B6; /* -9 dB */
 		}
-		RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> out: 0x%x\n", __FUNCTION__, out);
+		// RTW_PRINT("*** MODALAI *** %s() ---> Autoload successful ---> out: 0x%x\n", __FUNCTION__, out);
 	}
 
 	/* RTW_INFO("<=== phy_get_tx_bb_swing_8812a, out = 0x%X\n", out); */
@@ -1242,7 +1234,7 @@ void phy_SetBBSwingByBand_8812A(
 {
 	HAL_DATA_TYPE	*pHalData = GET_HAL_DATA(GetDefaultAdapter(Adapter));
 
-	RTW_PRINT("%s() --->\n", __FUNCTION__);
+	// RTW_PRINT("%s() --->\n", __FUNCTION__);
 
 	/* <20120903, Kordan> Tx BB swing setting for RL6286, asked by Ynlin. */
 	if (IS_NORMAL_CHIP(pHalData->version_id) || IS_HARDWARE_TYPE_8821(Adapter)) {
@@ -1285,14 +1277,14 @@ phy_SetRFEReg8821(
 )
 {
 	HAL_DATA_TYPE	*pHalData = GET_HAL_DATA(Adapter);
-	RTW_PRINT("%s() --->\n", __FUNCTION__);
+	// RTW_PRINT("%s() --->\n", __FUNCTION__);
 
 	if (Band == BAND_ON_2_4G) {
 		/* Turn off RF PA and LNA */
 		// phy_set_bb_reg(Adapter, rA_RFE_Pinmux_Jaguar, 0xF000, 0x7);	/* 0xCB0[15:12] = 0x7 (LNA_On) */
 		// phy_set_bb_reg(Adapter, rA_RFE_Pinmux_Jaguar, 0xF0, 0x7);	/* 0xCB0[7:4] = 0x7 (PAPE_A)			 */
 
-		RTW_PRINT("%s() ---> TURNING RF PA AND LNA ON\n", __FUNCTION__);
+		// RTW_PRINT("%s() ---> TURNING RF PA AND LNA ON\n", __FUNCTION__);
 		/* Turn ON RF PA and LNA */
 		phy_set_bb_reg(Adapter, rA_RFE_Pinmux_Jaguar, 0xF000, 0x5);	/* 0xCB0[15:12] = 0x5 (LNA_On) */
 		phy_set_bb_reg(Adapter, rA_RFE_Pinmux_Jaguar, 0xF0, 0x4);	/* 0xCB0[7:4] = 0x4 (PAPE_A)			 */
@@ -1340,22 +1332,22 @@ PHY_SwitchWirelessBand8812(
 	u8 eLNA_2g = pHalData->ExternalLNA_2G;
 
 	/* RTW_INFO("==>PHY_SwitchWirelessBand8812() %s\n", ((Band==0)?"2.4G":"5G")); */
-	RTW_PRINT("%s() --->\n", __FUNCTION__);
-	if(IS_VENDOR_8812A_MP_CHIP(Adapter)) {
-		RTW_PRINT("%s() ---> MP CHIP\n", __FUNCTION__);
-	} else {
-		RTW_PRINT("%s() ---> NON-MP CHIP\n", __FUNCTION__);
-		if(IS_VENDOR_8812A_C_CUT(Adapter)){
-			RTW_PRINT("%s() ---> C CUT CHIP\n", __FUNCTION__);
-		} else {
-			RTW_PRINT("%s() ---> NOT C CUT CHIP\n", __FUNCTION__);
-			if (IS_VENDOR_8812A_TEST_CHIP(Adapter)){
-				RTW_PRINT("%s() ---> TEST  CHIP\n", __FUNCTION__);
-			} else {
-				RTW_PRINT("%s() ---> WTF IS THIS CHIP???\n", __FUNCTION__);
-			}
-		}
-	}
+	// RTW_PRINT("%s() --->\n", __FUNCTION__);
+	// if(IS_VENDOR_8812A_MP_CHIP(Adapter)) {
+	// 	RTW_PRINT("%s() ---> MP CHIP\n", __FUNCTION__);
+	// } else {
+	// 	RTW_PRINT("%s() ---> NON-MP CHIP\n", __FUNCTION__);
+	// 	if(IS_VENDOR_8812A_C_CUT(Adapter)){
+	// 		RTW_PRINT("%s() ---> C CUT CHIP\n", __FUNCTION__);
+	// 	} else {
+	// 		RTW_PRINT("%s() ---> NOT C CUT CHIP\n", __FUNCTION__);
+	// 		if (IS_VENDOR_8812A_TEST_CHIP(Adapter)){
+	// 			RTW_PRINT("%s() ---> TEST  CHIP\n", __FUNCTION__);
+	// 		} else {
+	// 			RTW_PRINT("%s() ---> WTF IS THIS CHIP???\n", __FUNCTION__);
+	// 		}
+	// 	}
+	// }
 
 	pHalData->current_band_type = (BAND_TYPE)Band;
 
@@ -1377,7 +1369,7 @@ PHY_SwitchWirelessBand8812(
 
 		// if (IS_HARDWARE_TYPE_8821(Adapter))
 			// phy_SetRFEReg8821(Adapter, Band);
-		RTW_PRINT("%s() ---> phy_SetRFEReg8821()\n", __FUNCTION__);
+		// RTW_PRINT("%s() ---> phy_SetRFEReg8821()\n", __FUNCTION__);
 		phy_SetRFEReg8821(Adapter, Band);
 
 		if (IS_HARDWARE_TYPE_8812(Adapter)) {

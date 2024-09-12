@@ -3388,7 +3388,7 @@ static int cfg80211_rtw_connect(struct wiphy *wiphy, struct net_device *ndev,
 	struct rtw_wdev_priv *pwdev_priv = adapter_wdev_data(padapter);
 	_irqL irqL;
 
-	RTW_WARN("************MODALAI************ cfg80211_rtw_connect");
+	// RTW_WARN("************MODALAI************ cfg80211_rtw_connect");
 
 	rtw_wdev_set_not_indic_disco(pwdev_priv, 1);
 
@@ -3678,17 +3678,13 @@ int value;
 	value = dbm;
 #endif
 
-	RTW_PRINT("************MODALAI************ cfg80211_rtw_set_txpower ");
-
-	RTW_INFO("OpenHD:cfg80211_rtw_set_txpower with %d mBm %d (?dBm?)",(int)mbm,(int)value);
-	RTW_PRINT("MODALAI:cfg80211_rtw_set_txpower with %d mBm %d (?dBm?)",(int)mbm,(int)value);
+	// RTW_PRINT("MODALAI:cfg80211_rtw_set_txpower with %d mBm %d (?dBm?)",(int)mbm,(int)value);
 if(value < 0)
 	value = 0;
 if(value > 40)
 	value = 40;
 
 if(type == NL80211_TX_POWER_FIXED) {
-    RTW_PRINT("OpenHD:cfg80211_rtw_set_txpower NL80211_TX_POWER_FIXED");
 	// OpenHD dynamic tx power: We hack the driver here by repurposing really small dBm values
 	// as power index. This is a bit dangerous - since 63mBm now suddenly becomes max power.
 	// But since 25mW is already ~14dBm (and therefore 140 mBm if you go with the 100 factor)
@@ -3707,9 +3703,7 @@ if(type == NL80211_TX_POWER_FIXED) {
 
     if(mbm>=0 && mbm<=63){
 	  padapter->registrypriv.RegTxPowerIndexOverride = mbm;
-	  RTW_WARN("OpenHD:interpreting %d mBm as tx power index override",(int)mbm);
 	}
-	RTW_PRINT("OpenHD:Tx power index override is %d",padapter->registrypriv.RegTxPowerIndexOverride);
 
 	pHalData->CurrentTxPwrIdx = value;
 	rtw_hal_set_tx_power_level(padapter, pHalData->current_channel);
@@ -5049,7 +5043,7 @@ static int	cfg80211_rtw_set_channel(struct wiphy *wiphy
 	int chan_offset = HAL_PRIME_CHNL_OFFSET_DONT_CARE;
 	int chan_width = CHANNEL_WIDTH_20;
 
-	RTW_WARN("************MODALAI************ non-monitor cfg80211_rtw_set_channel");
+	// RTW_WARN("************MODALAI************ non-monitor cfg80211_rtw_set_channel");
 #if (CFG80211_API_LEVEL >= KERNEL_VERSION(2, 6, 35))
 	RTW_INFO(FUNC_NDEV_FMT"\n", FUNC_NDEV_ARG(ndev));
 #endif
@@ -5190,15 +5184,15 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 	// Bind button/GPIO1 is pulled up (reads high by default)
 	// GPIO1 -> TP 15 or BUTTON on side 
 	if(rtw_hal_get_gpio(padapter, 1) < 1){
-		RTW_PRINT("***** DETECTED GPIO INPUT ON GPIO 1 *****");
+		// RTW_PRINT("***** DETECTED GPIO INPUT ON GPIO 1 *****");
 		// rtw_led_control(padapter, LED_CTL_POWER_OFF);
 		rtw_led_control(padapter, LED_CTL_CONNECTION_NO_TRANSFER);
 		
 		// Set GPIO 9 as output
 		if(rtw_hal_config_gpio(padapter, (u8)9, true) == 0){
-			RTW_PRINT("Set GPIO 9 config as output successfully");
+			// RTW_PRINT("Set GPIO 9 config as output successfully");
 		} else {
-			RTW_PRINT("FAILED to set GPIO 9 config as output!");
+			// RTW_PRINT("FAILED to set GPIO 9 config as output!");
 		}
 
 		rtw_hal_get_gpio(padapter,(u8)9);
@@ -5209,15 +5203,15 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 
 	// GPIO2 -> TP 16
 	if(rtw_hal_get_gpio(padapter, 2) > 0){
-		RTW_PRINT("***** DETECTED GPIO INPUT ON GPIO 2 *****");
+		// RTW_PRINT("***** DETECTED GPIO INPUT ON GPIO 2 *****");
 		rtw_led_control(padapter, LED_CTL_POWER_ON);
 		rtw_led_control(padapter, LED_CTL_CONNECTION_NO_TRANSFER);
 
 		// Set GPIO 8 as output
 		if(rtw_hal_config_gpio(padapter, (u8)8, true) == 0){
-			RTW_PRINT("Set GPIO 8 config as output successfully");
+			// RTW_PRINT("Set GPIO 8 config as output successfully");
 		} else {
-			RTW_PRINT("FAILED to set GPIO 8 config as output!");
+			// RTW_PRINT("FAILED to set GPIO 8 config as output!");
 		}
 		
 		rtw_hal_get_gpio(padapter,(u8)8);
@@ -5228,15 +5222,15 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 
 	// GPIO3 -> TP 23
 	if(rtw_hal_get_gpio(padapter, 3) > 0){
-		RTW_PRINT("***** DETECTED GPIO INPUT ON GPIO 3 *****");
+		// RTW_PRINT("***** DETECTED GPIO INPUT ON GPIO 3 *****");
 		rtw_led_control(padapter, LED_CTL_POWER_ON);
 		rtw_led_control(padapter, LED_CTL_CONNECTION_NO_TRANSFER);
 		
 		// Set GPIO 10 as output
 		if(rtw_hal_config_gpio(padapter, (u8)10, true) == 0){
-			RTW_PRINT("Set GPIO 10 config as output successfully");
+			// RTW_PRINT("Set GPIO 10 config as output successfully");
 		} else {
-			RTW_PRINT("FAILED to set GPIO 10 config as output!");
+			// RTW_PRINT("FAILED to set GPIO 10 config as output!");
 		}
 
 		rtw_hal_get_gpio(padapter,(u8)10);
@@ -5287,7 +5281,6 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 #endif // CONFIG_GPIO_API
 #endif // CONFIG_GPIO_CONTROL 
 
-    // OpenHD channel via module param
     // update if module param has been updated
     padapter->registrypriv.openhd_override_channel=get_openhd_override_channel();
     padapter->registrypriv.openhd_override_channel_width=get_openhd_override_channel_width();
@@ -5297,15 +5290,12 @@ static int cfg80211_rtw_set_monitor_channel(struct wiphy *wiphy
 
 	// RTW_ERR("************MODALAI************ cfg80211_rtw_set_monitor_channel");
 
-    RTW_INFO("OpenHD: override %d %d",padapter->registrypriv.openhd_override_channel,padapter->registrypriv.openhd_override_channel_width);
     {
         if(padapter->registrypriv.openhd_override_channel){
             target_channal=padapter->registrypriv.openhd_override_channel;
-            RTW_WARN("\nOpenHD: using openhd_override_channel");
         }
         if(padapter->registrypriv.openhd_override_channel_width){
             target_width=padapter->registrypriv.openhd_override_channel_width;
-            RTW_WARN("OpenHD: using openhd_override_channel_width");
         }
     }
 

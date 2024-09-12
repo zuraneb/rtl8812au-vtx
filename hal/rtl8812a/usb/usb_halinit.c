@@ -1554,7 +1554,7 @@ u32 rtl8812au_hal_init(PADAPTER Adapter)
 		phy_set_bb_reg(Adapter, rTxPath_Jaguar, bMaskLWord, 0x1111);
 #endif
 
-	RTW_PRINT("%s() --->\n", __FUNCTION__);
+	// RTW_PRINT("%s() --->\n", __FUNCTION__);
 	if (Adapter->registrypriv.channel <= 14)
 		PHY_SwitchWirelessBand8812(Adapter, BAND_ON_2_4G);
 	else
@@ -1971,7 +1971,7 @@ hal_InitPGData_8812A(
 	u16			value16;
 
 
-	RTW_PRINT("**MODALAI** %s", __FUNCTION__);
+	// RTW_PRINT("**MODALAI** %s", __FUNCTION__);
 
 	if (_FALSE == pHalData->bautoload_fail_flag) {
 		RTW_PRINT("*** MODALAI *** %s() ----> _FALSE == pHalData->bautoload_fail_flag\n", __FUNCTION__);
@@ -2041,15 +2041,16 @@ hal_InitPGData_8812A(
 	}
 
 #ifdef CONFIG_EFUSE_CONFIG_FILE
-	RTW_PRINT("**MODALAI** %s CONFIG_EFUSE_CONFIG_FILE ENABLED", __FUNCTION__);
+	// RTW_PRINT("**MODALAI** %s CONFIG_EFUSE_CONFIG_FILE ENABLED", __FUNCTION__);
 	if (check_phy_efuse_tx_power_info_valid(padapter) == _FALSE) {
 		if (Hal_readPGDataFromConfigFile(padapter) != _SUCCESS)
 			RTW_ERR("invalid phy efuse and read from file fail, will use driver default!!\n");
-	} else {
-		RTW_PRINT("**MODALAI** %s -> check_phy_efuse_tx_power_info_valid(padapter) == _TRUE ", __FUNCTION__);
-	}
+	} 
+	// else {
+		// RTW_PRINT("**MODALAI** %s -> check_phy_efuse_tx_power_info_valid(padapter) == _TRUE ", __FUNCTION__);
+	// }
 #else 
-	RTW_PRINT("**MODALAI** CONFIG_EFUSE_CONFIG_FILE DISABLED. %s", __FUNCTION__);
+	// RTW_PRINT("**MODALAI** CONFIG_EFUSE_CONFIG_FILE DISABLED. %s", __FUNCTION__);
 #endif
 
 }
@@ -2236,7 +2237,7 @@ InitAdapterVariablesByPROM_8812AU(
 {
 	PHAL_DATA_TYPE pHalData = GET_HAL_DATA(Adapter);
 
-	RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
 	hal_InitPGData_8812A(Adapter, pHalData->efuse_eeprom_data);
 
 	Hal_EfuseParseIDCode8812A(Adapter, pHalData->efuse_eeprom_data);
@@ -2284,7 +2285,7 @@ static void Hal_ReadPROMContent_8812A(
 	PHAL_DATA_TYPE pHalData = GET_HAL_DATA(Adapter);
 	u8			eeValue;
 
-	RTW_PRINT("*** MODALAI *** %s ", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s ", __FUNCTION__);
 
 	/* check system boot selection */
 	eeValue = rtw_read8(Adapter, REG_9346CR);
@@ -2305,7 +2306,7 @@ ReadAdapterInfo8812AU(
 	IN PADAPTER			Adapter
 )
 {
-	RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
 
 	/* Read all content in Efuse/EEPROM. */
 	Hal_ReadPROMContent_8812A(Adapter);
@@ -2606,7 +2607,7 @@ void rtl8812au_set_hal_ops(_adapter *padapter)
 {
 	struct hal_ops	*pHalFunc = &padapter->hal_func;
 
-	RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** %s", __FUNCTION__);
 
 	pHalFunc->hal_power_on = _InitPowerOn_8812AU;
 	pHalFunc->hal_power_off = hal_poweroff_8812au;
@@ -2652,6 +2653,6 @@ void rtl8812au_set_hal_ops(_adapter *padapter)
 #endif
 
 	rtl8812_set_hal_ops(pHalFunc);
-	RTW_PRINT("*** MODALAI *** RETURN %s", __FUNCTION__);
+	// RTW_PRINT("*** MODALAI *** RETURN %s", __FUNCTION__);
 
 }
