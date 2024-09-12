@@ -1136,9 +1136,9 @@ hal_ReadPAType_8812A(
 	// RTW_PRINT("%s() ---> CUSTOMER ID: %u", __FUNCTION__, pHalData->CustomerID);
 
 	if (!AutoloadFail) {
-		RTW_PRINT("%s() ---> !AutoloadFail", __FUNCTION__);
+		// RTW_PRINT("%s() ---> !AutoloadFail", __FUNCTION__);
 		if (GetRegAmplifierType2G(Adapter) == 0) { /* AUTO */
-			RTW_PRINT("%s() ---> !AutoloadFail -->  AUTO ", __FUNCTION__);
+			// RTW_PRINT("%s() ---> !AutoloadFail -->  AUTO ", __FUNCTION__);
 			pHalData->PAType_2G = ReadLE1Byte(&PROMContent[EEPROM_PA_TYPE_8812AU]);
 			pHalData->LNAType_2G = ReadLE1Byte(&PROMContent[EEPROM_LNA_TYPE_2G_8812AU]);
 			if (pHalData->PAType_2G == 0xFF)
@@ -3391,22 +3391,22 @@ void InitPGData8812A(PADAPTER padapter)
 
 	if (_FALSE == pHalData->bautoload_fail_flag) {
 		/* autoload OK. */
-		RTW_PRINT("*** MODALAI *** %s() ----> _FALSE == pHalData->bautoload_fail_flag\n", __FUNCTION__);
+		// RTW_PRINT("*** MODALAI *** %s() ----> _FALSE == pHalData->bautoload_fail_flag\n", __FUNCTION__);
 		if (is_boot_from_eeprom(padapter)) {
-			RTW_PRINT("*** MODALAI *** %s() ----> TRUE == is_boot_from_eeprom(padapter)\n", __FUNCTION__);
+			// RTW_PRINT("*** MODALAI *** %s() ----> TRUE == is_boot_from_eeprom(padapter)\n", __FUNCTION__);
 			/* Read all Content from EEPROM or EFUSE. */
 			for (i = 0; i < HWSET_MAX_SIZE_JAGUAR; i += 2) {
 				/* val16 = EF2Byte(ReadEEprom(pAdapter, (u2Byte) (i>>1))); */
 				/* *((u16*)(&PROMContent[i])) = val16; */
 			}
 		} else {
-			RTW_PRINT("*** MODALAI *** %s() ----> FALSE == is_boot_from_eeprom(padapter)\n", __FUNCTION__);
+			// RTW_PRINT("*** MODALAI *** %s() ----> FALSE == is_boot_from_eeprom(padapter)\n", __FUNCTION__);
 			/* Read EFUSE real map to shadow. */
 			EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);
 			// EFUSE_ModalShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);	// THIS ONE IS NOT USED RN
 		}
 	} else {
-		RTW_PRINT("*** MODALAI *** %s() ----> _TRUE == pHalData->bautoload_fail_flag\n", __FUNCTION__);
+		// RTW_PRINT("*** MODALAI *** %s() ----> _TRUE == pHalData->bautoload_fail_flag\n", __FUNCTION__);
 		/* update to default value 0xFF */
 		if (!is_boot_from_eeprom(padapter))
 			EFUSE_ShadowMapUpdate(padapter, EFUSE_WIFI, _FALSE);

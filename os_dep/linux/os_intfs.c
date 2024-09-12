@@ -1024,27 +1024,27 @@ uint loadparam(_adapter *padapter)
 #ifdef CONFIG_TXPWR_LIMIT
 	registry_par->RegEnableTxPowerLimit = (u8)rtw_tx_pwr_lmt_enable;
 	//Consti10: Define is off at build time
-	RTW_INFO("OpenHD:rtw_tx_pwr_lmt_enable:%d\n",(int)rtw_tx_pwr_lmt_enable);
+	// RTW_INFO("OpenHD:rtw_tx_pwr_lmt_enable:%d\n",(int)rtw_tx_pwr_lmt_enable);
 #endif
 	// TODO fix me
-	RTW_INFO("OpenHD:hard-coded params !!");
+	// RTW_INFO("OpenHD:hard-coded params !!");
 	//rtw_tx_pwr_idx_override=58;
   	rtw_tx_pwr_by_rate=0;
 
 	registry_par->RegEnableTxPowerByRate = (u8)rtw_tx_pwr_by_rate;
-    RTW_INFO("OpenHD:rtw_tx_pwr_by_rate:%d\n",(int)rtw_tx_pwr_by_rate);
+    // RTW_INFO("OpenHD:rtw_tx_pwr_by_rate:%d\n",(int)rtw_tx_pwr_by_rate);
 
 	if (rtw_tx_pwr_idx_override > MAX_POWER_INDEX)
 		rtw_tx_pwr_idx_override = MAX_POWER_INDEX;
 	registry_par->RegTxPowerIndexOverride = (u8)rtw_tx_pwr_idx_override;
-	RTW_INFO("OpenHD:rtw_tx_pwr_idx_override:%d\n",(int)rtw_tx_pwr_idx_override);
+	// RTW_INFO("OpenHD:rtw_tx_pwr_idx_override:%d\n",(int)rtw_tx_pwr_idx_override);
 
 	// RTW_PRINT("************MODALAI*********** LOAD PARAM");
 
     registry_par->openhd_override_channel = openhd_override_channel;
     registry_par->openhd_override_channel_width = openhd_override_channel_width;
-    RTW_WARN("OpenHD: openhd_override_channel %d, openhd_override_channel_width: %d",
-             registry_par->openhd_override_channel,registry_par->openhd_override_channel_width);
+    // RTW_WARN("OpenHD: openhd_override_channel %d, openhd_override_channel_width: %d",
+            //  registry_par->openhd_override_channel,registry_par->openhd_override_channel_width);
 
 
 	rtw_regsty_load_target_tx_power(registry_par);

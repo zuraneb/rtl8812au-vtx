@@ -11521,7 +11521,7 @@ int rtw_hal_config_gpio(_adapter *adapter, u8 gpio_num, bool isOutput)
 		return -1;
 
 	RTW_INFO("%s gpio_num =%d direction=%d\n", __FUNCTION__, gpio_num, isOutput);
-	RTW_WARN("%s gpio_num =%d direction=%d\n", __FUNCTION__, gpio_num, isOutput);
+	RTW_PRINT("%s gpio_num =%d direction=%d\n", __FUNCTION__, gpio_num, isOutput);
 
 	rtw_ps_deny(adapter, PS_DENY_IOCTL);
 
